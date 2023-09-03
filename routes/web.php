@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/order/pendingAndProses', 'App\Http\Controllers\OrderController@pendingAndProses');
+Route::get('/order/dibayar', 'App\Http\Controllers\OrderController@dibayar');
+Route::get('/order/dibatalkan', 'App\Http\Controllers\OrderController@dibatalkan');

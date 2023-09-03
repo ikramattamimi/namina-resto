@@ -18,6 +18,22 @@
             <span>Dashboard</span></a>
     </li>
 
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="far fa-bell"></i></i>
+            <span>Orderan Online</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/order/pendingAndProses">Pending & Proses</a>
+                <a class="collapse-item" href="/order/dibayar">Dibayar</a>
+                <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
