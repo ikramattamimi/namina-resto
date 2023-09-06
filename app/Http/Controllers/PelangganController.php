@@ -15,7 +15,7 @@ class PelangganController extends Controller
     public function index()
     {
         return view('pelanggan.index', [
-            'pelanggans' => Pelanggan::all(['nama', 'no_hp',]),
+            'pelanggans' => Pelanggan::all(['id', 'nama', 'no_hp',]),
         ]);
     }
 
@@ -37,7 +37,17 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|string|min:3',
+            'noTelepon' => 'required|min:10'
+        ]);
+
+        $pelanggan = Pelanggan::create([
+            'nama' => $request->nama,
+            'no_hp' => $request->noTelepon
+        ]);
+
+        return $this->redirectRoute(pelanggan: $pelanggan);
     }
 
     /**
@@ -77,11 +87,45 @@ class PelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pelanggan  $pelanggan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelanggan $pelanggan)
+    public function destroy($id)
     {
-        //
+        $pelanggan = Pelanggan::findOrFail($id);
+        $pelanggan->delete();
+
+        return $this->redirectRoute(pelanggan: $pelanggan);
+    }
+
+    /**
+     * Redirect route based on condition.
+     *
+     * @param  mixed $pelanggan
+     * @param  mixed $route
+     * @param  mixed $successMsg
+     * @param  mixed $errorMsg
+     * @return void
+     */
+    private function redirectRoute(
+        Pelanggan $pelanggan,
+        String $route = 'pelanggan.index',
+        String $successMsg = 'Berhasil',
+        String $errorMsg = 'Terjadi Kesalahan'
+    ) {
+        if ($pelanggan) {
+            return redirect()
+                ->route($route)
+                ->with([
+                    "success" => $successMsg
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    "error" => $errorMsg
+                ]);
+        }
     }
 }

@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,10 +23,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pelanggan extends Model
 {
+	use HasFactory;
+
 	protected $table = 'pelanggans';
 
 	protected $fillable = [
 		'nama',
 		'no_hp'
 	];
+
+	public function idnya()
+	{
+		return $this->idg;
+	}
 }

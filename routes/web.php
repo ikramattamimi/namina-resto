@@ -19,4 +19,4 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::resource('pelanggan', PelangganController::class)
-    ->only(['index', 'create', 'store']);
+    ->only(['index', 'create', 'store', 'destroy']);
