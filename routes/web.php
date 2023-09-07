@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::get('/', function () {
 Route::resource('pelanggan', PelangganController::class);
 
 Route::resource('rekening', RekeningController::class);
+
+Route::resource('qrcode', QrCodeController::class);
