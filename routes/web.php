@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::resource('pelanggan', PelangganController::class);
+
+Route::resource('rekening', RekeningController::class);

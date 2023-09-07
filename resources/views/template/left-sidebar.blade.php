@@ -33,6 +33,13 @@
             <span>Pelanggan</span></a>
     </li>
 
+    <!-- Nav Item - Rekening -->
+    <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('rekening.index') }}">
+            <i class="fas fa-fw fa-credit-card"></i>
+            <span>Rekening</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
