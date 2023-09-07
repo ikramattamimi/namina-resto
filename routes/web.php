@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
@@ -15,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('dashboard');
+Auth::routes();
 
-Route::resource('pelanggan', PelangganController::class);
+Route::prefix('admin')->group(function () {
 
-Route::resource('rekening', RekeningController::class);
+    Route::resource('pelanggan', PelangganController::class);
+
+    Route::resource('rekening', RekeningController::class);
+
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
