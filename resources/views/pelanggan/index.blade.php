@@ -48,12 +48,13 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <a class="btn btn-circle btn-primary btn-sm" id="detailPelanggan"
+                                        {{-- <a class="btn btn-circle btn-primary btn-sm" id="detailPelanggan"
                                             name="detailPelanggan" href="#" role="button">
                                             <i class="fas fa-info-circle"></i>
-                                        </a>
+                                        </a> --}}
                                         <a class="btn btn-circle btn-warning btn-sm" id="editPelanggan"
-                                            name="editPelanggan" href="#" role="button">
+                                            name="editPelanggan" href="{{ route('pelanggan.edit', $pelanggan->id) }}"
+                                            role="button">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <button class="btn btn-circle btn-danger btn-sm" id="hapusPelanggan"

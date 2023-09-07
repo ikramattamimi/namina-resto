@@ -3,8 +3,8 @@
 
     <div class="col-md-6">
         <input class="form-control @error($name) is-invalid @enderror" id="{{ $name }}" name="{{ $name }}"
-            type="{{ $type }}" value="{{ old($name) }}" {{ $isRequired }} {{ $isDisabled }}
-            autocomplete="{{ $name }}" autofocus>
+            type="{{ $type }}" {{ $isRequired }} {{ $isDisabled }}
+            {{ $attributes->class([])->merge(['value' => old($name)]) }} autocomplete="{{ $name }}" autofocus>
 
         @error($name)
             <span class="invalid-feedback" role="alert">

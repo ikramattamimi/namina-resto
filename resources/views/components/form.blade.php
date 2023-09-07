@@ -1,8 +1,8 @@
-<form action="{{ $action }}" method="{{ $method }}">
+<form action="{{ $action }}" method="POST">
+    @method($method)
     @if ($action != '')
         @csrf
     @endif
-    @method(`{{ $method }}`)
 
     {{ $slot }}
 
