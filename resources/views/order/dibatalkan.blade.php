@@ -1,9 +1,6 @@
-@extends('welcome')
-
-@section('content')
+<x-admin-layout headerTitle="Data Orderan Online">
     <div>
         <div class="text-dark">
-            <h3>Data Orderan Online <span class="font-weight-bold">Pusat Garut</span></h3>
             <p>Status Dibatalkan</p>
         </div>
         <div class="card">
@@ -50,4 +47,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('dashboard');
 
 Route::get('/order/pendingAndProses', 'App\Http\Controllers\OrderController@pendingAndProses');
 Route::get('/order/dibayar', 'App\Http\Controllers\OrderController@dibayar');
 Route::get('/order/dibatalkan', 'App\Http\Controllers\OrderController@dibatalkan');
+Route::get('/order/detail', 'App\Http\Controllers\OrderController@detail');
+
+Route::resource('pelanggan', PelangganController::class)
+    ->only(['index', 'create', 'store']);

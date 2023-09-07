@@ -17,4 +17,8 @@ class OrderController extends Controller
     public function dibatalkan(){
         return view('order/dibatalkan');
     }
+
+    public function detail(){
+        return view('order/detail');
+    }
 }

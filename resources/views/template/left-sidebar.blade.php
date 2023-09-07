@@ -5,15 +5,15 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Namina <sup>Resto</sup></div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -30,11 +30,32 @@
                 <a class="collapse-item" href="/order/pendingAndProses">Pending & Proses</a>
                 <a class="collapse-item" href="/order/dibayar">Dibayar</a>
                 <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
+                <a class="collapse-item" href="/order/detail">Detail</a>
             </div>
         </div>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Master Data
+    </div>
+
+    <!-- Nav Item - Pelanggan -->
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Pelanggan</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
 </ul>
