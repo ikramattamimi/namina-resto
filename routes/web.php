@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,8 @@ Route::get('/', function () {
 
 Route::resource('pelanggan', PelangganController::class)
     ->only(['index', 'create', 'store']);
+
+
+//Bahan Baku
+Route::resource('bahanBaku', BahanBakuController::class)
+    ->only(['index']);
