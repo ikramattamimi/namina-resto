@@ -43,6 +43,30 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Bahan Baku
+    </div>
+
+    <!-- Nav Item - Bahan Baku -->
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Master Data</span></a>
+    </li>
+
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Pembelian</span></a>
+    </li>
+
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Pengeluaran</span></a>
+    </li>
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
