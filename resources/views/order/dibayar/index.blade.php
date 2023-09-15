@@ -1,14 +1,9 @@
 <x-admin-layout headerTitle="Data Orderan Online">
-    <div>
-        <div class="text-dark">
-            <p>Status Dibayar</p>
-        </div>
-        <div class="card">
-            <div class="card-header text-dark">
-                <h6>Data Orderan Online</h6>
-            </div>
-            <div class="card-body">
-                <table id="myTable" class="table table-responsive table-striped text-dark">
+    <div class="text-dark">
+        <p>Status Dibayar</p>
+    </div>
+    <x-card title="Data Orderan Online">
+    <table id="myTable" class="table table-responsive table-striped text-dark">
                     <thead>
                         <tr class="text-center border">
                             <th>No.</th>
@@ -33,13 +28,11 @@
                             <td>Meja No. 18</td>
                             <td>Dibayar</td>
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <button type="button" class="btn btn-primary mr-1"><i class="fas fa-edit fa-xs"></i></button>
-                                <button type="button" class="btn btn-success mr-1"><i class="fas fa-print fa-xs"></i></button>
+                                <a href="/order/dibayar/edit" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
+                                <a href="#" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
+    </x-card>
 </x-admin-layout>

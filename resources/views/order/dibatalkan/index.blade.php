@@ -1,13 +1,9 @@
 <x-admin-layout headerTitle="Data Orderan Online">
     <div>
-    <div class="text-dark">
-        <p>Status Pending & Proses</p>
-    </div>
-    <div class="card">
-        <div class="card-header text-dark">
-            <h6>Data Orderan Online</h6>
+        <div class="text-dark">
+            <p>Status Dibatalkan</p>
         </div>
-        <div class="card-body">
+        <x-card title="Data Orderan Online">
             <table id="myTable" class="table table-responsive table-striped text-dark">
                 <thead>
                     <tr class="text-center border">
@@ -27,7 +23,7 @@
                         <td>12342</td>
                         <td class="w-15" style="max-width: 100px;">
                             <div class="text-truncate">
-                                 Muhammad Irfan Noor Wahid
+                                Muhammad Irfan Noor Wahid
                             </div>
                         </td>
                         <td>0812333455595</td>
@@ -35,31 +31,29 @@
                             <p class="mb-1">Meja No. 14</p>
                             <p class="small mb-1">02 September 2023 9:22:57 pm</p>
                         </td>
-                        <td class="text-center text-warning font-weight-bold">Pending</td>
+                        <td class="text-center text-danger font-weight-bold">Dibatalkan</td>
                         <td class="text-center">-</td>
                         <td class="text-center d-flex justify-content-center border-bottom-0">
-                            <button type="button" class="btn btn-warning mr-1"><i class="fas fa-pencil-alt fa-xs"></i></button>
-                            <button type="button" class="btn btn-primary mr-1"><i class="fas fa-edit fa-xs"></i></button>
-                            <button type="button" class="btn btn-success mr-1"><i class="fas fa-print fa-xs"></i></button>
+                            <button type="button" class="btn btn-warning mr-1" title="Edit Status" title="Edit Status" data-toggle="modal" data-target="#ubahStatus"><i class="fas fa-pencil-alt fa-xs"></i></button>
+                            <a href="/order/dibatalkan/edit" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-search"></i></a>
                         </td>
-                     </tr>
+                    </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
+        </x-card>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    
-    <script type="text/javascript">
-        $(function () {
-            var table = $('#myTable').DataTable();
-        });
-    </script>
-
+    <!-- MODALS -->
+    <x-modal id="ubahStatus" title="Ubah Status">
+        <form action="">
+            <label for="exampleFormControlTextarea1">Status</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Pending</option>
+                <option>Proses</option>
+                <option>Dibatalkan</option>
+                <option>Dibayar</option>
+            </select>
+        </form>    
+    </x-modal>
+    <!-- END MODALS -->
 </x-admin-layout>
-

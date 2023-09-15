@@ -57,28 +57,12 @@
                                 </div>
 
                                 <!-- MODALS -->
-                                <div class="modal fade" id="ubahAlamatModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Ganti Alamat</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="">
-                                                <label for="exampleFormControlTextarea1">Detail Alamat Pengiriman</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                <x-modal id="ubahAlamatModals" title="Ganti Alamat">
+                                    <form action="">
+                                        <label for="exampleFormControlTextarea1">Detail Alamat Pengiriman</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    </form>    
+                                </x-modal>
                                 <!-- END MODALS -->
                                 <div class="col-sm">
                                     <div class="font-weight-bold">
@@ -183,7 +167,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <a href="#" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                            <a href="/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                         </div>
                     </div>
             <div>
