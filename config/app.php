@@ -179,6 +179,7 @@ return [
 
         // Package Custom
         Yajra\DataTables\DataTablesServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -195,6 +196,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ])->toArray(),
 
 ];
