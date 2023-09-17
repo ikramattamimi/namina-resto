@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MejaController;
+use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekeningController;
@@ -37,3 +38,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+//Bahan Baku
+Route::resource('bahanBaku', BahanBakuController::class)
+    ->only(['index']);
