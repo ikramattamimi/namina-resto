@@ -18,7 +18,9 @@
                         </div>
                         <div class="col">
                             <div class="text-right">
-                                <h5>Tanggal: 04 Mei 2023 10:11:12 am</h5>
+                            @if(isset($pesanan[0]))
+                                <h5>Tanggal: {{ \Carbon\Carbon::parse($pesanan[0]->created_at)->format('d F Y H:i:s') }}</h5>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -39,11 +41,11 @@
                                 Email: naminaprivateresto@gmail.com
                             </p>     
                         </div>
-                        <div class="col-sm">
+                        @foreach($pelanggan as $p)
+                        <div class="col-sm w-25">
                             <p class="mb-0">Pembeli</p>
-                            <p class="mb-0 font-weight-bold">Miss Rina</p>
-                            <p class="mb-0">Alamat</p>
-                            <p class="mb-0">Tlpn/Wa: 0812321321</p>
+                            <p class="mb-0 font-weight-bold">{{$p->nama}}</p>
+                            <p class="mb-0">Tlpn/Wa: {{$p->no_hp}}</p>
                             <p class="mb-0"><span class="font-weight-bold">Orderan:</span> Meja No.1</p>
                         </div>
                         <div class="col-sm">
@@ -52,19 +54,8 @@
                                     <div class="font-weight-bold">
                                         Status Orderan
                                     </div>
-                                    <p>-</p>
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubahAlamatModals">Ganti Alamat <i class="fas fa-edit fa-sm"></i></button>  
+                                    <p>{{$p->nama_status}}</p>
                                 </div>
-
-                                <!-- MODALS -->
-                                <x-modal id="ubahAlamatModals" title="Ganti Alamat">
-                                    <form action="">
-                                        <label for="exampleFormControlTextarea1">Detail Alamat Pengiriman</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </form>    
-                                </x-modal>
-                                <!-- END MODALS -->
-
                                 <div class="col-sm">
                                     <div class="font-weight-bold">
                                         Status Dapur
@@ -73,6 +64,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -91,11 +83,15 @@
                         </tr>
                     </thead>
                     <tbody class="border table-bordered">
+                        @php 
+                            $counter = 1;
+                        @endphp
+                        @foreach($pesanan as $data)
                         <tr class="mb-3">
-                            <td>1</td>
-                            <td>12342</td>
-                            <td>PISANG GORENG</td>
-                            <td>20000</td>
+                            <td>{{$counter}}</td>
+                            <td>{{$data->gambar}}</td>
+                            <td>{{$data->nama_produk}}</td>
+                            <td>{{$data->harga_jual}}</td>
                             <td>Setengah mateng</td>
                             <td>5</td>
                             <td>10000</td>
@@ -104,6 +100,10 @@
                                 <button type="button" class="btn btn-light mr-1 border"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
                             </td>
                         </tr>
+                        @php 
+                            $counter++;
+                        @endphp
+                        @endforeach
                     </tbody>
                 </table>
                 </div>
@@ -153,14 +153,6 @@
                                             <th style="width:50%; border:none">Total:</th>
                                             <td style="border-top: none;border-bottom:1px solid #ddd">Rp. 23.400</td>
                                         </tr>
-                                        <tr>
-                                            <th style="border:none">Biaya Ongkir:</th>
-                                            <td style="border-top: none;border-bottom:1px solid #ddd">Rp. 23.400</td>
-                                        </tr>
-                                        <tr>
-                                            <th style="border:none">Total Semua:</th>
-                                            <td style="border-top: none;border-bottom:1px solid #ddd">Rp. 23.400</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -168,7 +160,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <a href="/order/dibatalkan" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                            <a href="/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                         </div>
                     </div>
             <div>

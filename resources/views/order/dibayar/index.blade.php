@@ -16,22 +16,30 @@
                         </tr>
                     </thead>
                     <tbody class="border table-bordered">
+                        @php
+                            $counter = 1;
+                        @endphp
+                        @foreach($data as $item)
                         <tr class="mb-3">
-                            <td>1</td>
-                            <td>12342</td>
+                            <td>{{$counter}}</td>
+                            <td>{{$item->kode}}</td>
                             <td class="w-15" style="max-width: 100px;">
                                 <div class="text-truncate">
-                                    Muhammad Irfan Noor Wahid
+                                    {{$item->nama}}
                                 </div>
                             </td>
-                            <td>02 September 2023 9:22:57 pm</td>
+                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i:s') }}</td>
                             <td>Meja No. 18</td>
-                            <td>Dibayar</td>
+                            <td>{{$item->nama_status}}</td>
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <a href="/order/dibayar/edit" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
+                                <a href="/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
                                 <a href="#" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
+                        @php
+                            $counter++;
+                        @endphp
+                        @endforeach
                     </tbody>
                 </table>
     </x-card>

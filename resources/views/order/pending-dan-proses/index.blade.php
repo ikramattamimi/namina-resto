@@ -41,7 +41,7 @@
                             <p class="mb-1">Meja No. 14</p>
                             <p class="small mb-1">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i:s') }}</p>
                         </td>
-                        <td class="text-center text-warning font-weight-bold">{{$item->nama_status}}</td>
+                        <td class="text-center {{$item->nama_status === 'Pending' ? 'text-warning' : ($item->nama_status === 'Proses' ? 'text-primary' : '')}} font-weight-bold">{{$item->nama_status}}</td>
                         <td class="text-center">-</td>
                         <td class="text-center d-flex justify-content-center border-bottom-0">
                             <button type="button" class="btn btn-warning mr-1" title="Edit Status" data-toggle="modal" data-target="#ubahStatus"><i class="fas fa-pencil-alt fa-xs"></i></button>

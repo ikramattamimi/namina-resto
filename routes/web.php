@@ -33,11 +33,11 @@ Route::prefix('admin')->group(function () {
 Route::get('/order/pendingDanProses', 'App\Http\Controllers\OrderController@pendingDanProses')->name('order.pendingDanProses');
 Route::get('/order/dibayar', 'App\Http\Controllers\OrderController@dibayar');
 Route::get('/order/dibatalkan', 'App\Http\Controllers\OrderController@dibatalkan');
-Route::get('/order/detail', 'App\Http\Controllers\OrderController@detail');
-Route::get('/order/dibatalkan/edit', 'App\Http\Controllers\OrderController@editDibatalkan');
-Route::get('/order/dibayar/edit', 'App\Http\Controllers\OrderController@editDibayar');
+Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\OrderController@editDibatalkan')->name('order.dibatalksan.edit');
+Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@editDibayar')->name('order.dibayar.edit');
 Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
 Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
+
 
 Route::resource('pelanggan', PelangganController::class)
     ->only(['index', 'create', 'store']);
