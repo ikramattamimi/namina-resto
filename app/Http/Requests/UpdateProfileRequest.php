@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'nama' => 'required|string|min:3',
-            'username' => 'required|min:5|unique:users,username,1',
+            'username' => 'required|min:5|unique:users,username,' . Auth::user()->id,
         ];
     }
 }

@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
 {
@@ -18,7 +20,7 @@ class ProfileController extends Controller
     public function index(): View
     {
         return view('profile.index', [
-            'user' => User::with('role')->find(1)
+            'user' => Auth::user(),
         ]);
     }
 
@@ -31,7 +33,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request, $id): RedirectResponse
     {
-        $user = User::find($id);
+        $user = Auth::user();
 
         $user->update([
             'nama' => $request->nama,

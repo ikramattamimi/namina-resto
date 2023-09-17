@@ -22,19 +22,18 @@ Auth::routes();
 
 Route::prefix('admin')->group(function () {
 
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard-admin');
+
     Route::resource('pelanggan', PelangganController::class);
 
     Route::resource('rekening', RekeningController::class);
 
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::resource('meja', MejaController::class)->only(['update', 'index']);
+
+    Route::resource('profil', ProfileController::class)
+        ->only(['index', 'edit', 'update']);
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::resource('rekening', RekeningController::class);
-
-Route::resource('meja', MejaController::class)->only(['update', 'index']);
-
-Route::post('meja/{nomor}', [MejaController::class, 'downloadSingle'])->name('meja.downloadSingle');
-
-Route::resource('profil', ProfileController::class)
-    ->only(['index', 'edit', 'update']);
