@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MejaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,8 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::resource('rekening', RekeningController::class);
+
+Route::resource('meja', MejaController::class)->only(['update', 'index']);
+
+Route::post('meja/{nomor}', [MejaController::class, 'downloadSingle'])->name('meja.downloadSingle');

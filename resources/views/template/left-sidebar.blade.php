@@ -40,6 +40,13 @@
             <span>Rekening</span></a>
     </li>
 
+    <!-- Nav Item - Kode QR Meja -->
+    <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('meja.index') }}">
+            <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
+            <span>Kode QR Meja</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
