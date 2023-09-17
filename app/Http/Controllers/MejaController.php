@@ -6,6 +6,10 @@ use App\Http\Requests\CreateMejaRequest;
 use App\Http\Requests\UpdateMejaRequest;
 use App\Models\Meja;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use ZipArchive;
 
 class MejaController extends Controller
 {
@@ -34,7 +38,56 @@ class MejaController extends Controller
             'jumlah' => $request->jumlah,
         ]);
 
+        $this->createQr($meja);
+        $this->createZip();
+
         return $this->redirectRoute($meja);
+    }
+
+    /**
+     * createQr
+     *
+     * @param  mixed $meja
+     * @return void
+     */
+    private function createQr(Meja $meja)
+    {
+        $path = public_path('storage/img/qr/');
+
+        // Clean QR directory
+        File::cleanDirectory($path);
+
+        // Create QR codes and put them into storage
+        for ($nomor = 1; $nomor <= $meja->jumlah; $nomor++) {
+            QrCode::format('png')->size(300)->generate(
+                'https://techvblogs.com/blog/generate-qr-code-laravel-9/' . $nomor,
+                $path . 'meja_' . $nomor . '.png',
+            );
+        }
+    }
+
+    /**
+     * Create Zip File of QR Code Images
+     *
+     * @return void
+     */
+    private function createZip()
+    {
+        $zip = new ZipArchive;
+        $fileName = 'All.zip';
+
+        if ($zip->open(public_path('storage/img/qr/' . $fileName), ZipArchive::CREATE) === TRUE) {
+            $path = public_path('storage/img/qr/');
+
+            $files = File::files($path);
+
+            foreach ($files as $key => $value) {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+            }
+
+            $zip->close();
+        }
     }
 
     /**
@@ -43,7 +96,7 @@ class MejaController extends Controller
      * @return void
      */
     private function redirectRoute(
-        Meja $meja,
+        $meja,
         String $route = 'meja.index',
         String $successMessage = 'Berhasil',
         String $errorMessage = 'Terjadi Error',

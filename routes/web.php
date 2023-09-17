@@ -25,3 +25,5 @@ Route::resource('pelanggan', PelangganController::class);
 Route::resource('rekening', RekeningController::class);
 
 Route::resource('meja', MejaController::class)->only(['update', 'index']);
+
+Route::post('meja/{nomor}', [MejaController::class, 'downloadSingle'])->name('meja.downloadSingle');

@@ -16,7 +16,7 @@ class MejaSeeder extends Seeder
     public function run()
     {
         DB::table('mejas')->insert([
-            'jumlah' => 100,
+            'jumlah' => 0,
         ]);
     }
 }

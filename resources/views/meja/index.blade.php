@@ -18,7 +18,7 @@
         <div class="col-lg-8 col-md-12">
             <x-card title="Data Meja">
                 <x-slot name="button">
-                    <a class="btn btn-primary" id="" name="" href="#" role="button">
+                    <a class="btn btn-primary" href="{{ asset('/storage/img/qr/All.zip') }}" download>
                         Unduh semua kode QR
                     </a>
                 </x-slot>

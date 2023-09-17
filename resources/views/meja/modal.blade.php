@@ -11,12 +11,14 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-center">
-                    {!! QrCode::size(300)->generate('https://techvblogs.com/blog/generate-qr-code-laravel-9/' . $nomor) !!}
+                    <img class="img-fluid" src="{{ asset('/storage/img/qr/meja_' . $nomor . '.png') }}"
+                        alt="Kode QR Meja {{ $nomor }}">
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" type="button">Save</button>
+                <a class="btn btn-primary" href="{{ asset('/storage/img/qr/meja_' . $nomor . '.png') }}"
+                    download>Unduh</a>
             </div>
         </div>
     </div>
