@@ -18,17 +18,17 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Bahan Baku</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Pengeluaran Bahan Baku</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @include('pembelianBahanBaku.table')
+                @include('pengeluaranBahanBaku.table')
             </div>
         </div>
     </div>
 
     @push('scripts')
-    @include('pembelianBahanBaku.script')
+    @include('pengeluaranBahanBaku.script')
     @endpush
 
 </x-admin-layout>
