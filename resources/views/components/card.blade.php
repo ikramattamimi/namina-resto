@@ -1,3 +1,4 @@
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="d-flex align-items-center">
@@ -10,8 +11,11 @@
                 </div>
             @endif
         </div>
+
     </div>
     <div class="card-body">
         {{ $slot }}
     </div>
+
 </div>
+

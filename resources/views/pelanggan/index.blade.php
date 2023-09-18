@@ -21,7 +21,9 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+
                 @include('pelanggan.table')
+
             </div>
         </div>
     </div>
