@@ -7,3 +7,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>

@@ -18,6 +18,22 @@
             <span>Dashboard</span></a>
     </li>
 
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="far fa-bell"></i></i>
+            <span>Orderan Online</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/order/pendingDanProses">Pending & Proses</a>
+                <a class="collapse-item" href="/order/dibayar">Dibayar</a>
+                <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -38,6 +54,13 @@
         <a class="nav-link" style="padding: 5px 25px" href="{{ route('rekening.index') }}">
             <i class="fas fa-fw fa-credit-card"></i>
             <span>Rekening</span></a>
+    </li>
+
+    <!-- Nav Item - Kode QR Meja -->
+    <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('meja.index') }}">
+            <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
+            <span>Kode QR Meja</span></a>
     </li>
 
     <!-- Divider -->

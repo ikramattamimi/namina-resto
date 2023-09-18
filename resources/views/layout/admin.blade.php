@@ -10,6 +10,7 @@
     @stack('stylesheet')
 
     @vite([])
+
 </head>
 
 <body id="page-top">
@@ -73,6 +74,7 @@
                 </div>
                 <div class="modal-body">
                     Klik tombol "logout" di bawah untuk mengakhiri sesi.
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
@@ -86,6 +88,7 @@
                 <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                 </form>
+
             </div>
         </div>
     </div>
