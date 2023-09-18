@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string|null $nama
  * @property string|null $nomor
- * @property float|null $jumlah
+ * @property float|null $saldo
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -26,12 +26,12 @@ class Rekening extends Model
 	protected $table = 'rekenings';
 
 	protected $casts = [
-		'jumlah' => 'float'
+		'saldo' => 'float'
 	];
 
 	protected $fillable = [
 		'nama',
 		'nomor',
-		'jumlah'
+		'saldo'
 	];
 }

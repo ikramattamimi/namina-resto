@@ -43,14 +43,52 @@
     </div>
 
     <!-- Nav Item - Pelanggan -->
-    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+    <li class="nav-item {{ str_contains(url()->current(), 'pelanggan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('pelanggan.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Pelanggan</span></a>
     </li>
 
+    <!-- Nav Item - Rekening -->
+    <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('rekening.index') }}">
+            <i class="fas fa-fw fa-credit-card"></i>
+            <span>Rekening</span></a>
+    </li>
+
+    <!-- Nav Item - Kode QR Meja -->
+    <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('meja.index') }}">
+            <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
+            <span>Kode QR Meja</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Bahan Baku
+    </div>
+
+    <!-- Nav Item - Bahan Baku -->
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Master Data</span></a>
+    </li>
+
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Pembelian</span></a>
+    </li>
+
+    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Pengeluaran</span></a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

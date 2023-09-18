@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\RekeningController;
+
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MejaController;
+use App\Http\Controllers\BahanBakuController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,17 +21,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('dashboard');
+Auth::routes();
 
 Route::prefix('admin')->group(function () {
+
+
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard-admin');
+
 
     Route::resource('pelanggan', PelangganController::class);
 
     Route::resource('rekening', RekeningController::class);
 
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 });
 
 Route::get('/order/pendingDanProses', 'App\Http\Controllers\OrderController@pendingDanProses')->name('order.pendingDanProses');
@@ -41,3 +49,17 @@ Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\Ord
 
 Route::resource('pelanggan', PelangganController::class)
     ->only(['index', 'create', 'store']);
+
+
+    Route::resource('meja', MejaController::class)->only(['update', 'index']);
+
+    Route::resource('profil', ProfileController::class)
+        ->only(['index', 'edit', 'update']);
+});
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+//Bahan Baku
+Route::resource('bahanBaku', BahanBakuController::class)
+    ->only(['index']);
+

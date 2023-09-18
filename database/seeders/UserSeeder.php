@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -16,10 +17,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'role_id' => 1, 
+            'role_id' => 1,
             'nama' => 'Jonas',
             'username' => 'jonas',
-            'password' => 'jonas123',
+            'password' => Hash::make('jonas123'),
         ]);
     }
 }
