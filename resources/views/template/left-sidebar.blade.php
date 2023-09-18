@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->is('/*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -44,14 +44,14 @@
 
     <!-- Nav Item - Pelanggan -->
     <li class="nav-item {{ str_contains(url()->current(), 'pelanggan') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pelanggan.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Pelanggan</span></a>
     </li>
 
     <!-- Nav Item - Rekening -->
     <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('rekening.index') }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('rekening.index') }}">
             <i class="fas fa-fw fa-credit-card"></i>
             <span>Rekening</span></a>
     </li>
@@ -72,20 +72,20 @@
     </div>
 
     <!-- Nav Item - Bahan Baku -->
-    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+    <li class="nav-item {{ str_contains(url()->current(), 'bahanBaku') ? 'active' : '' }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('bahanBaku.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Master Data</span></a>
     </li>
 
     <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pelanggan.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Pembelian</span></a>
     </li>
 
     <li class="nav-item {{ request()->is('pelanggan/*') ? 'active':'' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pelanggan.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Pengeluaran</span></a>
     </li>
