@@ -12,8 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ request()->is('/*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard') }}" style="padding: 5px 25px">
+    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard-admin') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

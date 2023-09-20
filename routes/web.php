@@ -25,25 +25,32 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::prefix('admin')->group(function () {
 
 
 
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard-admin');
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard-admin');
 
 
-    Route::resource('pelanggan', PelangganController::class);
+        Route::resource('pelanggan', PelangganController::class);
 
-    Route::resource('rekening', RekeningController::class);
+        Route::resource('rekening', RekeningController::class);
 
-    Route::resource('bahanBaku', BahanBakuController::class);
+        Route::resource('bahanBaku', BahanBakuController::class);
 
-    Route::resource('pembelianBahanBaku', PembelianBahanBakuController::class);
+        Route::resource('pembelianBahanBaku', PembelianBahanBakuController::class);
 
-    Route::resource('pengeluaranBahanBaku', PengeluaranBahanBakuController::class);
+        Route::resource('pengeluaranBahanBaku', PengeluaranBahanBakuController::class);
 
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::resource('meja', MejaController::class)
+            ->only(['update', 'index']);
 
+        Route::resource('profil', ProfileController::class)
+            ->only(['index', 'edit', 'update']);
+
+        Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    });
 });
 
 Route::get('/order/pendingDanProses', 'App\Http\Controllers\OrderController@pendingDanProses')->name('order.pendingDanProses');
@@ -54,16 +61,4 @@ Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@e
 Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
 Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
 
-
-Route::resource('pelanggan', PelangganController::class)
-    ->only(['index', 'create', 'store']);
-
-
-    Route::resource('meja', MejaController::class)->only(['update', 'index']);
-
-    Route::resource('profil', ProfileController::class)
-        ->only(['index', 'edit', 'update']);
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
-
+Route::get('/', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer-view');
