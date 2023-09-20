@@ -63,7 +63,6 @@ Route::resource('pelanggan', PelangganController::class)
 
     Route::resource('profil', ProfileController::class)
         ->only(['index', 'edit', 'update']);
-});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
