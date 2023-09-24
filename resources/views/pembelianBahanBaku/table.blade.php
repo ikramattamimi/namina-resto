@@ -17,9 +17,17 @@
             <td>{{ $pembelianBahanBaku->jumlah }}</td>
             <td>{{ $pembelianBahanBaku->tanggal }}</td>
             <td>{{ $pembelianBahanBaku->nama_staff_gudang }}</td>
-            <td><button type="button" class="btn btn-warning mr-1" title="Edit Status" data-toggle="modal" data-target="#ubahStatus"><i class="fas fa-pencil-alt fa-xs"></i></button>
-                <a href="/order/pendingDanProses/edit" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
-                <a href="#" class="btn btn-success mr-1" title="Cetak Nota Proses"><i class="fas fa-print fa-xs"></i></a>
+            <td>
+            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('pembelianBahanBaku.destroy', $pembelianBahanBaku->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <a class="btn btn-circle btn-warning btn-sm" id="editPembelianBahanBaku" name="editPembelianBahanBaku" href="{{ route('pembelianBahanBaku.edit', $pembelianBahanBaku->id) }}" role="button">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-circle btn-danger btn-sm" id="hapusPembelianBahanBaku" name="hapusPembelianBahanBaku" href="{{ route('pembelianBahanBaku.destroy', $pembelianBahanBaku->id) }}" role="button">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach

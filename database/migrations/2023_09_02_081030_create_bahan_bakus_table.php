@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('stok')->nullable();
             $table->integer('minimal_stok')->nullable();
             $table->string('satuan', 50)->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

@@ -27,7 +27,7 @@ class BahanBakuController extends Controller
     public function index()
     {
         return view('bahanBaku.index', [
-            'bahanBakus' => BahanBaku::all(),
+            'bahanBakus' => BahanBaku::all()->where('is_active',true),
         ]);
     }
 
@@ -88,19 +88,23 @@ class BahanBakuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBahanBakuRequest  $request
+     * @param  \App\Http\Requests\StoreBahanBakuRequest  $request
      * @param  \App\Models\BahanBaku  $bahanBaku
      * @return \Illuminate\Http\Response
      */
-    // public function update(UpdatePelangganRequest $request, Pelanggan $pelanggan)
-    // {
-    //     $pelanggan->update([
-    //         'nama' => $request->nama,
-    //         'no_hp' => $request->noTelepon
-    //     ]);
+    public function update(StoreBahanBakuRequest $request, BahanBaku $bahanBaku)
+    {
+        $bahanBaku->update([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'harga_beli' => $request->hargaBeli,
+            'stok' => $request->stok,
+            'minimal_stok' => $request->minimalStok,
+            'satuan' => $request->satuan
+        ]);
 
-    //     return $this->redirectRoute(pelanggan: $pelanggan);
-    // }
+        return $this->redirectRoute(bahanBaku: $bahanBaku);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -111,7 +115,8 @@ class BahanBakuController extends Controller
     public function destroy($id)
     {
         $bahanBaku = BahanBaku::findOrFail($id);
-        $bahanBaku->delete();
+        $bahanBaku->is_active = false; 
+        $bahanBaku->save();
 
         return $this->redirectRoute(bahanBaku: $bahanBaku);
     }
