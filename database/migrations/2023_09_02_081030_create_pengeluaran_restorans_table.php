@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('pengeluaran_restorans', function (Blueprint $table) {
             $table->bigInteger('id', true);
+            $table->bigInteger('rekening_id')->index('fk_rekening_pengeluaran');
             $table->string('nama')->nullable();
             $table->dateTime('tanggal')->nullable();
             $table->decimal('jumlah', 10, 0)->nullable();
+            $table->string('nama_admin')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

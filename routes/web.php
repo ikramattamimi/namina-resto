@@ -3,8 +3,10 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\LaporanPembelianBahanBakuController;
+use App\Http\Controllers\LaporanPenguranganBahanBakuController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PembelianBahanBakuController;
+use App\Http\Controllers\PengeluaranRestoranController;
 use App\Http\Controllers\PenguranganBahanBakuController;
 use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +37,11 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('penguranganBahanBaku', PenguranganBahanBakuController::class);
 
-    Route::resource('laporanPembelianBahanBaku', LaporanPembelianBahanBakuController::class);    
+    Route::resource('laporanPembelianBahanBaku', LaporanPembelianBahanBakuController::class);
+    
+    Route::resource('laporanPenguranganBahanBaku', LaporanPenguranganBahanBakuController::class);
+
+    Route::resource('pengeluaranRestoran', PengeluaranRestoranController::class);
 
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });

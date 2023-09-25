@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\PembelianBahanBakuExport;
+use App\Exports\PenguranganBahanBakuExport;
 use App\Models\BahanBaku;
-use App\Models\PembelianBahanBaku;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class LaporanPembelianBahanBakuController extends Controller
+class LaporanPenguranganBahanBakuController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,7 +26,7 @@ class LaporanPembelianBahanBakuController extends Controller
      */
     public function index()
     {
-        return view('laporan.pembelianBahanBaku.index', [
+        return view('laporan.penguranganBahanBaku.index', [
             'bahanBakus' => BahanBaku::all()->where('is_active', true),
         ]);
     }
@@ -54,8 +52,8 @@ class LaporanPembelianBahanBakuController extends Controller
         $tgl_dari = $request->tgl_dari;
         $tgl_sampai = $request->tgl_sampai;
         $bahan_baku = $request->bahan_baku;
-    
-        return Excel::download(new PembelianBahanBakuExport($tgl_dari, $tgl_sampai, $bahan_baku), 'pembelian_bahan_baku.xlsx');
+
+        return Excel::download(new PenguranganBahanBakuExport($tgl_dari, $tgl_sampai, $bahan_baku), 'pengurangan_bahan_baku.xlsx');
     }
 
     /**

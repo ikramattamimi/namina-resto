@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\PembelianBahanBaku;
+use App\Models\PenguranganBahanBaku;
 ?>
 
 <x-admin-layout headerTitle="Laporan Data Pembelian Bahan Baku">
@@ -78,12 +78,12 @@ use App\Models\PembelianBahanBaku;
                 $bahan_baku = $_GET['bahan_baku'];
 
                 if ($bahan_baku == 'semua') {
-                    $pembelianBahanBakus = PembelianBahanBaku::where('tanggal', '>=', $tgl_dari)
+                    $penguranganBahanBakus = PenguranganBahanBaku::where('tanggal', '>=', $tgl_dari)
                         ->where('tanggal', '<=', $tgl_sampai)
                         ->orderBy('tanggal', 'asc')
                         ->get();
                 } else {
-                    $pembelianBahanBakus = PembelianBahanBaku::where('bahan_baku_id', $bahan_baku)
+                    $penguranganBahanBakus = PenguranganBahanBaku::where('bahan_baku_id', $bahan_baku)
                         ->where('tanggal', '>=', $tgl_dari)
                         ->where('tanggal', '<=', $tgl_sampai)
                         ->orderBy('tanggal', 'asc')
@@ -91,7 +91,7 @@ use App\Models\PembelianBahanBaku;
                 }
             ?>
 
-                <form action="{{ route('laporanPembelianBahanBaku.store') }}" method="post">
+                <form action="{{ route('laporanPenguranganBahanBaku.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="tgl_dari" value="{{ $tgl_dari }}">
                     <input type="hidden" name="tgl_sampai" value="{{ $tgl_sampai }}">
@@ -103,7 +103,7 @@ use App\Models\PembelianBahanBaku;
                 </br>
 
                 <div class="table-responsive">
-                    @include('laporan.pembelianBahanBaku.table')
+                    @include('laporan.penguranganBahanBaku.table')
                 </div>
 
             <?php
