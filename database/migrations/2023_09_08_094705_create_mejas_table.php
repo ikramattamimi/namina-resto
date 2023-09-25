@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pesanans', function (Blueprint $table) {
-            $table->bigInteger('id', true);
-            $table->tinyInteger('status_pesanan_id')->index('fk_status_pesanan');
-            $table->bigInteger('id')->index('fk_id_pelanggan');
-            $table->string('kode')->nullable();
+        Schema::create('mejas', function (Blueprint $table) {
+            $table->id();
+            $table->integer('jumlah', false, true);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pesanans');
+        Schema::dropIfExists('mejas');
     }
 };

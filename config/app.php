@@ -180,6 +180,7 @@ return [
 
         // Package Custom
         Yajra\DataTables\DataTablesServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -195,7 +196,13 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+<<<<<<< HEAD
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+=======
+        // ...
+
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+>>>>>>> 3aeefa0e61d0870c045e6594f0f76d02377fed9f
     ])->toArray(),
 
 ];
