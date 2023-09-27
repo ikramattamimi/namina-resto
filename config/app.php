@@ -180,7 +180,7 @@ return [
         // Package Custom
         Yajra\DataTables\DataTablesServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-
+        Darryldecode\Cart\CartServiceProvider::class
     ],
 
     /*
@@ -198,6 +198,8 @@ return [
         // ...
 
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+
     ])->toArray(),
 
 ];

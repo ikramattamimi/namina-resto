@@ -51,7 +51,14 @@
                             </li>
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="shopping-cart" href="cart.html">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        {{-- tambah if else apakah ada barang di keranjang --}}
+                                        <span
+                                            class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-90">
+                                            9
+                                        </span>
+                                    </a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i
                                             class="fas fa-search"></i></a>
                                 </div>

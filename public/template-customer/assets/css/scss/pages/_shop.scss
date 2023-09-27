@@ -67,7 +67,7 @@ p.product-price {
   margin-bottom: 15px;
 }
 
-a.cart-btn {
+.cart-btn {
   font-family: 'Poppins', sans-serif;
   display: inline-block;
   background-color: $primary-color;
@@ -119,7 +119,7 @@ input[type="number"] {
   margin-bottom: 15px;
 }
 
-.single-product-form a.cart-btn {
+.single-product-form .cart-btn {
   margin-bottom: 15px;
 }
 

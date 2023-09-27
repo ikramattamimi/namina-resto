@@ -54,11 +54,11 @@
                 <div class="col-lg-9 offset-lg-2 text-center">
                     <div class="hero-text">
                         <div class="hero-text-tablecell">
-                            <p class="subtitle">Fresh & Organic</p>
-                            <h1>Delicious Seasonal Fruits</h1>
+                            <p class="subtitle">Garut</p>
+                            <h1>Namina Resto and Private Resto</h1>
                             <div class="hero-btns">
-                                <a class="boxed-btn" href="shop.html">Fruit Collection</a>
-                                <a class="bordered-btn" href="contact.html">Contact Us</a>
+                                <a class="boxed-btn" href="#">Produk</a>
+                                <a class="bordered-btn" href="#">Kontak</a>
                             </div>
                         </div>
                     </div>
