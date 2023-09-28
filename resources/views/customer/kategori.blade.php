@@ -20,7 +20,7 @@
                     @foreach ($kategoris as $kategori)
                         <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}">
                             <div class="col-md-3">
-                                <div class="single-product-item">
+                                <div class="single-product-item px-2">
                                     <div class="product-image">
                                         <a href="single-product.html"><img
                                                 src="{{ asset('template-customer/assets/img/products/product-img-1.jpg') }}"

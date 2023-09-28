@@ -17,7 +17,9 @@ class CustomerController extends Controller
     {
         $kategoris = KategoriProduk::all();
         $produks = Produk::all();
-        return view('customer.index', compact('kategoris', 'produks'));
+        $cartItems = \Cart::getContent();
+
+        return view('customer.index', compact('kategoris', 'produks', 'cartItems'));
     }
 
     /**

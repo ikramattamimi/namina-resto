@@ -1,4 +1,10 @@
 <x-customer-layout>
+
+    <!-- hero area -->
+    <div style="background-color: #07212e; width:100%; height:100px;">
+    </div>
+    <!-- end hero area -->
+
     @if ($message = Session::get('success'))
         <div class="p-4 mb-3 bg-green-400 rounded">
             <p class="text-green-800">{{ $message }}</p>
@@ -28,7 +34,7 @@
                                         <td class="product-remove">
                                             <form action="{{ route('cart.remove') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" value="{{ $item->id }}" name="id">
+                                                <input name="id" type="hidden" value="{{ $item->id }}">
                                                 <button class="btn btn-lg">
                                                     <i class="fas fa-trash" style="color: red"></i>
                                                 </button>

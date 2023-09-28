@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,16 +19,38 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $produk = Produk::find($request->id);
-        \Cart::add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'associatedModel' => $produk
-        ]);
+        $isAddedToCart = \Cart::get($request->id);
+
+
+        if (!$isAddedToCart) {
+            \Cart::add([
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'attributes' => [
+                    'message' => $request->message,
+                ],
+                'associatedModel' => $produk
+            ]);
+        } else {
+            \Cart::update(
+                $request->id,
+                [
+                    'quantity' => [
+                        'relative' => false,
+                        'value' => $request->quantity
+                    ],
+                    'attributes' => [
+                        'message' => $request->message,
+                    ],
+                ]
+            );
+        }
+
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('customer-view');
     }
 
     public function updateCart(Request $request)
