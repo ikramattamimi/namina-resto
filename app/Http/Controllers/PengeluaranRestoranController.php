@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePengeluaranRestoranRequest;
+use App\Http\Requests\UpdatePengeluaranRestoranRequest;
 use App\Models\PengeluaranRestoran;
 use App\Models\Rekening;
 use Illuminate\Http\RedirectResponse;
@@ -80,7 +81,7 @@ class PengeluaranRestoranController extends Controller
         //
     }
 
-    /**
+   /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -88,19 +89,39 @@ class PengeluaranRestoranController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pengeluaranRestoran.edit', [
+            "pengeluaranRestoran" => PengeluaranRestoran::find($id),
+            'rekenings' => Rekening::all(),
+        ]);
     }
 
-    /**
+  /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdatePengeluaranRestoranRequest  $request
+     * @param  \App\Models\PengeluaranRestoran  $ppengeluaranRestoran
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePengeluaranRestoranRequest $request, PengeluaranRestoran $pengeluaranRestoran)
     {
-        //
+        $rekening = Rekening::find($pengeluaranRestoran->rekening_id);
+        $rekening->update([
+            'saldo' => $rekening->saldo + $pengeluaranRestoran->jumlah
+        ]);
+
+        $pengeluaranRestoran->update([
+            'nama' => $request->nama,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
+            'nama_admin' => Auth::user()->nama,
+            'rekening_id' => $request->rekeningId,
+        ]);
+
+        $rekening->update([
+            'saldo' => $rekening->saldo - $request->jumlah
+        ]);
+
+        return $this->redirectRoute(pengeluaranRestoran: $pengeluaranRestoran);
     }
 
     /**
@@ -111,7 +132,14 @@ class PengeluaranRestoranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pengeluaranRestoran = PengeluaranRestoran::findOrFail($id);
+        $rekening = Rekening::find($pengeluaranRestoran->rekening_id);
+        $rekening->update([
+            'saldo' => $rekening->saldo + $pengeluaranRestoran->jumlah
+        ]);
+        $pengeluaranRestoran->delete();
+
+        return $this->redirectRoute(pengeluaranRestoran: $pengeluaranRestoran);
     }
 
     /**

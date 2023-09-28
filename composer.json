@@ -12,12 +12,9 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
-<<<<<<< HEAD
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.29",
-=======
         "simplesoftwareio/simple-qrcode": "^4.2",
->>>>>>> 3aeefa0e61d0870c045e6594f0f76d02377fed9f
         "yajra/laravel-datatables-oracle": "^10.8"
     },
     "require-dev": {
