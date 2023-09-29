@@ -32,6 +32,14 @@ class ProdukDipesan extends Model
 		'produk_id' => 'int'
 	];
 
+	protected $fillable = [
+		'pesanan_id',
+		'produk_id',
+		'qty',
+		'catatan',
+		'harga'
+	];
+
 	public function pesanan()
 	{
 		return $this->belongsTo(Pesanan::class);

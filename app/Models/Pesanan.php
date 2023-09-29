@@ -30,12 +30,16 @@ class Pesanan extends Model
 	protected $table = 'pesanans';
 
 	protected $casts = [
-		'status_pesanan_id' => 'int'
+		'status_pesanan_id' => 'int',
+		'id_pelanggan' => 'int'
 	];
 
 	protected $fillable = [
 		'status_pesanan_id',
-		'kode'
+		'id_pelanggan',
+		'kode',
+		'no_meja',
+		'catatan'
 	];
 
 	public function status_pesanan()
@@ -51,5 +55,10 @@ class Pesanan extends Model
 	public function produk_dipesans()
 	{
 		return $this->hasMany(ProdukDipesan::class);
+	}
+
+	public function pelanggan()
+	{
+		return $this->belongsTo(Pelanggan::class);
 	}
 }

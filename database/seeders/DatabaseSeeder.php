@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             KategoriDapurSeeder::class,
             KategoriProdukSeeder::class,
             ProdukSeeder::class,
+            StatusPesananSeeder::class,
         ]);
     }
 }

@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                @include('customer.add-produk-modal')
+                @include('customer.product.add-produk-modal')
             @endforeach
         </div>
     </div>

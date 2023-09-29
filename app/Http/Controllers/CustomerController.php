@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerOrderRequest;
 use App\Models\KategoriProduk;
 use App\Models\Pelanggan;
+use App\Models\Pesanan;
 use App\Models\Produk;
+use App\Models\ProdukDipesan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -22,7 +24,7 @@ class CustomerController extends Controller
         $produks = Produk::all();
         $cartItems = \Cart::getContent();
 
-        return view('customer.index', compact('kategoris', 'produks', 'cartItems'));
+        return view('customer.product.index', compact('kategoris', 'produks', 'cartItems'));
     }
 
     /**
@@ -32,6 +34,7 @@ class CustomerController extends Controller
      */
     public function order(CustomerOrderRequest $request)
     {
+        // get customer data
         $customerName = $request->input('customer-name');
         $customerPhone = $request->input('customer-phone');
         $customerAddress = $request->input('customer-address');
@@ -46,10 +49,35 @@ class CustomerController extends Controller
             ['no_hp' => $customerPhone],
             [
                 'nama' => $customerName,
+                'alamat' => $customerAddress,
             ]
         );
 
-        // dd($customerName);
+        // create order
+        $pesanan = Pesanan::create([
+            'id_pelanggan' => $customer->id,
+            'status_pesanan_id' => 1,
+            'kode' => 'PSN-' . time(),
+            'catatan' => $request->input('customer-message'),
+            'no_meja' => $request->input('customer-table'),
+        ]);
+
+        // get order items
+        $products = \Cart::getContent();
+
+        // create order items
+        foreach ($products as $product) {
+            ProdukDipesan::create([
+                'pesanan_id' => $pesanan->id,
+                'produk_id' => $product->id,
+                'qty' => $product->quantity,
+                'catatan' => $product->attributes->message,
+                'harga' => $product->price,
+            ]);
+        }
+
+        // clear cart
+        \Cart::clear();
 
         return redirect()
             ->route('customer-view')

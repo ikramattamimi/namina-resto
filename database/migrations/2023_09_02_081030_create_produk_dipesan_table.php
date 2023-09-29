@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('produk_dipesan', function (Blueprint $table) {
             $table->bigInteger('pesanan_id');
             $table->integer('produk_id')->index('fk_produk_dipesan2');
+            $table->string('qty')->nullable();
+            $table->string('catatan')->nullable();
+            $table->string('harga')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
