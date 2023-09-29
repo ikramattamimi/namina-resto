@@ -9,16 +9,16 @@
     <!-- end hero area -->
 
     <!-- kategori section -->
-    @include('customer.kategori')
+    @include('customer.product.kategori')
     <!-- end kategori section -->
 
     <!-- product section -->
-    @include('customer.produk')
+    @include('customer.product.produk')
     <!-- end product section -->
 
     <!-- cart section -->
     @if (!\Cart::isEmpty())
-        @include('customer.floating-cart')
+        @include('customer.cart.floating')
     @endif
     <!-- end cart section -->
 

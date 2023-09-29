@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
     public function cartList()
     {
-        // dd($cartItems);
+        $customerName = Cookie::get('customer-name');
+        $customerPhone = Cookie::get('customer-phone');
+        $customerAddress = Cookie::get('customer-address');
         $cartItems = \Cart::getContent();
-        return view('customer.cart', compact('cartItems'));
+
+        // dd($customerName);
+        return view('customer.cart.index', compact('cartItems', 'customerName', 'customerPhone', 'customerAddress'));
     }
 
 

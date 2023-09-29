@@ -5,17 +5,17 @@
 
         <div class="row mx-auto my-auto">
             @foreach ($produks as $produk)
-                <div class="single-product-item col-lg-6 col-md-12 col-sm-12 mb-3 rounded-xl">
+                <div class="single-product-item col-lg-6 col- mb-3 rounded-xl">
                     <div class="row align-items-center justify-content-between">
                         {{-- image --}}
-                        <div class="col-sm-4 col-12 mb-3">
+                        <div class="col-4 mb-3">
                             <img class="rounded img-fluid" src="{{ asset('img/namina-resto.jpg') }}" />
                         </div>
                         {{-- texts --}}
-                        <div class="col-sm-8 col-12">
+                        <div class="col-8">
                             {{-- name, quantity --}}
                             <div class="row mb-2 align-items-center">
-                                <div class="col-10">
+                                <div class="col-9">
                                     <h5 class="card-title text-truncate text-uppercase">
                                         {{ $produk->nama }}
                                     </h5>
@@ -23,7 +23,7 @@
                                 @php
                                     $quantity = \Cart::get($produk->id)->quantity ?? 0;
                                 @endphp
-                                <div class="col-2">
+                                <div class="col-3">
                                     <div class="d-flex justify-content-end">
                                         @if ($quantity != 0)
                                             <p class="text-danger font-weight-bold text">
@@ -35,10 +35,10 @@
                             </div>
                             {{-- price, button --}}
                             <div class="row align-items-start">
-                                <div class="col-sm-7 col-8">
+                                <div class="col-sm-7 col-7">
                                     <p class="mb-2 text">Rp {{ number_format($produk->harga_jual) }}</p>
                                 </div>
-                                <div class="col-sm-5 col-4">
+                                <div class="col-sm-5 col-5">
                                     <div class="d-flex justify-content-end align-items-center">
 
                                         <!-- Button trigger modal -->

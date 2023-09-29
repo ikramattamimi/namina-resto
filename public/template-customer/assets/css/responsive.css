@@ -51,9 +51,9 @@
 		font-size: 40px;
 	}
 
-	.footer-box {
+	/* .footer-box {
 		margin-bottom: 40px;
-	}
+	} */
 
 	.copyright p {
 		text-align: center;
@@ -295,9 +295,9 @@
 		font-size: 34px;
 	}
 
-	.footer-box {
+	/* .footer-box {
 		margin-bottom: 50px;
-	}
+	} */
 
 	.copyright p {
 		text-align: center;
@@ -308,7 +308,7 @@
 	}
 
 	.footer-area {
-		padding: 80px 0;
+		padding: 30px 0;
 	}
 
 	.hero-text {

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerOrderRequest;
 use App\Models\KategoriProduk;
+use App\Models\Pelanggan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class CustomerController extends Controller
 {
@@ -27,9 +30,30 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function order(CustomerOrderRequest $request)
     {
-        //
+        $customerName = $request->input('customer-name');
+        $customerPhone = $request->input('customer-phone');
+        $customerAddress = $request->input('customer-address');
+
+        // create cookies
+        Cookie::queue(Cookie::make('customer-name', $customerName, 525600 * 5));
+        Cookie::queue(Cookie::make('customer-phone', $customerPhone, 525600 * 5));
+        Cookie::queue(Cookie::make('customer-address', $customerAddress, 525600 * 5));
+
+        // update or add customer
+        $customer = Pelanggan::updateOrCreate(
+            ['no_hp' => $customerPhone],
+            [
+                'nama' => $customerName,
+            ]
+        );
+
+        // dd($customerName);
+
+        return redirect()
+            ->route('customer-view')
+            ->with('success', "Terima kasih $customerName, pesanan anda akan segera kami proses.");
     }
 
     /**
