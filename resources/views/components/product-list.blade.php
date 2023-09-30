@@ -9,6 +9,7 @@
             @foreach ($products as $product)
                 @php
                     $cart = \Cart::get($product->id);
+                    $image = $product->gambar ?? $cart->associatedModel->gambar;
                 @endphp
 
                 <div class=" col-lg-6 col-12 mb-3 rounded-xl px-2">
@@ -16,8 +17,7 @@
                         <div class="row align-items-center justify-content-between">
                             {{-- image --}}
                             <div class="col-4 mb-3">
-                                <img class="rounded img-fluid"
-                                    src="{{ asset('storage/gambar-produk/' . $product->gambar) }}" />
+                                <img class="rounded img-fluid" src="{{ asset('storage/gambar-produk/' . $image) }}" />
                             </div>
                             {{-- texts --}}
                             <div class="col-8">

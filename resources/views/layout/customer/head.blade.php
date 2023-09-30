@@ -5,7 +5,7 @@
     content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 <!-- favicon -->
-<link type="image/png" href="{{ asset('template-customer/assets/img/favicon.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/namina-logo.png') }}" rel="shortcut icon">
 <!-- google font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">

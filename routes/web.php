@@ -66,12 +66,15 @@ Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@e
 Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
 Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
 
-Route::get('/', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer-view');
-
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
-
+// CUSTOMER
+Route::get('/', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
 Route::post('order', [CustomerController::class, 'order'])->name('customer.order');
+Route::get('contact', [CustomerController::class, 'contact'])->name('customer.contact');
+
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'cartList'])->name('cart.list');
+    Route::post('/', [CartController::class, 'addToCart'])->name('cart.store');
+    Route::post('update', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+    Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+});

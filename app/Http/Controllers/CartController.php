@@ -17,7 +17,7 @@ class CartController extends Controller
         $customerTable = Cookie::get('no_meja');
         $cartItems = \Cart::getContent();
 
-        // dd($customerName);
+        // dd($cartItems[1]->associatedModel->gambar);
         return view(
             'customer.cart.index',
             compact('cartItems', 'customerName', 'customerPhone', 'customerAddress', 'customerTable')
@@ -59,7 +59,7 @@ class CartController extends Controller
 
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('customer-view');
+        return redirect()->route('customer.index');
     }
 
     public function updateCart(Request $request)

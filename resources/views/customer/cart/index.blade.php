@@ -1,7 +1,7 @@
 <x-customer-layout>
 
     <!-- hero area -->
-    <div style="background-color: #051922; width:100%; height:100px;">
+    <div style="width:100%; height:100px;">
     </div>
     <!-- end hero area -->
 

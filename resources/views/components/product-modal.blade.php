@@ -30,7 +30,7 @@
                             <p class="mb-2 text">
                                 Rp {{ number_format($cart->price ?? ($product->harga_jual ?? 0)) }}
                             </p>
-                            <input class="px-3 text-center bg-gray-300" name="quantity" type="number"
+                            <input class="px-1 text-center" name="quantity" type="number"
                                 value="{{ $cart->quantity ?? 1 }}" min="1" placeholder="1" />
                             <textarea class="form-control" id="" name="message" rows="3" placeholder="{{ $placeholder }}">{{ $message }}</textarea>
                         </div>

@@ -758,11 +758,12 @@ nav.main-menu li a {
   left: 0;
   top: 0;
   width: 100%;
+  /* background-color: white; */
   z-index: 999 !important;
 }
 
 .sticky-wrapper.is-sticky .top-header-area {
-  background-color: #051922;
+  background-color: white;
   padding: 15px 0;
 }
 
