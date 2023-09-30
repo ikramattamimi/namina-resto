@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pelanggans', function (Blueprint $table) {
-            $table->bigInteger('id', true);
+            $table->id();
             $table->string('nama')->nullable();
             $table->string('no_hp', 20)->nullable();
             $table->timestamp('created_at')->useCurrent();

@@ -1,9 +1,15 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\RekeningController;
+
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MejaController;
+use App\Http\Controllers\BahanBakuController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PembelianBahanBakuController;
+use App\Http\Controllers\PengeluaranBahanBakuController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,17 +23,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('dashboard');
+Auth::routes();
 
 Route::prefix('admin')->group(function () {
+
+
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard-admin');
+
 
     Route::resource('pelanggan', PelangganController::class);
 
     Route::resource('rekening', RekeningController::class);
 
+    Route::resource('bahanBaku', BahanBakuController::class);
+
+    Route::resource('pembelianBahanBaku', PembelianBahanBakuController::class);
+
+    Route::resource('pengeluaranBahanBaku', PengeluaranBahanBakuController::class);
+
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 });
 
 Route::get('/order/pendingDanProses', 'App\Http\Controllers\OrderController@pendingDanProses')->name('order.pendingDanProses');
@@ -50,9 +66,19 @@ Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData')
 Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota');
 
 Route::get('test', function () {
-    event(new App\Events\StatusLiked('Someone'));
+    event(new App\Events\StatusLiked("201511052", "Muhammad Irfan Noor Wahid"));
     return "Event has been sent!";
 });
 
 Route::resource('pelanggan', PelangganController::class)
     ->only(['index', 'create', 'store']);
+
+
+    Route::resource('meja', MejaController::class)->only(['update', 'index']);
+
+    Route::resource('profil', ProfileController::class)
+        ->only(['index', 'edit', 'update']);
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+

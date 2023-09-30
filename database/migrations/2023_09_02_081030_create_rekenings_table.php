@@ -17,7 +17,7 @@ return new class extends Migration
             $table->tinyInteger('id', true);
             $table->string('nama')->nullable();
             $table->string('nomor', 50)->nullable();
-            $table->decimal('jumlah', 10, 0)->nullable();
+            $table->decimal('saldo', 10, 0)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

@@ -1,0 +1,17 @@
+<form action="{{ $action }}" method="POST">
+    @method($method)
+    @if ($action != '')
+        @csrf
+    @endif
+
+    {{ $slot }}
+
+    <div class="row mb-0">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <button class="btn btn-primary" type="submit">
+                {{ $buttonText }}
+            </button>
+        </div>
+    </div>
+</form>

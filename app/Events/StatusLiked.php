@@ -13,19 +13,19 @@ use Illuminate\Queue\SerializesModels;
 class StatusLiked implements ShouldBroadcast{
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $username;
+    public $no_pesanan;
 
-    public $message;
+    public $nama_pelanggan;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($username)
+    public function __construct($no_pesanan, $nama_pelanggan)
     {
-        $this->username = $username;
-        $this->message  = "{$username} liked your status";
+        $this->no_pesanan = $no_pesanan;
+        $this->nama_pelanggan  = $nama_pelanggan;
     }
 
     /**
