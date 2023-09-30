@@ -30,6 +30,7 @@
                 <a class="collapse-item" href="/order/pendingDanProses">Pending & Proses</a>
                 <a class="collapse-item" href="/order/dibayar">Dibayar</a>
                 <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
+                <a class="collapse-item" href="/order/invoice">Invoice</a>
             </div>
         </div>
     </li>

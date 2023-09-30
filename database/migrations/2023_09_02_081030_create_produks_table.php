@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('stok')->nullable();
             $table->decimal('harga_jual', 10, 0)->nullable();
             $table->string('gambar')->nullable();
+            $table->string('diskon')->nullable();
             $table->boolean('is_active')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
