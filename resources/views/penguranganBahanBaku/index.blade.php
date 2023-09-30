@@ -9,7 +9,7 @@
         <div class="col"></div>
         <div class="col d-flex">
             <div class="ml-auto">
-                <x-split-button href="{{ route('pelanggan.create') }}" label="Bahan Baku" class="btn-primary" />
+                <x-split-button href="{{ route('penguranganBahanBaku.create') }}" label="Pengurangan Bahan Baku" class="btn-primary" />
                 <div class="my-2"></div>
             </div>
         </div>
@@ -18,17 +18,17 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Pengeluaran Bahan Baku</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Pengerangan Bahan Baku</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @include('pengeluaranBahanBaku.table')
+                @include('penguranganBahanBaku.table')
             </div>
         </div>
     </div>
 
     @push('scripts')
-    @include('pengeluaranBahanBaku.script')
+    @include('penguranganBahanBaku.script')
     @endpush
 
 </x-admin-layout>

@@ -34,4 +34,9 @@ class Rekening extends Model
 		'nomor',
 		'saldo'
 	];
+
+	public function pengeluaran_restorans()
+	{
+		return $this->hasMany(PengeluaranRestoran::class);
+	}
 }

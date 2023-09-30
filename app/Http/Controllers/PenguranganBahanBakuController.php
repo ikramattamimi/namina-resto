@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PembelianBahanBakuRequest;
 use App\Http\Requests\UpdatePembelianBahanBakuRequest;
 use App\Models\BahanBaku;
-use App\Models\PembelianBahanBaku;
+use App\Models\PenguranganBahanBaku;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PembelianBahanBakuController extends Controller
+class PenguranganBahanBakuController extends Controller
 {
-   /**
+  /**
      * Create a new controller instance.
      *
      * @return void
@@ -29,8 +29,8 @@ class PembelianBahanBakuController extends Controller
      */
     public function index()
     {
-        return view('pembelianBahanBaku.index', [
-            'pembelianBahanBakus' => PembelianBahanBaku::all(),
+        return view('penguranganBahanBaku.index', [
+            'penguranganBahanBakus' => PenguranganBahanBaku::all(),
         ]);
     }
 
@@ -41,7 +41,7 @@ class PembelianBahanBakuController extends Controller
      */
     public function create()
     {
-        return view('pembelianBahanBaku.create', [
+        return view('penguranganBahanBaku.create', [
             'bahanBakus' => BahanBaku::all()->where('is_active',true),
         ]);
     }
@@ -54,7 +54,7 @@ class PembelianBahanBakuController extends Controller
      */
     public function store(PembelianBahanBakuRequest $request): RedirectResponse
     {
-        $pembelianBahanBaku = PembelianBahanBaku::create([
+        $penguranganBahanBaku = PenguranganBahanBaku::create([
             'bahan_baku_id' => $request->bahanBakuId,
             'jumlah' => $request->jumlah,
             'tanggal' => $request->tanggal,
@@ -63,19 +63,19 @@ class PembelianBahanBakuController extends Controller
 
         $bahanBaku = BahanBaku::find($request->bahanBakuId);
         $bahanBaku->update([
-            'stok' => $bahanBaku->stok + $request->jumlah
+            'stok' => $bahanBaku->stok - $request->jumlah
         ]);
 
-        return $this->redirectRoute(pembelianBahanBaku: $pembelianBahanBaku);
+        return $this->redirectRoute(penguranganBahanBaku: $penguranganBahanBaku);
     }
 
      /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BahanBaku  $bahanBaku
+     * @param  \App\Models\PenguranganBahanBaku  $penguranganBahanBaku
      * @return \Illuminate\Http\Response
      */
-    public function show(PembelianBahanBaku $pembelianBahanBaku)
+    public function show(PenguranganBahanBaku $penguranganBahanBaku)
     {
         //
     }
@@ -88,8 +88,8 @@ class PembelianBahanBakuController extends Controller
      */
     public function edit($id)
     {
-        return view('pembelianBahanBaku.edit', [
-            "pembelianBahanBaku" => PembelianBahanBaku::find($id),
+        return view('penguranganBahanBaku.edit', [
+            "penguranganBahanBaku" => PenguranganBahanBaku::find($id),
             'bahanBakus' => BahanBaku::all()->where('is_active',true),
         ]);
     }
@@ -97,30 +97,28 @@ class PembelianBahanBakuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PembelianBahanBakuRequest  $request
-     * @param  \App\Models\PembelianBahanBaku  $pembelianBahanBaku
+     * @param  \App\Http\Requests\PenguranganBahanBakuRequest  $request
+     * @param  \App\Models\PenguranganBahanBaku  $penguranganBahanBaku
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePembelianBahanBakuRequest $request, PembelianBahanBaku $pembelianBahanBaku)
+    public function update(UpdatePembelianBahanBakuRequest $request, PenguranganBahanBaku $penguranganBahanBaku)
     {
-        $bahanBaku = BahanBaku::find($pembelianBahanBaku->bahan_baku_id);
+        $bahanBaku = BahanBaku::find($penguranganBahanBaku->bahan_baku_id);
         $bahanBaku->update([
-            'stok' => $bahanBaku->stok - $pembelianBahanBaku->jumlah
+            'stok' => $bahanBaku->stok + $penguranganBahanBaku->jumlah
         ]);
 
-        $pembelianBahanBaku->update([
+        $penguranganBahanBaku->update([
             'jumlah' => $request->jumlah,
             'tanggal' => $request->tanggal,
             'nama_staff_gudang' => Auth::user()->nama,
         ]);
 
         $bahanBaku->update([
-            'stok' => $bahanBaku->stok + $request->jumlah
+            'stok' => $bahanBaku->stok - $request->jumlah
         ]);
 
-
-
-        return $this->redirectRoute(pembelianBahanBaku: $pembelianBahanBaku);
+        return $this->redirectRoute(penguranganBahanBaku: $penguranganBahanBaku);
     }
 
     /**
@@ -131,32 +129,32 @@ class PembelianBahanBakuController extends Controller
      */
     public function destroy($id)
     {
-        $pembelianBahanBaku = PembelianBahanBaku::findOrFail($id);
-        $bahanBaku = BahanBaku::find($pembelianBahanBaku->bahan_baku_id);
+        $penguranganBahanBaku = PenguranganBahanBaku::findOrFail($id);
+        $bahanBaku = BahanBaku::find($penguranganBahanBaku->bahan_baku_id);
         $bahanBaku->update([
-            'stok' => $bahanBaku->stok - $pembelianBahanBaku->jumlah
+            'stok' => $bahanBaku->stok + $penguranganBahanBaku->jumlah
         ]);
-        $pembelianBahanBaku->delete();
+        $penguranganBahanBaku->delete();
 
-        return $this->redirectRoute(pembelianBahanBaku: $pembelianBahanBaku);
+        return $this->redirectRoute(penguranganBahanBaku: $penguranganBahanBaku);
     }
 
     /**
      * Redirect route based on condition.
      *
-     * @param  mixed $pembelianBahanBaku
+     * @param  mixed $penguranganBahanBaku
      * @param  mixed $route
      * @param  mixed $successMsg
      * @param  mixed $errorMsg
      * @return RedirectResponse
      */
     private function redirectRoute(
-        PembelianBahanBaku $pembelianBahanBaku,
-        String $route = 'pembelianBahanBaku.index',
+        PenguranganBahanBaku $penguranganBahanBaku,
+        String $route = 'penguranganBahanBaku.index',
         String $successMsg = 'Berhasil',
         String $errorMsg = 'Terjadi Kesalahan'
     ): RedirectResponse {
-        if ($pembelianBahanBaku) {
+        if ($penguranganBahanBaku) {
             return redirect()
                 ->route($route)
                 ->with([

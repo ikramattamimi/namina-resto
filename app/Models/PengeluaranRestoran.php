@@ -31,8 +31,15 @@ class PengeluaranRestoran extends Model
 	];
 
 	protected $fillable = [
+		'rekening_id',
 		'nama',
 		'tanggal',
-		'jumlah'
+		'jumlah',
+		'nama_admin'
 	];
+
+	public function rekening()
+	{
+		return $this->belongsTo(Rekening::class);
+	}
 }

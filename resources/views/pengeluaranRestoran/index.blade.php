@@ -1,4 +1,4 @@
-<x-admin-layout headerTitle="Master Data Bahan Baku">
+<x-admin-layout headerTitle="Master Data Pengeluaran Restoran">
 
     @push('stylesheet')
     <!-- Custom styles for this page -->
@@ -9,7 +9,7 @@
         <div class="col"></div>
         <div class="col d-flex">
             <div class="ml-auto">
-                <x-split-button href="{{ route('pembelianBahanBaku.create') }}" label="Pembelian Bahan Baku" class="btn-primary" />
+                <x-split-button href="{{ route('pengeluaranRestoran.create') }}" label="Pengeluaran Restoran" class="btn-primary" />
                 <div class="my-2"></div>
             </div>
         </div>
@@ -18,17 +18,17 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Bahan Baku</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Pengeluaran Restoran</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @include('pembelianBahanBaku.table')
+                @include('pengeluaranRestoran.table')
             </div>
         </div>
     </div>
 
     @push('scripts')
-    @include('pembelianBahanBaku.script')
+    @include('pengeluaranRestoran.script')
     @endpush
 
 </x-admin-layout>
