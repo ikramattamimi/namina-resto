@@ -27,9 +27,18 @@ class ProdukDipesan extends Model
 	protected $table = 'produk_dipesan';
 	public $incrementing = false;
 
+	protected $primaryKey = ['pesanan_id', 'produk_id'];
+
 	protected $casts = [
 		'pesanan_id' => 'int',
 		'produk_id' => 'int'
+	];
+
+	protected $fillable = [
+		'pesanan_id',
+		'produk_id',
+		'qty',
+		'catatan',
 	];
 
 	public function pesanan()
