@@ -188,7 +188,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                                <a href="/admin/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                                 <button type="submit" class="btn btn-primary float-right mr-2 border text-white">Bayar</a>
                             </div>
                         </div>

@@ -45,7 +45,7 @@
                         <td class="text-center">-</td>
                         <td class="text-center d-flex justify-content-center border-bottom-0">
                             <button type="button" class="btn btn-warning mr-1" title="Edit Status" data-toggle="modal" data-target="#ubahStatus"><i class="fas fa-pencil-alt fa-xs"></i></button>
-                            <a href="/order/invoice/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-search"></i></a>
+                            <a href="/admin/order/invoice/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-search"></i></a>
                         </td>
                     </tr>
                     @php
