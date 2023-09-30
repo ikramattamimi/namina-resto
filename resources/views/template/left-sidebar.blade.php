@@ -13,19 +13,19 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->is('/*') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('dashboard') }}">
+        <a class="nav-link" href="{{ route('dashboard') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" href="#"
+            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
             <i class="far fa-bell"></i></i>
             <span>Orderan Online</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/order/pendingDanProses">Pending & Proses</a>
                 <a class="collapse-item" href="/order/dibayar">Dibayar</a>
@@ -44,21 +44,21 @@
 
     <!-- Nav Item - Pelanggan -->
     <li class="nav-item {{ str_contains(url()->current(), 'pelanggan') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pelanggan.index') }}">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-users"></i>
             <span>Pelanggan</span></a>
     </li>
 
     <!-- Nav Item - Rekening -->
     <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('rekening.index') }}">
+        <a class="nav-link" href="{{ route('rekening.index') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-credit-card"></i>
             <span>Rekening</span></a>
     </li>
 
     <!-- Nav Item - Kode QR Meja -->
     <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('meja.index') }}">
+        <a class="nav-link" href="{{ route('meja.index') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
             <span>Kode QR Meja</span></a>
     </li>
@@ -73,7 +73,7 @@
 
     <!-- Nav Item - Bahan Baku -->
     <li class="nav-item {{ str_contains(url()->current(), 'bahanBaku') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('bahanBaku.index') }}">
+        <a class="nav-link" href="{{ route('bahanBaku.index') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-users"></i>
             <span>Master Data</span></a>
     </li>

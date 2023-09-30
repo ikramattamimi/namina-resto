@@ -77,6 +77,7 @@ Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\Ord
 
 //     Route::resource('meja', MejaController::class)->only(['update', 'index']);
 
+
 //     Route::resource('profil', ProfileController::class)
 //         ->only(['index', 'edit', 'update']);
 // });
@@ -84,6 +85,7 @@ Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\Ord
 Route::resource('pelanggan', PelangganController::class)->only(['index', 'create', 'store']);
 
 Route::resource('meja', MejaController::class)->only(['update', 'index']);
+
 
 Route::resource('profil', ProfileController::class)->only(['index', 'edit', 'update']); 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
