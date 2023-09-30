@@ -2,26 +2,50 @@
 
     <div class="row">
         <div class="col-lg-4 mb-4">
-            <div class="card bg-success text-white shadow">
+            <div class="card bg-info shadow h-100 py-2">
                 <div class="card-body">
-                    Success
-                    <div class="text-white-50 small">#1cc88a</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
-            <div class="card bg-info text-white shadow">
+            <div class="card bg-warning shadow h-100 py-2">
                 <div class="card-body">
-                    Info
-                    <div class="text-white-50 small">#36b9cc</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
-            <div class="card bg-warning text-white shadow">
+            <div class="card bg-primary shadow h-100 py-2">
                 <div class="card-body">
-                    Warning
-                    <div class="text-white-50 small">#f6c23e</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-black text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
