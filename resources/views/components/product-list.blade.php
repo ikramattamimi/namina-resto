@@ -16,7 +16,8 @@
                         <div class="row align-items-center justify-content-between">
                             {{-- image --}}
                             <div class="col-4 mb-3">
-                                <img class="rounded img-fluid" src="{{ asset('img/namina-resto.jpg') }}" />
+                                <img class="rounded img-fluid"
+                                    src="{{ asset('storage/gambar-produk/' . $product->gambar) }}" />
                             </div>
                             {{-- texts --}}
                             <div class="col-8">

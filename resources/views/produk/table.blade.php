@@ -13,22 +13,19 @@
     <tbody>
         @foreach ($produks as $produk)
             <tr>
-                <td>{{ $produk->gambar }}</td>
-                <td>{{ $produk->kode }}</td>
-                <td>{{ $produk->nama }}</td>
-                <td>{{ $produk->kategori_produk->nama }}</td>
-                <td>{{ $produk->harga_jual }}</td>
-                <td>{{ $produk->stok }}</td>
-                <td>
+                <td class="col-2">
+                    <img class="img-fluid rounded mb-3" src="{{ asset('storage/gambar-produk/' . $produk->gambar) }}" />
+                </td>
+                <td class="col-1">{{ $produk->kode }}</td>
+                <td class="col-3">{{ $produk->nama }}</td>
+                <td class="col-1">{{ $produk->kategori_produk->nama }}</td>
+                <td class="col-2">{{ $produk->harga_jual }}</td>
+                <td class="col-1">{{ $produk->stok }}</td>
+                <td class="col-2">
                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                         action="{{ route('produk.destroy', $produk->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-
-                        {{-- <a class="btn btn-circle btn-primary btn-sm" id="detailProduk"
-                            name="detailProduk" href="#" role="button">
-                            <i class="fas fa-info-circle"></i>
-                        </a> --}}
                         <a class="btn btn-circle btn-warning btn-sm" id="editProduk" name="editProduk"
                             href="{{ route('produk.edit', $produk->id) }}" role="button">
                             <i class="fas fa-edit"></i>

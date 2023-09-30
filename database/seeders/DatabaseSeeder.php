@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             MejaSeeder::class,
             KategoriDapurSeeder::class,
             KategoriProdukSeeder::class,
-            ProdukSeeder::class,
             StatusPesananSeeder::class,
         ]);
     }

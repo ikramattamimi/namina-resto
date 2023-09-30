@@ -1,4 +1,4 @@
-<form action="{{ $action }}" method="POST">
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @method($method)
     @if ($action != '')
         @csrf

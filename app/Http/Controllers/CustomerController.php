@@ -20,7 +20,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $kategoris = KategoriProduk::paginate(4);
+        $kategoris = KategoriProduk::all();
         $produks = Produk::all();
         $cartItems = \Cart::getContent();
 

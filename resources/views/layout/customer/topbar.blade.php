@@ -14,11 +14,12 @@
                     <!-- logo -->
 
                     <!-- menu start -->
-                    <nav class="main-menu d-flex justify-content-end">
+                    <nav class="main-menu">
                         <ul>
-                            <li><a href="/">Home</a></li>
+                            <li class="current-list-item"><a href="/">Home</a></li>
                             <li><a href="#">Tentang</a></li>
                             <li><a href="#">Kontak</a></li>
+                            <li style="display: none;"><a href="#"></a></li>
                             {{-- <li>
                                 <div class="header-icons">
                                     <a class="shopping-cart" href="cart.html">
