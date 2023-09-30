@@ -8,7 +8,7 @@
                         <p class="subtitle">Garut</p>
                         <h1>Namina Resto and Private Resto</h1>
                         <div class="hero-btns">
-                            <a class="boxed-btn" href="#">Produk</a>
+                            <a class="boxed-btn" href="#product-section">Produk</a>
                             <a class="bordered-btn" href="#">Kontak</a>
                         </div>
                     </div>

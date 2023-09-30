@@ -1,0 +1,21 @@
+/* External styles.css or inline styles */
+.scroll-to-top-button {
+    display: none;
+    /* Hide the button by default */
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 999;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background-color: #051922;
+    color: white;
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 20%;
+}
+
+.scroll-to-top-button:hover {
+    background-color: #555;
+}

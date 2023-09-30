@@ -26,9 +26,8 @@ class CustomerOrderRequest extends FormRequest
         return [
             'customer-name' => 'required|string|min:3|max:255',
             'customer-phone' => 'required|string|min:10|max:15',
-            'customer-address' => 'required|string|min:10|max:255',
-            'customer-payment' => 'required|string|in:1,2',
-            'customer-message' => 'nullable|string|min:10|max:255',
+            'customer-message' => 'nullable|string|max:255',
+            'customer-table' => 'nullable|string',
         ];
     }
 }

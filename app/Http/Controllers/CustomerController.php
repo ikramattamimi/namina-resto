@@ -18,11 +18,16 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategoris = KategoriProduk::all();
+        $kategoris = KategoriProduk::paginate(4);
         $produks = Produk::all();
         $cartItems = \Cart::getContent();
+
+        if (isset($request->no_meja)) {
+            $noMeja = $request->no_meja;
+            Cookie::queue(Cookie::make('customer-table', $noMeja, 60 * 3));
+        }
 
         return view('customer.product.index', compact('kategoris', 'produks', 'cartItems'));
     }
@@ -79,9 +84,16 @@ class CustomerController extends Controller
         // clear cart
         \Cart::clear();
 
-        return redirect()
-            ->route('customer-view')
-            ->with('success', "Terima kasih $customerName, pesanan anda akan segera kami proses.");
+        // redirect to customer view if success
+        if ($pesanan) {
+            return redirect()
+                ->route('customer-view')
+                ->with('success', "Terima kasih $customerName, pesanan anda akan segera kami proses.");
+        } else {
+            return redirect()
+                ->back()
+                ->with('error', "Maaf $customerName, pesanan anda gagal diproses.");
+        }
     }
 
     /**

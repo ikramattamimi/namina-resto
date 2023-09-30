@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PembelianBahanBakuController;
 use App\Http\Controllers\PengeluaranBahanBakuController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekeningController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
 
 
         Route::resource('pelanggan', PelangganController::class);
+
+        Route::resource('produk', ProdukController::class);
 
         Route::resource('rekening', RekeningController::class);
 

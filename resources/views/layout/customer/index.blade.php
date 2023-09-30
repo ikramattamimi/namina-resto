@@ -48,6 +48,7 @@
     <!-- end search area -->
 
     {{ $slot }}
+    <div class="mb-5 pb-5"></div>
 
     @include('layout.customer.footer')
 

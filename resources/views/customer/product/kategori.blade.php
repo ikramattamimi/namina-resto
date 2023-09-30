@@ -5,12 +5,12 @@
             <div class="col">
                 <h3>Kategori</h3>
             </div>
-            <div class="col">
+            {{-- <div class="col">
                 <div class="d-flex justify-content-end">
                     <a class="btn btn-light" id="" name="" href="#" role="button">Lihat Semua <i
                             class="fas fa-chevron-right"></i></a>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row mx-auto my-auto">
@@ -22,7 +22,7 @@
                             <div class="col-md-3">
                                 <div class="single-product-item px-2">
                                     <div class="product-image">
-                                        <a href="single-product.html"><img
+                                        <a href="#{{ $kategori->nama }}"><img
                                                 src="{{ asset('template-customer/assets/img/products/product-img-1.jpg') }}"
                                                 alt=""></a>
                                     </div>

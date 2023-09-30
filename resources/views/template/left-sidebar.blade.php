@@ -49,6 +49,13 @@
             <span>Pelanggan</span></a>
     </li>
 
+    <!-- Nav Item - Produk -->
+    <li class="nav-item {{ str_contains(url()->current(), 'produk') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('produk.index') }}" style="padding: 5px 25px">
+            <i class="fas fa-fw fa-box-open"></i>
+            <span>Produk</span></a>
+    </li>
+
     <!-- Nav Item - Rekening -->
     <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('rekening.index') }}" style="padding: 5px 25px">

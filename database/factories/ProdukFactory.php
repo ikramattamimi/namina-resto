@@ -20,7 +20,7 @@ class ProdukFactory extends Factory
     public function definition()
     {
         return [
-            'kategori_produk_id' => fake()->numberBetween(1, 3),
+            'kategori_produk_id' => fake()->numberBetween(1, 9),
             'kode' => fake()->text(10),
             'nama' => $this->faker->text(50),
             'stok' => fake()->numberBetween(0, 240),

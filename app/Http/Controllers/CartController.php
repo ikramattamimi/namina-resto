@@ -14,10 +14,14 @@ class CartController extends Controller
         $customerName = Cookie::get('customer-name');
         $customerPhone = Cookie::get('customer-phone');
         $customerAddress = Cookie::get('customer-address');
+        $customerTable = Cookie::get('no_meja');
         $cartItems = \Cart::getContent();
 
         // dd($customerName);
-        return view('customer.cart.index', compact('cartItems', 'customerName', 'customerPhone', 'customerAddress'));
+        return view(
+            'customer.cart.index',
+            compact('cartItems', 'customerName', 'customerPhone', 'customerAddress', 'customerTable')
+        );
     }
 
 

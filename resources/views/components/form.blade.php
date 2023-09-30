@@ -6,12 +6,10 @@
 
     {{ $slot }}
 
-    <div class="row mb-0">
-        <div class="col-md-3"></div>
-        <div class="col-md-9">
-            <button class="btn btn-primary" type="submit">
-                {{ $buttonText }}
-            </button>
-        </div>
+    <div class="col-md-12 d-flex justify-content-end">
+        <button class="btn btn-primary" type="submit">
+            {{ $buttonText }}
+        </button>
     </div>
+
 </form>
