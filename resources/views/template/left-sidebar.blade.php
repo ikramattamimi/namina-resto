@@ -19,18 +19,24 @@
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" href="#"
-            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
-            <i class="far fa-bell"></i></i>
+    <li class="nav-item {{ str_contains(url()->current(), 'order') ? 'active' : '' }}">
+        <a class="nav-link {{ !str_contains(url()->current(), 'order') ? 'collapsed' : '' }}" data-toggle="collapse"
+            data-target="#collapseUtilities" href="#" aria-expanded="true" aria-controls="collapseUtilities"
+            style="padding: 5px 25px">
+            <i class="far fa-bell"></i>
             <span>Orderan Online</span>
         </a>
-        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+        <div class="collapse {{ str_contains(url()->current(), 'order') ? 'show' : '' }}" id="collapseUtilities"
+            data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/order/pendingDanProses">Pending & Proses</a>
-                <a class="collapse-item" href="/order/dibayar">Dibayar</a>
-                <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
-                <a class="collapse-item" href="/order/invoice">Invoice</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'pendingDanProses') ? 'active' : '' }}"
+                    href="/order/pendingDanProses">Pending & Proses</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'dibayar') ? 'active' : '' }}"
+                    href="/order/dibayar">Dibayar</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'dibatalkan') ? 'active' : '' }}"
+                    href="/order/dibatalkan">Dibatalkan</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'invoice') ? 'active' : '' }}"
+                    href="/order/invoice">Invoice</a>
             </div>
         </div>
     </li>
@@ -51,10 +57,23 @@
     </li>
 
     <!-- Nav Item - Produk -->
-    <li class="nav-item {{ str_contains(url()->current(), 'produk') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('produk.index') }}" style="padding: 5px 25px">
+    <li
+        class="nav-item {{ str_contains(url()->current(), 'produk') || str_contains(url()->current(), 'kategori') ? 'active' : '' }}">
+        <a class="nav-link {{ !str_contains(url()->current(), 'produk') ? 'collapsed' : '' }}" data-toggle="collapse"
+            data-target="#menu-master-produk" href="#" aria-expanded="true" aria-controls="menu-master-produk"
+            style="padding: 5px 25px">
             <i class="fas fa-fw fa-box-open"></i>
-            <span>Produk</span></a>
+            <span>Produk</span>
+        </a>
+        <div class="collapse {{ str_contains(url()->current(), 'produk') || str_contains(url()->current(), 'kategori') ? 'show' : '' }}"
+            id="menu-master-produk" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ str_contains(url()->current(), 'kategori') ? 'active' : '' }}"
+                    href="{{ route('kategori.index') }}">Kategori</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'produk') ? 'active' : '' }}"
+                    href="{{ route('produk.index') }}">Produk Satuan</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Rekening -->
@@ -87,13 +106,13 @@
     </li>
 
     <li class="nav-item {{ str_contains(url()->current(), 'pembelianBahanBaku') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pembelianBahanBaku.index') }}">
+        <a class="nav-link" href="{{ route('pembelianBahanBaku.index') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-users"></i>
             <span>Pembelian</span></a>
     </li>
 
     <li class="nav-item {{ str_contains(url()->current(), 'penguranganBahanBaku') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('penguranganBahanBaku.index') }}">
+        <a class="nav-link" href="{{ route('penguranganBahanBaku.index') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-users"></i>
             <span>Pengurangan</span></a>
     </li>

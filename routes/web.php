@@ -7,6 +7,7 @@ use App\Http\Controllers\MejaController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\KelolaPenggunaController;
 use App\Http\Controllers\LaporanPembelianBahanBakuController;
 use App\Http\Controllers\LaporanPengeluaranRestoranController;
@@ -60,13 +61,13 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('kelolaPengguna', KelolaPenggunaController::class);
 
-        Route::resource('meja', MejaController::class)
-            ->only(['update', 'index']);
+        Route::resource('meja', MejaController::class)->only(['update', 'index']);
 
-        Route::resource('profil', ProfileController::class)
-            ->only(['index', 'edit', 'update']);
+        Route::resource('profil', ProfileController::class)->only(['index', 'edit', 'update']);
 
         Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+        Route::resource('kategori', KategoriProdukController::class);
     });
 });
 
