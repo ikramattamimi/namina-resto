@@ -192,7 +192,7 @@
     </div>
 
     @push('scripts')
-    @include('template.script')
+    @include('rekening.script')
     @endpush
 
 
