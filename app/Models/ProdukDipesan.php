@@ -27,6 +27,8 @@ class ProdukDipesan extends Model
 	protected $table = 'produk_dipesan';
 	public $incrementing = false;
 
+	protected $primaryKey = ['pesanan_id', 'produk_id'];
+
 	protected $casts = [
 		'pesanan_id' => 'int',
 		'produk_id' => 'int'
@@ -37,7 +39,6 @@ class ProdukDipesan extends Model
 		'produk_id',
 		'qty',
 		'catatan',
-		'harga'
 	];
 
 	public function pesanan()

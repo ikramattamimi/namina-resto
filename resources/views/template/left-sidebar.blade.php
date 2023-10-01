@@ -30,6 +30,7 @@
                 <a class="collapse-item" href="/order/pendingDanProses">Pending & Proses</a>
                 <a class="collapse-item" href="/order/dibayar">Dibayar</a>
                 <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
+                <a class="collapse-item" href="/order/invoice">Invoice</a>
             </div>
         </div>
     </li>
@@ -85,16 +86,16 @@
             <span>Master Data</span></a>
     </li>
 
-    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}" style="padding: 5px 25px">
+    <li class="nav-item {{ str_contains(url()->current(), 'pembelianBahanBaku') ? 'active' : '' }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pembelianBahanBaku.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Pembelian</span></a>
     </li>
 
-    <li class="nav-item {{ request()->is('pelanggan/*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}" style="padding: 5px 25px">
+    <li class="nav-item {{ str_contains(url()->current(), 'penguranganBahanBaku') ? 'active' : '' }}">
+        <a class="nav-link" style="padding: 5px 25px" href="{{ route('penguranganBahanBaku.index') }}">
             <i class="fas fa-fw fa-users"></i>
-            <span>Pengeluaran</span></a>
+            <span>Pengurangan</span></a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->

@@ -10,19 +10,21 @@
             <div class="card-body">
                 <div class="container text-dark">
                     <div class="row mb-3">
+                        @if(isset($pesanan[0]))
                         <div class="col">
                             <h5>
                                 <i class="fas fa-globe fa-lg" style="color: #000000;"></i>
-                                No. Antrian: 19
+                                No. Orderan: {{$pesanan[0]->kode}}
                             </h5>
                         </div>
                         <div class="col">
                             <div class="text-right">
-                            @if(isset($pesanan[0]))
+                            
                                 <h5>Tanggal: {{ \Carbon\Carbon::parse($pesanan[0]->created_at)->format('d F Y H:i:s') }}</h5>
-                            @endif
+                            
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
@@ -46,7 +48,7 @@
                             <p class="mb-0">Pembeli</p>
                             <p class="mb-0 font-weight-bold">{{$p->nama}}</p>
                             <p class="mb-0">Tlpn/Wa: {{$p->no_hp}}</p>
-                            <p class="mb-0"><span class="font-weight-bold">Orderan:</span> Meja No.1</p>
+                            <p class="mb-0"><span class="font-weight-bold">Orderan:</span> Meja No. {{$p->no_meja}}</p>
                         </div>
                         <div class="col-sm">
                             <div class="row">
@@ -55,6 +57,14 @@
                                         Status Orderan
                                     </div>
                                     <p>{{$p->nama_status}}</p>
+                                    @if(isset($pesanan[0]))
+                                    <form action="{{ route('order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="status_id" value="2">
+                                        <button type="submit" class="btn btn-sm btn-primary">Proses pesanan</button>
+                                    </form>
+                                    @endif
                                 </div>
                                 <div class="col-sm">
                                     <div class="font-weight-bold">
@@ -85,19 +95,48 @@
                     <tbody class="border table-bordered">
                         @php 
                             $counter = 1;
+                            $total = 0;
                         @endphp
                         @foreach($pesanan as $data)
                         <tr class="mb-3">
                             <td>{{$counter}}</td>
-                            <td>{{$data->gambar}}</td>
+                            <td><img src="/template/img/{{$data->gambar}}" style="width:100px; heigth:100px"></td>
                             <td>{{$data->nama_produk}}</td>
                             <td>{{$data->harga_jual}}</td>
-                            <td>Setengah mateng</td>
-                            <td>5</td>
-                            <td>10000</td>
-                            <td>10000</td>
+                            <td>{{$data->catatan_produk}}</td>
+                            <td>{{$data->qty}}
+                                <button class="btn btn-sm border" style="border-radius:0.25rem; border:2px solid" data-toggle="modal" data-target="#ubahQty-{{$data->id}}">
+                                    <i class="fa fa-edit p-0"></i>
+                                </button>
+                                <!-- MODALS -->
+                                    <x-modal id="ubahQty-{{$data->id}}" title="Ubah Quantity">
+                                        <form id="ubahQtyForm" action="{{ route('order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <label for="exampleFormControlTextarea1">Quantity</label>
+                                                <input type="number" class="form-control" name="qty">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                                            </div>
+                                        </form>
+                                    </x-modal>
+                                <!-- END MODALS -->
+                            </td>
+                            <td>{{$data->diskon}}</td>
+                            <td>{{ $data->harga_jual * $data->qty - $data->diskon}}</td>
+                            @php
+                                $total += $data->harga_jual * $data->qty - $data->diskon;
+                                $kode = $data->kode;
+                            @endphp
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <button type="button" class="btn btn-light mr-1 border"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
+                                <form action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-light mr-1 border" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @php 
@@ -108,62 +147,57 @@
                 </table>
                 </div>
                 <div class="container text-dark">
-                    <div class="row">
-                        <div class="col-md-4 col-lg-6">
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="form-group">
-                                        <label for="kategori_status">Metode Pembayaran </label>
-                                        <input type="text" name="namaUser" class="form-control" value="Cash" readonly="">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group" style="margin-top:32px">
-                                        <button class="btn btn-default border">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="form-group">
-                                        <label for="kategori_status">Tipe Order </label>
-                                        <input type="text" name="namaUser" class="form-control" value="Cash" readonly="">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group" style="margin-top:32px">
-                                        <button class="btn btn-default border">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
+                    <form action="{{ route('order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                        <div class="row">
+                            <div class="col-md-4 col-lg-6">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Metode Pembayaran</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="tipe_bayar">
+                                            <option>Cash</option>
+                                            <option>Invoice</option>
+                                            <option>Debit</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="border rounded" style="padding: 15px; max-width: 355px;">
-                                <h4><b>Catatan Pembeli</b></h4>
-                                <p>Tidak Ada Pembeli</p>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-lg-6">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th style="width:50%; border:none">Total:</th>
-                                            <td style="border-top: none;border-bottom:1px solid #ddd">Rp. 23.400</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-md-8 col-lg-6">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width:50%; border:none">Total:</th>
+                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="total" id="total" value="{{ $total }}" readonly></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:50%; border:none">Diskon:</th>
+                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input type="number" style="width:150px" name="diskon" id="diskon"></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:50%; border:none">Total Akhir:</th>
+                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="totalakhir" id="total-akhir" readonly></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/order/dibatalkan" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                                <button type="submit" class="btn btn-primary float-right mr-2 border text-white">Bayar</a>
+                            </div>
                         </div>
-                    </div>
+                    </form>
             <div>
         </div>
     </div>
+
+    @push('scripts')
+        @include('order.pending-dan-proses.script')
+    @endpush
 </x-admin-layout>

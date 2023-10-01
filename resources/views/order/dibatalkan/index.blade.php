@@ -57,14 +57,18 @@
                         <form action="{{ route('order.pending-dan-proses.update-status', ['id' => $item->kode]) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <label for="exampleFormControlTextarea1">Status</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="status_id">
-                                @foreach($status as $s)
-                                <option value="{{ $s->id }}">{{$s->nama}}</option>
-                                @endforeach
-                            </select>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>  
+                            <div class="modal-body">
+                                <label for="exampleFormControlTextarea1">Status</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="status_id">
+                                    @foreach($status as $s)
+                                    <option value="{{ $s->id }}">{{$s->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button> 
+                            </div> 
                         </form>
                           
                     </x-modal>

@@ -9,7 +9,7 @@
         <div class="col"></div>
         <div class="col d-flex">
             <div class="ml-auto">
-                <x-split-button href="{{ route('pelanggan.create') }}" label="Bahan Baku" class="btn-primary" />
+                <x-split-button href="{{ route('pembelianBahanBaku.create') }}" label="Pembelian Bahan Baku" class="btn-primary" />
                 <div class="my-2"></div>
             </div>
         </div>
