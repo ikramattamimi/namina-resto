@@ -25,7 +25,7 @@ class KasirOrderController extends Controller
                     })
                     ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
-                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
+                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp', 'pesanans.no_meja', 'pesanans.created_at', 'status_pesanans.nama AS nama_status']);
         $status = StatusPesanan::all();
 
         return view('kasir-order.pending-dan-proses.index', ['data' => $data, 'status' => $status]);
@@ -43,7 +43,7 @@ class KasirOrderController extends Controller
                     })
                     ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
-                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
+                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp', 'pesanans.no_meja', 'pesanans.created_at', 'status_pesanans.nama AS nama_status']);
         
         return response()->json(['data' => $data], 200);
     }   
@@ -230,6 +230,7 @@ class KasirOrderController extends Controller
             }
 
             $pesanan->status_pesanan_id = 3;
+            $pesanan->total_bayar = intval($request->totalakhir);
             $pesanan->save();
 
             $rekening = new Rekening;
@@ -237,7 +238,7 @@ class KasirOrderController extends Controller
             if($request->input('tipe_bayar') == "Debit"){
                 $rekening->nomor = 123456;
             }
-            $rekening->jumlah = intval($request->totalakhir);
+            $rekening->saldo = intval($request->totalakhir);
             $rekening->save();
 
             return $this->dibayar();

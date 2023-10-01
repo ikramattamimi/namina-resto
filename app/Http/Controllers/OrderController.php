@@ -34,7 +34,7 @@ class OrderController extends Controller
                           ->orWhere('status_pesanans.nama', 'Proses');
                 })
                 ->orderBy('pesanans.id', 'DESC')
-                ->get(['pesanans.kode', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.created_at', 'status_pesanans.nama AS nama_status']);
+                ->get(['pesanans.kode', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.created_at', 'pesanans.no_meja', 'status_pesanans.nama AS nama_status']);
                 
         return response()->json(['data' => $data], 200);
     }   
@@ -242,7 +242,7 @@ class OrderController extends Controller
                             ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
                             ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
                             ->where('pesanans.kode', $kode)
-                            ->where('kategori_dapurs.nama', "Dapur Utama")
+                            ->where('kategori_dapurs.nama', "Dapur Main")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
 
         $dapur_cemilan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')

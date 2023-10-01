@@ -30,5 +30,9 @@ class StatusPesananSeeder extends Seeder
         DB::table('status_pesanans')->insert([
             'nama' => "Dibatalkan",
         ]);
+
+        DB::table('status_pesanans')->insert([
+            'nama' => "Invoice",
+        ]);
     }
 }

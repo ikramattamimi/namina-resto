@@ -96,6 +96,7 @@
                             @php
                                 $total += $data->harga_jual * $data->qty - $data->diskon;
                                 $kode = $data->kode;
+                                $catatan = $data->catatan;
                             @endphp
                             <td class="text-center d-flex justify-content-center border-bottom-0">
                                     <button class="btn btn-light mr-1 border"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
@@ -109,6 +110,12 @@
                 </table>
                 </div>
                 <div class="row">
+                    <div class="container">
+                        <div class="border rounded" style="padding: 15px; max-width: 355px;">
+                            <h4><b>Catatan Pembeli</b></h4>
+                            <p>{{$catatan}}</p>
+                        </div>
+                    </div>                  
                     <div class="col-12">
                         <a href="/admin/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                     </div>

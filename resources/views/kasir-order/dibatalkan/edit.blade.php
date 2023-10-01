@@ -124,6 +124,7 @@
                             @php
                                 $total += $data->harga_jual * $data->qty - $data->diskon;
                                 $kode = $data->kode;
+                                $catatan = $data->catatan;
                             @endphp
                             <td class="text-center d-flex justify-content-center border-bottom-0">
                                 <form action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
@@ -158,6 +159,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="border rounded" style="padding: 15px; max-width: 355px;">
+                                    <h4><b>Catatan Pembeli</b></h4>
+                                    <p>{{$catatan}}</p>
+                                </div>
                             </div>
                             <div class="col-md-8 col-lg-6">
                                 <div class="table-responsive">
@@ -182,7 +187,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="/admin/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                                <a href="/kasir/order/dibatalkan" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                                 <button type="submit" class="btn btn-primary float-right mr-2 border text-white">Bayar</a>
                             </div>
                         </div>

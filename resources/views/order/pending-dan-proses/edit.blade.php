@@ -124,6 +124,7 @@
                             @php
                                 $total += $data->harga_jual * $data->qty - $data->diskon;
                                 $kode = $data->kode;
+                                $catatan = $data->catatan;
                             @endphp
                             <td class="text-center d-flex justify-content-center border-bottom-0">
                                 <form action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
@@ -157,6 +158,10 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="border rounded" style="padding: 15px; max-width: 355px;">
+                                    <h4><b>Catatan Pembeli</b></h4>
+                                    <p>{{$catatan}}</p>
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-6">

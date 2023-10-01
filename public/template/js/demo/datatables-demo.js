@@ -14,9 +14,9 @@ $(document).ready(function () {
             {
                 data: "created_at",
                 name: "created_at",
-                render: function (data) {
+                render: function (data, type, full, meta) {
                     return (
-                        '<div class="text-center">Meja No. 14</div><div class="text-center small">' +
+                        '<div class="text-center">Meja No.' + full.no_meja +'</div><div class="text-center small">' +
                         moment(data).format("D MMM YYYY H:mm:ss") +
                         "</div>"
                     );
