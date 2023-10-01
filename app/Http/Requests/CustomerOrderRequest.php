@@ -25,7 +25,7 @@ class CustomerOrderRequest extends FormRequest
     {
         return [
             'customer-name' => 'required|string|min:3|max:255',
-            'customer-phone' => 'required|string|min:10|max:15',
+            'customer-phone' => 'nullable|string|max:15',
             'customer-message' => 'nullable|string|max:255',
             'customer-table' => 'nullable|string',
         ];

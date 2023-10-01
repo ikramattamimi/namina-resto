@@ -14,7 +14,7 @@ class CartController extends Controller
         $customerName = Cookie::get('customer-name');
         $customerPhone = Cookie::get('customer-phone');
         $customerAddress = Cookie::get('customer-address');
-        $customerTable = Cookie::get('no_meja');
+        $customerTable = Cookie::get('customer-table');
         $cartItems = \Cart::getContent();
 
         // dd($cartItems[1]->associatedModel->gambar);
