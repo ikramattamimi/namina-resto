@@ -1,5 +1,6 @@
 <!-- Page level plugins -->
 <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
 <!-- Page level custom scripts -->
 <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
@@ -12,13 +13,13 @@
 
     // Fungsi untuk menghitung total akhir
     function updateTotal() {
-            const harga = parseFloat(totalInput.value) || 0;
-            const diskon = parseFloat(diskonInput.value) || 0;
-            const totalAkhir = harga - diskon;
+        const harga = parseFloat(totalInput.value) || 0;
+        const diskon = parseFloat(diskonInput.value) || 0;
+        const totalAkhir = harga - diskon;
 
-            totalAkhirInput.value = totalAkhir;
-        }
-    
+        totalAkhirInput.value = totalAkhir;
+    }
+
     // Tambahkan event listener untuk input diskon
     diskonInput.addEventListener('input', updateTotal);
 
