@@ -19,47 +19,47 @@ class KategoriProdukSeeder extends Seeder
             [
                 'dapur_id' => 1,
                 'nama' => 'Coffee by ToastNgopi',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'drink-toastngopi.png'
             ],
             [
                 'dapur_id' => 2,
                 'nama' => 'Cemilan',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'cemilan.png'
             ],
             [
                 'dapur_id' => 1,
                 'nama' => 'Food by ToastNgopi',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'food-toastngopi.png'
             ],
             [
                 'dapur_id' => 1,
                 'nama' => 'Ikan segar',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'ikan.png'
             ],
             [
                 'dapur_id' => 1,
                 'nama' => 'Menu Utama',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'makanan.png'
             ],
             [
                 'dapur_id' => 3,
                 'nama' => 'Minuman',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'minuman.png'
             ],
             [
                 'dapur_id' => 3,
                 'nama' => 'Rokok',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'rokok.png'
             ],
             [
                 'dapur_id' => 2,
                 'nama' => 'Snack',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'makanan.png'
             ],
             [
                 'dapur_id' => 3,
                 'nama' => 'Lain lain',
-                'gambar' => 'makanan.jpg'
+                'gambar' => 'lainnya.png'
             ],
         ]);
     }

@@ -130,7 +130,7 @@ class ProdukController extends Controller
         // delete image
         $oldImage = Produk::find($produk->id)->gambar;
         if ($oldImage) {
-            unlink(storage_path('app/public/gambar-produk/' . $oldImage));
+            // unlink(storage_path('app/public/gambar-produk/' . $oldImage));
         }
 
         $product = Produk::find($produk->id)->delete();
