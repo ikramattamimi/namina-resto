@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StatusLiked;
 use App\Http\Requests\CustomerOrderRequest;
 use App\Models\KategoriProduk;
 use App\Models\Pelanggan;
@@ -43,11 +44,13 @@ class CustomerController extends Controller
         $customerName = $request->input('customer-name');
         $customerPhone = $request->input('customer-phone');
         $customerAddress = $request->input('customer-address');
+        $customerTable = $request->input('customer-table');
 
         // create cookies
         Cookie::queue(Cookie::make('customer-name', $customerName, 525600 * 5));
         Cookie::queue(Cookie::make('customer-phone', $customerPhone, 525600 * 5));
         Cookie::queue(Cookie::make('customer-address', $customerAddress, 525600 * 5));
+        Cookie::queue(Cookie::make('customer-table', $customerTable, 5));
 
         // update or add customer
         $customer = Pelanggan::updateOrCreate(
@@ -83,6 +86,10 @@ class CustomerController extends Controller
 
         // clear cart
         \Cart::clear();
+
+        if ($pesanan) {
+            event(new StatusLiked($pesanan->kode, $pesanan->pelanggan->nama));
+        }
 
         // redirect to customer view if success
         if ($pesanan) {

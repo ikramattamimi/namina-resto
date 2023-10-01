@@ -23,7 +23,7 @@
                                 <div class="single-product-item px-2">
                                     <div class="product-image">
                                         <a href="#{{ $kategori->nama }}"><img
-                                                src="{{ asset('template-customer/assets/img/products/product-img-1.jpg') }}"
+                                                src="{{ asset('/storage/gambar-kategori/' . $kategori->gambar) }}"
                                                 alt=""></a>
                                     </div>
                                     <h5 class="text-truncate">{{ $kategori->nama }}</h5>

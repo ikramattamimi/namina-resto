@@ -2,6 +2,7 @@
     $cart = \Cart::get($product->id);
     $message = $cart['attributes']['message'] ?? '';
     $placeholder = 'Tulis pesan untuk penjual (opsional)';
+    $image = $product->gambar ?? $cart->associatedModel->gambar;
 @endphp
 
 <!-- Modal -->
@@ -25,7 +26,7 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="text-center">
-                            <img class="rounded img-thumbnail" src="{{ asset('img/namina-resto.jpg') }}" />
+                            <img class="rounded img-thumbnail" src="{{ asset('storage/gambar-produk/' . $image) }}" />
                             <h5 class="card-title">{{ $cart->name ?? ($product->nama ?? '') }}</h5>
                             <p class="mb-2 text">
                                 Rp {{ number_format($cart->price ?? ($product->harga_jual ?? 0)) }}

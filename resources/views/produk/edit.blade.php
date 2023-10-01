@@ -10,7 +10,7 @@
                 <div class="col-lg-4 mb-3">
                     <div class="text-center">
                         <img class="img-fluid rounded mb-3" src="{{ asset('storage/gambar-produk/' . $produk->gambar) }}"
-                            alt="">
+                            alt="gambar produk">
                     </div>
                     <x-input class="" name="gambar" type="file" label="" :isRequired="false" />
                 </div>
@@ -39,5 +39,14 @@
         </x-form>
 
     </x-card>
+
+    @push('scripts')
+        <script type="application/javascript">
+        $('input[type="file"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.custom-file-label').html(fileName);
+        });
+    </script>
+    @endpush
 
     </x-admin-layot>

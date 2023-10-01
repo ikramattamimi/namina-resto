@@ -106,7 +106,12 @@ class ProdukController extends Controller
             // delete old image
             $oldImage = Produk::find($produk->id)->gambar;
             if ($oldImage) {
-                unlink(storage_path('app/public/gambar-produk/' . $oldImage));
+                $imagePath = storage_path('app/public/gambar-produk/' . $oldImage);
+
+                // Check if the file exists before attempting to delete it
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
         }
 
