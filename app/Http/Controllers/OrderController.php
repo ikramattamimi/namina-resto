@@ -263,3 +263,4 @@ class OrderController extends Controller
         return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
     }
 }
+
