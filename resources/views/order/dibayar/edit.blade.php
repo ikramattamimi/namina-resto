@@ -86,7 +86,7 @@
                         @foreach($pesanan as $data)
                         <tr class="mb-3">
                             <td>{{$counter}}</td>
-                            <td><img src="/template/img/{{$data->gambar}}" style="width:100px; heigth:100px"></td>
+                            <td><img src="/storage/gambar-produk/{{$data->gambar}}" style="width:100px; heigth:100px"></td>
                             <td>{{$data->nama_produk}}</td>
                             <td>{{$data->harga_jual}}</td>
                             <td>{{$data->catatan_produk}}</td>
@@ -94,7 +94,7 @@
                             <td>{{$data->diskon}}</td>
                             <td>{{ $data->harga_jual * $data->qty - $data->diskon}}</td>
                             @php
-                                $total += $data->harga_jual * $data->qty - $data->diskon;
+                                $total_akhir = $data->total_bayar;
                                 $kode = $data->kode;
                                 $catatan = $data->catatan;
                             @endphp
@@ -110,13 +110,27 @@
                 </table>
                 </div>
                 <div class="row">
-                    <div class="container">
+                    <div class="col-md-4 col-lg-6">
                         <div class="border rounded" style="padding: 15px; max-width: 355px;">
-                            <h4><b>Catatan Pembeli</b></h4>
-                            <p>{{$catatan}}</p>
+                                <h4><b>Catatan Pembeli</b></h4>
+                                <p>{{$catatan}}</p>
+                            </div>
+                    </div>
+                    <div class="col-md-8 col-lg-6">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th style="width:50%; border:none">Pembayaran Diterima:</th>
+                                        <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="total" id="total" value="{{ $total_akhir }}" readonly></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>                  
-                    <div class="col-12">
+                    </div>
+                </div>
+                    <div class="row">               
+                        <div class="col-12">
                         <a href="/admin/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                     </div>
                 </div>
