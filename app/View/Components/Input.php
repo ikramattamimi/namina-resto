@@ -17,11 +17,11 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct($name = "input", $label = "Input", $type = "text", $isRequired = true, $isDisabled = false)
+    public function __construct($name = "input", $label = " ", $type = "text", $isRequired = true, $isDisabled = false)
     {
         $this->name = $name;
         $this->type = $type;
-        $this->label = ($label == "Input" && $name != "input") ? ucfirst($name) : $label;
+        $this->label = ($label == " " && $name != "") ? ucfirst($name) : $label;
         $this->isRequired = $isRequired ? "required" : "";
         $this->isDisabled = $isDisabled ? "disabled" : "";
     }

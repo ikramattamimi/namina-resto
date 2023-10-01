@@ -12,84 +12,118 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ request()->is('/*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard') }}" style="padding: 5px 25px">
+    <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard-admin') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" href="#"
-            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
-            <i class="far fa-bell"></i></i>
-            <span>Orderan Online</span>
-        </a>
-        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/order/pendingDanProses">Pending & Proses</a>
-                <a class="collapse-item" href="/order/dibayar">Dibayar</a>
-                <a class="collapse-item" href="/order/dibatalkan">Dibatalkan</a>
-                <a class="collapse-item" href="/order/invoice">Invoice</a>
+    {{-- jika user admin atau kasir --}}
+    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item {{ str_contains(url()->current(), 'order') ? 'active' : '' }}">
+            <a class="nav-link {{ !str_contains(url()->current(), 'order') ? 'collapsed' : '' }}" data-toggle="collapse"
+                data-target="#collapseUtilities" href="#" aria-expanded="true" aria-controls="collapseUtilities"
+                style="padding: 5px 25px">
+                <i class="far fa-bell"></i>
+                <span>Orderan Online</span>
+            </a>
+            <div class="collapse {{ str_contains(url()->current(), 'order') ? 'show' : '' }}" id="collapseUtilities"
+                data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ str_contains(url()->current(), 'pendingDanProses') ? 'active' : '' }}"
+                        href="/order/pendingDanProses">Pending & Proses</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'dibayar') ? 'active' : '' }}"
+                        href="/order/dibayar">Dibayar</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'dibatalkan') ? 'active' : '' }}"
+                        href="/order/dibatalkan">Dibatalkan</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'invoice') ? 'active' : '' }}"
+                        href="/order/invoice">Invoice</a>
+                </div>
             </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+    @endif
+
+    {{-- jika user admin --}}
+    @if (Auth::user()->role_id == 1)
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Master Data
         </div>
-    </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+        <!-- Nav Item - Pelanggan -->
+        <li class="nav-item {{ str_contains(url()->current(), 'pelanggan') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('pelanggan.index') }}" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Pelanggan</span></a>
+        </li>
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Master Data
-    </div>
+        <!-- Nav Item - Produk -->
+        <li
+            class="nav-item {{ str_contains(url()->current(), 'produk') || str_contains(url()->current(), 'kategori') ? 'active' : '' }}">
+            <a class="nav-link {{ !str_contains(url()->current(), 'produk') ? 'collapsed' : '' }}"
+                data-toggle="collapse" data-target="#menu-master-produk" href="#" aria-expanded="true"
+                aria-controls="menu-master-produk" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-box-open"></i>
+                <span>Produk</span>
+            </a>
+            <div class="collapse {{ str_contains(url()->current(), 'produk') || str_contains(url()->current(), 'kategori') ? 'show' : '' }}"
+                id="menu-master-produk" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ str_contains(url()->current(), 'kategori') ? 'active' : '' }}"
+                        href="{{ route('kategori.index') }}">Kategori</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'produk') ? 'active' : '' }}"
+                        href="{{ route('produk.index') }}">Produk Satuan</a>
+                </div>
+            </div>
+        </li>
 
-    <!-- Nav Item - Pelanggan -->
-    <li class="nav-item {{ str_contains(url()->current(), 'pelanggan') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('pelanggan.index') }}" style="padding: 5px 25px">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Pelanggan</span></a>
-    </li>
+        <!-- Nav Item - Rekening -->
+        <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('rekening.index') }}" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-credit-card"></i>
+                <span>Rekening</span></a>
+        </li>
 
-    <!-- Nav Item - Rekening -->
-    <li class="nav-item {{ str_contains(url()->current(), 'rekening') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('rekening.index') }}" style="padding: 5px 25px">
-            <i class="fas fa-fw fa-credit-card"></i>
-            <span>Rekening</span></a>
-    </li>
+        <!-- Nav Item - Kode QR Meja -->
+        <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('meja.index') }}" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
+                <span>Kode QR Meja</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+    @endif
 
-    <!-- Nav Item - Kode QR Meja -->
-    <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('meja.index') }}" style="padding: 5px 25px">
-            <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
-            <span>Kode QR Meja</span></a>
-    </li>
+    {{-- jika user admin atau gudang --}}
+    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Bahan Baku
+        </div>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+        <!-- Nav Item - Bahan Baku -->
+        <li class="nav-item {{ str_contains(url()->current(), 'bahanBaku') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('bahanBaku.index') }}" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Master Data</span></a>
+        </li>
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Bahan Baku
-    </div>
+        <li class="nav-item {{ str_contains(url()->current(), 'pembelianBahanBaku') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('pembelianBahanBaku.index') }}" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Pembelian</span></a>
+        </li>
 
-    <!-- Nav Item - Bahan Baku -->
-    <li class="nav-item {{ str_contains(url()->current(), 'bahanBaku') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('bahanBaku.index') }}" style="padding: 5px 25px">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Master Data</span></a>
-    </li>
-
-    <li class="nav-item {{ str_contains(url()->current(), 'pembelianBahanBaku') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('pembelianBahanBaku.index') }}">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Pembelian</span></a>
-    </li>
-
-    <li class="nav-item {{ str_contains(url()->current(), 'penguranganBahanBaku') ? 'active' : '' }}">
-        <a class="nav-link" style="padding: 5px 25px" href="{{ route('penguranganBahanBaku.index') }}">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Pengurangan</span></a>
-    </li>
+        <li class="nav-item {{ str_contains(url()->current(), 'penguranganBahanBaku') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('penguranganBahanBaku.index') }}" style="padding: 5px 25px">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Pengurangan</span></a>
+        </li>
+    @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

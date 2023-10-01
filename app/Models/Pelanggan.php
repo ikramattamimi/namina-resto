@@ -29,11 +29,17 @@ class Pelanggan extends Model
 
 	protected $fillable = [
 		'nama',
-		'no_hp'
+		'no_hp',
+		'alamat'
 	];
 
 	public function idnya()
 	{
 		return $this->idg;
+	}
+
+	public function pesanans()
+	{
+		return $this->hasMany(Pesanan::class);
 	}
 }

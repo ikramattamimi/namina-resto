@@ -14,4 +14,4 @@
 <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 <!-- DataTables -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /> --}}
