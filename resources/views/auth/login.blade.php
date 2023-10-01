@@ -12,7 +12,9 @@
                         <div class="col-lg-6 py-5">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Namina Resto</h1>
+                                    {{-- <h1 class="h4 text-gray-900 mb-4">Namina Resto</h1> --}}
+                                    <img class="img-fluid rounded mb-5 w-75"
+                                        src="{{ asset('img/namina-logo-landscape.png') }}" alt="">
                                 </div>
 
                                 <form class="user" action="{{ route('login') }}" method="POST">
@@ -54,9 +56,9 @@
                                     <button class="btn btn-primary btn-user btn-block" type="submit">
                                         Login
                                     </button>
-                                    <div class="text-center mt-2">
+                                    {{-- <div class="text-center mt-2">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    </div> --}}
                                 </form>
                             </div>
                         </div>
