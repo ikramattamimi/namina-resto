@@ -54,7 +54,7 @@
     </x-card>
 
     @push('scripts')
-        @include('order.pending-dan-proses.script')
+        @include('kasir-order.pending-dan-proses.script')
     @endpush
 
 </x-admin-layout>

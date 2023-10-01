@@ -1,11 +1,5 @@
 <x-admin-layout headerTitle="Orderan Online Detail">
     <div>
-        <div class="card text-dark mb-3" style="border-left: 4px solid green;">
-            <div class="card-body py-2">
-            <i class="fas fa-info fa-sm" style="color: #000000;"></i>  Note:
-            <p class="mb-1">Halaman ini detail transaksi yang dilakukan secara online</p>
-            </div>
-        </div>
         <div class="card">
             <div class="card-body">
                 <div class="container text-dark">
@@ -58,11 +52,11 @@
                                     </div>
                                     <p>{{$p->nama_status}}</p>
                                     @if(isset($pesanan[0]))
-                                    <form action="{{ route('kasir-order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}" method="POST">
+                                    <form action="{{ route('order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="status_id" value="2">
-                                        <button type="submit" class="btn btn-sm btn-primary">Proses pesanan</button>
+                                        <button type="submit" class="btn btn-sm btn-primary" @if($pesanan[0]->status_pesanan_id == "2") disabled @endif>Proses pesanan</button>
                                     </form>
                                     @endif
                                 </div>
@@ -110,7 +104,7 @@
                                 </button>
                                 <!-- MODALS -->
                                     <x-modal id="ubahQty-{{$data->id}}" title="Ubah Quantity">
-                                        <form id="ubahQtyForm" action="{{ route('kasir-order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                        <form id="ubahQtyForm" action="{{ route('order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
@@ -132,7 +126,7 @@
                                 $kode = $data->kode;
                             @endphp
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <form action="{{ route('kasir-order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                <form action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-light mr-1 border" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
@@ -147,7 +141,7 @@
                 </table>
                 </div>
                 <div class="container text-dark">
-                    <form action="{{ route('kasir-order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">
+                    <form action="{{ route('order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">
                     @csrf
                     @method('PUT')
                         <div class="row">
@@ -188,7 +182,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="/kasir/order/dibatalkan" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                                <a href="/admin/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                                 <button type="submit" class="btn btn-primary float-right mr-2 border text-white">Bayar</a>
                             </div>
                         </div>
@@ -198,6 +192,6 @@
     </div>
 
     @push('scripts')
-        @include('kasir-order.pending-dan-proses.script')
+        @include('order.pending-dan-proses.script')
     @endpush
 </x-admin-layout>

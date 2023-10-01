@@ -1,11 +1,5 @@
 <x-admin-layout headerTitle="Orderan Online Detail">
     <div>
-        <div class="card text-dark mb-3" style="border-left: 4px solid green;">
-            <div class="card-body py-2">
-            <i class="fas fa-info fa-sm" style="color: #000000;"></i>  Note:
-            <p class="mb-1">Halaman ini detail transaksi yang dilakukan secara online</p>
-            </div>
-        </div>
         <div class="card">
             <div class="card-body">
                 <div class="container text-dark">

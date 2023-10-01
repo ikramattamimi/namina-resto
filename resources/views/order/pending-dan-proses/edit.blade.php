@@ -1,11 +1,5 @@
 <x-admin-layout headerTitle="Orderan Online Detail">
     <div>
-        <div class="card text-dark mb-3" style="border-left: 4px solid green;">
-            <div class="card-body py-2">
-            <i class="fas fa-info fa-sm" style="color: #000000;"></i>  Note:
-            <p class="mb-1">Halaman ini detail transaksi yang dilakukan secara online</p>
-            </div>
-        </div>
         <div class="card">
             <div class="card-body">
                 <div class="container text-dark">
@@ -62,7 +56,7 @@
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="status_id" value="2">
-                                        <button type="submit" class="btn btn-sm btn-primary">Proses pesanan</button>
+                                        <button type="submit" class="btn btn-sm btn-primary" @if($pesanan[0]->status_pesanan_id == "2") disabled @endif>Proses pesanan</button>
                                     </form>
                                     @endif
                                 </div>

@@ -62,7 +62,7 @@
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="status_id" value="2">
-                                        <button type="submit" class="btn btn-sm btn-primary">Proses pesanan</button>
+                                        <button type="submit" class="btn btn-sm btn-primary" @if($pesanan[0]->status_pesanan_id == "2") disabled @endif>Proses pesanan</button>
                                     </form>
                                     @endif
                                 </div>

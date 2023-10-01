@@ -41,7 +41,9 @@ $(document).ready(function () {
                     );
                 },
             }, // Status
-            { data: "nama_status", name: "nama_status" }, // Status Dapur
+            { data: null,
+                defaultContent: "-",
+                name: "nama_status" }, // Status Dapur
             {
                 data: null,
                 orderable: false,
