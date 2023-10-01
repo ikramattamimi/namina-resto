@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\KasirOrderController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\CartController;
@@ -80,18 +81,18 @@ Route::group([
         Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\OrderController@deleteProdukDipesan')->name('order.pending-dan-proses.delete-produk-dipesan');
         Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\OrderController@bayarPesanan')->name('order.bayar-pesanan');
 
-        Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData');
+        Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData')->name('order.source');
         Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota');
     });
 });
 
+// CUSTOMER
 Route::group(['middlewara' => 'guest'], function () {
     Route::get('test', function () {
         event(new App\Events\StatusLiked("201511052", "Muhammad Irfan Noor Wahid"));
         return "Event has been sent!";
     });
 
-    // CUSTOMER
     Route::get('/', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
     Route::post('order', [CustomerController::class, 'order'])->name('customer.order');
     Route::get('contact', [CustomerController::class, 'contact'])->name('customer.contact');
