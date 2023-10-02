@@ -44,7 +44,10 @@ class HomeController extends Controller
                     ->groupBy('produk_id')
                     ->orderByDesc('total_terjual')
                     ->take(5)
-                    ->get()
+                    ->get(),
+                'total' => Pesanan::whereDate('created_at', $tanggalHariIni)
+                    ->whereNotIn('status_pesanan_id', [1, 4])
+                    ->sum('total_bayar')
             ]);
         } else return view('auth.login');
     }

@@ -22,21 +22,6 @@
     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" href="#"
-            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
-            <i class="far fa-bell"></i></i>
-            <span>Orderan Online</span>
-        </a>
-        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/admin/order/pendingDanProses">Pending & Proses</a>
-                <a class="collapse-item" href="/admin/order/dibayar">Dibayar</a>
-                <a class="collapse-item" href="/admin/order/dibatalkan">Dibatalkan</a>
-                <a class="collapse-item" href="/admin/order/invoice">Invoice</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
         <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities2" href="#"
             aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
             <i class="far fa-bell"></i></i>

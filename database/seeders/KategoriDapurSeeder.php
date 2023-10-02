@@ -16,17 +16,6 @@ class KategoriDapurSeeder extends Seeder
     public function run()
     {
         DB::table('kategori_dapurs')->insert([
-<<<<<<< HEAD
-            [
-                'nama' => 'main',
-            ],
-            [
-                'nama' => 'cemilan',
-            ],
-            [
-                'nama' => 'bar',
-            ],
-=======
             'nama' => "Dapur Main",
         ]);
 
@@ -36,7 +25,6 @@ class KategoriDapurSeeder extends Seeder
 
         DB::table('kategori_dapurs')->insert([
             'nama' => "Bar",
->>>>>>> wahid2
         ]);
     }
 }

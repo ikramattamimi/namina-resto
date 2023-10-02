@@ -16,23 +16,6 @@ class StatusPesananSeeder extends Seeder
     public function run()
     {
         DB::table('status_pesanans')->insert([
-<<<<<<< HEAD
-            [
-                'nama' => 'Pending',
-            ],
-            [
-                'nama' => 'Proses',
-            ],
-            [
-                'nama' => 'Dibayar',
-            ],
-            [
-                'nama' => 'Dibatalkan',
-            ],
-            [
-                'nama' => 'Invoice',
-            ],
-=======
             'nama' => "Pending",
         ]);
 
@@ -50,7 +33,6 @@ class StatusPesananSeeder extends Seeder
 
         DB::table('status_pesanans')->insert([
             'nama' => "Invoice",
->>>>>>> wahid2
         ]);
     }
 }

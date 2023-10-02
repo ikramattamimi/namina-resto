@@ -89,16 +89,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
     Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\OrderController@editInvoice')->name('order.invoice.edit');
 
-        Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
-        Route::put('/order/pendingDanProses/edit-qty/{kode}/{id}', 'App\Http\Controllers\OrderController@editQty')->name('order.pending-dan-proses.update-qty');
-        Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\OrderController@deleteProdukDipesan')->name('order.pending-dan-proses.delete-produk-dipesan');
-        Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\OrderController@bayarPesanan')->name('order.bayar-pesanan');
+    Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
+    Route::put('/order/pendingDanProses/edit-qty/{kode}/{id}', 'App\Http\Controllers\OrderController@editQty')->name('order.pending-dan-proses.update-qty');
+    Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\OrderController@deleteProdukDipesan')->name('order.pending-dan-proses.delete-produk-dipesan');
+    Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\OrderController@bayarPesanan')->name('order.bayar-pesanan');
 
-        Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData');
-        Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota');
-});
-
-
+    Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData');
+    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota');
 });
 
 Route::prefix('kasir')->group(function () {
