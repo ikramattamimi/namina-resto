@@ -1,11 +1,10 @@
 $(document).ready(function () {
-    $('#dataTable').DataTable();
 
-    var table = $("#updatedTable").DataTable({
+    var table = $("#updatedTable2").DataTable({
         stateSave: true,
         processing: false,
         serverSide: false,
-        ajax: "/admin/order/source",
+        ajax: "/kasir/order/source",
         columns: [
             { data: null, orderable: false, searchable: false }, // No.
             { data: "kode", name: "kode" }, // No. Order
@@ -52,8 +51,8 @@ $(document).ready(function () {
                     var buttonsHtml = `
             <div class="text-center d-flex justify-content-center">
               <button type="button" class="btn btn-warning mr-1 btn-edit-status" title="Edit Status" data-toggle="modal" data-target="#ubahStatus" data-kode="${data.kode}"><i class="fas fa-pencil-alt fa-xs"></i></button>
-              <a href="/admin/order/pendingDanProses/edit/${data.kode}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
-              <a href="/admin/order/cetak_nota/${data.kode}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
+              <a href="/kasir/order/pendingDanProses/edit/${data.kode}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
+              <a href="/kasir/order/cetak_nota/${data.kode}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
             </div>
           `;
                     return buttonsHtml;
@@ -66,9 +65,9 @@ $(document).ready(function () {
         },
     });
 
-    $('#updatedTable').on('click', '.btn-edit-status', function() {
+    $('#updatedTable2').on('click', '.btn-edit-status', function() {
       var kode = $(this).data('kode');
-      var formAction = "/admin/order/pendingDanProses/edit-status/" + kode;
+      var formAction = "/kasir/order/pendingDanProses/edit-status/" + kode;
       
       // Perbarui action atribut formulir dengan kode yang benar
       formAction = formAction.replace('kode', kode);

@@ -2,40 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\StatusPesanan;
 use App\Models\Rekening;
 use Illuminate\Support\Facades\DB;
 
-class OrderController extends Controller
+class KasirOrderController extends Controller
 {
     // =========================MENU ORDER PENDING DAN PROSES=============================
-    public function pendingDanProses(){
+    public function pendingProses(){
+        $waktuSekarang = new DateTime('now');
+        $waktuSekarang->setTimezone(new DateTimeZone('Asia/Jakarta'));
+
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                     ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                     ->where(function ($query) {
                         $query->where('status_pesanans.nama', 'Pending')
                               ->orWhere('status_pesanans.nama', 'Proses');
                     })
+                    ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
-                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
-
+                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp', 'pesanans.no_meja', 'pesanans.created_at', 'status_pesanans.nama AS nama_status']);
         $status = StatusPesanan::all();
 
-        return view('order.pending-dan-proses.index', ['data' => $data, 'status' => $status]);
+        return view('kasir-order.pending-dan-proses.index', ['data' => $data, 'status' => $status]);
     }
 
     public function getTableData(){
+        $waktuSekarang = new DateTime('now');
+        $waktuSekarang->setTimezone(new DateTimeZone('Asia/Jakarta'));
+
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
-                ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
-                ->where(function ($query) {
-                    $query->where('status_pesanans.nama', 'Pending')
-                          ->orWhere('status_pesanans.nama', 'Proses');
-                })
-                ->orderBy('pesanans.id', 'DESC')
-                ->get(['pesanans.kode', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.created_at', 'pesanans.no_meja', 'status_pesanans.nama AS nama_status']);
-                
+                    ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
+                    ->where(function ($query) {
+                        $query->where('status_pesanans.nama', 'Pending')
+                              ->orWhere('status_pesanans.nama', 'Proses');
+                    })
+                    ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
+                    ->orderBy('pesanans.id', 'DESC')
+                    ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp', 'pesanans.no_meja', 'pesanans.created_at', 'status_pesanans.nama AS nama_status']);
+        
         return response()->json(['data' => $data], 200);
     }   
 
@@ -43,14 +52,14 @@ class OrderController extends Controller
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
+                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
                         ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
-        return view('order.pending-dan-proses.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
+        return view('kasir-order.pending-dan-proses.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
     }
 
     public function editStatus(Request $request, $id) {
@@ -115,85 +124,100 @@ class OrderController extends Controller
 
     // =========================MENU ORDER DIBAYAR================================
     public function dibayar(){
+        $waktuSekarang = new DateTime('now');
+        $waktuSekarang->setTimezone(new DateTimeZone('Asia/Jakarta'));
+
+
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                     ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                     ->where('status_pesanans.nama', 'Dibayar')
+                    ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
-                    ->get(['pesanans.kode','pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
+                    ->get(['pesanans.kode', 'pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
         $status = StatusPesanan::all();
 
-        return view('order.dibayar.index', ['data' => $data, 'status' => $status]);
+        return view('kasir-order.dibayar.index', ['data' => $data, 'status' => $status]);
     }
 
     public function editDibayar($kode){
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'pesanans.total_bayar','produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
+                    ->get(['produks.gambar', 'produks.id', 'pesanans.total_bayar','produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
                         ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
-        return view('order.dibayar.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
+        return view('kasir-order.dibayar.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
     }
 
     // =========================MENU ORDER DIBATALKAN================================
     public function dibatalkan(){
+        $waktuSekarang = new DateTime('now');
+        $waktuSekarang->setTimezone(new DateTimeZone('Asia/Jakarta'));
+
+
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                     ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                     ->where('status_pesanans.nama', 'Dibatalkan')
+                    ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
         $status = StatusPesanan::all();
 
-        return view('order.dibatalkan.index', ['data' => $data, 'status' => $status]);
+        return view('kasir-order.dibatalkan.index', ['data' => $data, 'status' => $status]);
     }
 
     public function editDibatalkan($kode){
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
+                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
                         ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
-        return view('order.dibatalkan.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
+        return view('kasir-order.dibatalkan.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
     }
 
     // =============================INVOICE===================================
     public function invoice(){
+        $waktuSekarang = new DateTime('now');
+        $waktuSekarang->setTimezone(new DateTimeZone('Asia/Jakarta'));
+
+
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                     ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                     ->where(function ($query) {
                         $query->where('status_pesanans.nama', 'Invoice');
                     })
+                    ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
         $status = StatusPesanan::all();
 
-        return view('order.invoice.index', ['data' => $data, 'status' => $status]);
+        return view('kasir-order.invoice.index', ['data' => $data, 'status' => $status]);
     }
 
     public function editInvoice($kode){
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'pesanans.status_pesanan_id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
+                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
                         ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
-        return view('order.invoice.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
+        return view('kasir-order.invoice.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
     }
 
     public function bayarPesanan(Request $request, $kode){
@@ -228,7 +252,7 @@ class OrderController extends Controller
             $pesanan->status_pesanan_id = 5;
             $pesanan->save();
 
-            return $this->pendingDanProses();
+            return $this->pendingProses();
         }
     }
 
@@ -242,7 +266,7 @@ class OrderController extends Controller
                             ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
                             ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
                             ->where('pesanans.kode', $kode)
-                            ->where('kategori_dapurs.nama', "Dapur Main")
+                            ->where('kategori_dapurs.nama', "Dapur Utama")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
 
         $dapur_cemilan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
@@ -261,9 +285,6 @@ class OrderController extends Controller
                             ->where('kategori_dapurs.nama', "Bar")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
         
-        return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        return view('kasir-order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
     }
-
 }
-
-

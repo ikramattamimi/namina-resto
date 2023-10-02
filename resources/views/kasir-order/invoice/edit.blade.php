@@ -52,7 +52,7 @@
                                     </div>
                                     <p>{{$p->nama_status}}</p>
                                     @if(isset($pesanan[0]))
-                                    <form action="{{ route('order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}" method="POST">
+                                    <form action="{{ route('kasir-order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="status_id" value="2">
@@ -104,7 +104,7 @@
                                 </button>
                                 <!-- MODALS -->
                                     <x-modal id="ubahQty-{{$data->id}}" title="Ubah Quantity">
-                                        <form id="ubahQtyForm" action="{{ route('order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                        <form id="ubahQtyForm" action="{{ route('kasir-order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
@@ -127,7 +127,7 @@
                                 $catatan = $data->catatan;
                             @endphp
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <form action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                <form action="{{ route('kasir-order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-light mr-1 border" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
@@ -142,7 +142,7 @@
                 </table>
                 </div>
                 <div class="container text-dark">
-                    <form action="{{ route('order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">
+                    <form action="{{ route('kasir-order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">
                     @csrf
                     @method('PUT')
                         <div class="row">
@@ -160,8 +160,8 @@
                                     </div>
                                 </div>
                                 <div class="border rounded" style="padding: 15px; max-width: 355px;">
-                                    <h4><b>Catatan Pembeli</b></h4>
-                                    <p>{{$catatan}}</p>
+                                        <h4><b>Catatan Pembeli</b></h4>
+                                        <p>{{$catatan}}</p>
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-6">
@@ -187,7 +187,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="/admin/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                                <a href="/kasir/order/invoice" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                                 <button type="submit" class="btn btn-primary float-right mr-2 border text-white">Bayar</a>
                             </div>
                         </div>
@@ -197,6 +197,6 @@
     </div>
 
     @push('scripts')
-        @include('order.pending-dan-proses.script')
+        @include('kasir-order.pending-dan-proses.script')
     @endpush
 </x-admin-layout>

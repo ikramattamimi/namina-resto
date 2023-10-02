@@ -39,7 +39,7 @@
                             <td>Meja No. 18</td>
                             <td>{{$item->nama_status}}</td>
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <a href="/admin/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Detail"><i class="fas fa-edit fa-xs"></i></a>
+                                <a href="/kasir/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Detail"><i class="fas fa-edit fa-xs"></i></a>
                                 <a href="/admin/order/cetak_nota/{{$item->kode}}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
@@ -54,7 +54,7 @@
     </x-card>
 
     @push('scripts')
-        @include('order.pending-dan-proses.script')
+        @include('kasir-order.pending-dan-proses.script')
     @endpush
 
 </x-admin-layout>

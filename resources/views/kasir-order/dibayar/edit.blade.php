@@ -129,9 +129,9 @@
                         </div>
                     </div>
                 </div>
-                    <div class="row">               
-                        <div class="col-12">
-                        <a href="/admin/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/kasir/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                     </div>
                 </div>
             <div>
@@ -139,6 +139,6 @@
     </div>
 
     @push('scripts')
-        @include('order.pending-dan-proses.script')
+        @include('kasir-order.pending-dan-proses.script')
     @endpush
 </x-admin-layout>

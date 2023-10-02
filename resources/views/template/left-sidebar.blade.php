@@ -21,17 +21,33 @@
     {{-- jika user admin atau kasir --}}
     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item {{ str_contains(url()->current(), 'order') ? 'active' : '' }}">
-        <a class="nav-link {{ !str_contains(url()->current(), 'order') ? 'collapsed' : '' }}" data-toggle="collapse" data-target="#collapseUtilities" href="#" aria-expanded="true" aria-controls="collapseUtilities" style="padding: 10px 25px">
-            <i class="far fa-bell"></i>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" href="#"
+            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
+            <i class="far fa-bell"></i></i>
             <span>Orderan Online</span>
         </a>
-        <div class="collapse {{ str_contains(url()->current(), 'order') ? 'show' : '' }}" id="collapseUtilities" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+        <div class="collapse" id="collapseUtilities" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ str_contains(url()->current(), 'pendingDanProses') ? 'active' : '' }}" href="/order/pendingDanProses">Pending & Proses</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'dibayar') ? 'active' : '' }}" href="/order/dibayar">Dibayar</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'dibatalkan') ? 'active' : '' }}" href="/order/dibatalkan">Dibatalkan</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'invoice') ? 'active' : '' }}" href="/order/invoice">Invoice</a>
+                <a class="collapse-item" href="/admin/order/pendingDanProses">Pending & Proses</a>
+                <a class="collapse-item" href="/admin/order/dibayar">Dibayar</a>
+                <a class="collapse-item" href="/admin/order/dibatalkan">Dibatalkan</a>
+                <a class="collapse-item" href="/admin/order/invoice">Invoice</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities2" href="#"
+            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
+            <i class="far fa-bell"></i></i>
+            <span>Orderan Online Kasir</span>
+        </a>
+        <div class="collapse" id="collapseUtilities2" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/kasir/order/pendingDanProses">Pending & Proses</a>
+                <a class="collapse-item" href="/kasir/order/dibayar">Dibayar</a>
+                <a class="collapse-item" href="/kasir/order/dibatalkan">Dibatalkan</a>
+                <a class="collapse-item" href="/kasir/order/invoice">Invoice</a>
             </div>
         </div>
     </li>

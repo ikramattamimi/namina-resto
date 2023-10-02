@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('kode')->nullable();
             $table->tinyInteger('no_meja')->nullable();
             $table->string('catatan')->nullable();
+            $table->decimal('total_bayar', 10, 0)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

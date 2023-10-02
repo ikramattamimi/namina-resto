@@ -86,7 +86,7 @@
                 </ul>
             </div>
         </div>
-        <br>
+        <br><br>
         <div class="flex-container-1">
             <div class="left">
                 <ul>
@@ -115,39 +115,7 @@
 			@endforeach
 		</ol>
 		</div>
-        <hr>
-		@if(isset($order[0]))
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Order</li>
-                    <li>Tanggal Pesanan</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->kode }} </li>
-                    <li> {{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }} </li>
-                </ul>
-            </div>
-        </div>
-        <br>
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Meja</li>
-                    <li>Nama Pembeli</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->no_meja }} </li>
-                    <li> {{ $order[0]->nama }} </li>
-                </ul>
-            </div>
-        </div>
-        @endif
-        <hr>
+		
 		<p><strong>========DAPUR CEMILAN========</strong></p>
 			<div style="text-align:left">
 		<ol>
@@ -160,39 +128,6 @@
 			@endforeach
 		</ol>
 		</div>
-        <hr>
-        @if(isset($order[0]))
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Order</li>
-                    <li>Tanggal Pesanan</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->kode }} </li>
-                    <li> {{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }} </li>
-                </ul>
-            </div>
-        </div>
-        <br>
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Meja</li>
-                    <li>Nama Pembeli</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->no_meja }} </li>
-                    <li> {{ $order[0]->nama }} </li>
-                </ul>
-            </div>
-        </div>
-        @endif
-        <hr>
 		<p><strong>=============BAR=============</strong></p>
 			<div style="text-align:left">
 		<ol>
@@ -206,6 +141,10 @@
 		</ol>
 		</div>
         <hr>
+        <div class="header" style="margin-top: 50px;">
+            <h3>Terimakasih</h3>
+            <p>Silahkan berkunjung kembali</p>
+        </div>
     </div>
 </body>
 </html>
