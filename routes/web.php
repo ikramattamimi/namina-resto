@@ -115,7 +115,7 @@ Route::prefix('kasir')->group(function () {
     Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\KasirOrderController@bayarPesanan')->name('kasir-order.bayar-pesanan');
 
     Route::get('/order/source', 'App\Http\Controllers\KasirOrderController@getTableData');
-    Route::get('/order/cetak_nota/{kode}', 'App\Http\KasirControllers\OrderController@cetakNota');
+    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\KasirOrderController@cetakNota');
 });
 
 Route::get('test', function () {
