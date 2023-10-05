@@ -26,7 +26,7 @@ class KasirOrderController extends Controller
                     ->whereRaw('DATE(pesanans.created_at) = ?', [$waktuSekarang->format('Y-m-d')])
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp', 'pesanans.no_meja', 'pesanans.created_at', 'status_pesanans.nama AS nama_status']);
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('kasir-order.pending-dan-proses.index', ['data' => $data, 'status' => $status]);
     }
@@ -135,7 +135,7 @@ class KasirOrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('kasir-order.dibayar.index', ['data' => $data, 'status' => $status]);
     }
@@ -167,7 +167,7 @@ class KasirOrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('kasir-order.dibatalkan.index', ['data' => $data, 'status' => $status]);
     }
@@ -201,7 +201,7 @@ class KasirOrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('kasir-order.invoice.index', ['data' => $data, 'status' => $status]);
     }

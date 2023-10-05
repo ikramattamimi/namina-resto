@@ -7,9 +7,19 @@ use App\Models\Pesanan;
 use App\Models\StatusPesanan;
 use App\Models\Rekening;
 use Illuminate\Support\Facades\DB;
+use PDF;
+use Codedge\Fpdf\Fpdf\Fpdf;
 
 class OrderController extends Controller
 {
+
+    protected $fpdf;
+ 
+    public function __construct()
+    {
+        $this->fpdf = new Fpdf;
+    }
+
     // =========================MENU ORDER PENDING DAN PROSES=============================
     public function pendingDanProses(){
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
@@ -21,7 +31,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.pending-dan-proses.index', ['data' => $data, 'status' => $status]);
     }
@@ -121,7 +131,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode','pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.dibayar.index', ['data' => $data, 'status' => $status]);
     }
@@ -148,7 +158,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.dibatalkan.index', ['data' => $data, 'status' => $status]);
     }
@@ -177,7 +187,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.invoice.index', ['data' => $data, 'status' => $status]);
     }
@@ -260,7 +270,77 @@ class OrderController extends Controller
                             ->where('pesanans.kode', $kode)
                             ->where('kategori_dapurs.nama', "Bar")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
+
+        // return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
         
-        return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        $pdf = PDF::loadview('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        // $pdf->getDomPDF()->set_option('width', '10mm');
+        // $pdf->getDomPDF()->set_option('height', '150mm');
+        $pdf->set_paper(array(0,0,204,650));
+        $pdf->set_option('dpi', 72);
+        // unset($pdf);
+        return $pdf->stream();
+    }
+
+    public function cetakNote($kode){
+        // Query database untuk mendapatkan data pesanan dan detailnya
+        $order = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
+            ->where('pesanans.kode', $kode)
+            ->get(['pesanans.kode', 'pesanans.created_at', 'pesanans.no_meja', 'pelanggans.nama']);
+
+        $dapur_utama = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
+            ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
+            ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
+            ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
+            ->where('pesanans.kode', $kode)
+            ->where('kategori_dapurs.nama', "Dapur Main")
+            ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
+
+        $dapur_cemilan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
+            ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
+            ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
+            ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
+            ->where('pesanans.kode', $kode)
+            ->where('kategori_dapurs.nama', "Dapur Cemilan")
+            ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
+
+        $bar = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
+            ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
+            ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
+            ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
+            ->where('pesanans.kode', $kode)
+            ->where('kategori_dapurs.nama', "Bar")
+            ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
+
+        // Create a new PDF instance
+        $pdf = new FPDF('P','mm',array(80,150));
+        $pdf->AddPage();
+
+        // Title and header
+        $pdf->SetFont("Arial", "B", 10);
+        $pdf->Cell(0, 5, "Namina Group", 0, 1, "C");
+        $pdf->SetFont("Arial", "", 5);
+        $pdf->SetX(11.5);
+        $pdf->MultiCell(0, 3, "Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat 44163");
+        $pdf->MultiCell(0, 3, "Telp 0262 2543686 / WA 081220088980");
+        $pdf->MultiCell(0, 3, "Email: naminaprivateresto@gmail.com");
+        $pdf->Ln(10);
+
+        // DAPUR UTAMA
+        $pdf->SetFont("Arial", "B", 12);
+        $pdf->Cell(0, 10, "DAPUR UTAMA", 0, 1, "L");
+        $pdf->SetFont("Arial", "", 12);
+
+        foreach ($dapur_utama as $item) {
+            $pdf->MultiCell(0, 10, "Nama Item: " . $item->nama);
+            $pdf->MultiCell(0, 10, "- Jumlah: " . $item->qty . " porsi");
+            $pdf->MultiCell(0, 10, "- Catatan: " . $item->catatan);
+            $pdf->Ln();
+        }
+
+        // ... (Tambahkan kode untuk DAPUR CEMILAN dan BAR yang sama seperti DAPUR UTAMA)
+
+        // Output the PDF as a response
+        $pdf->Output('invoice.pdf', 'D');
     }
 }

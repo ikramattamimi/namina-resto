@@ -7,9 +7,15 @@
     <title>Invoice</title>
     <style>
         .container {
-            width: 300px;
+            width: 150px;
             margin: 0 auto; /* Untuk mengatur tengah secara horizontal */
             text-align: center; /* Untuk mengatur tengah secara horizontal */
+        }
+        .custom-table{
+            width: 100%; /* Tabel mengikuti lebar kontainer */
+        }
+        .custom-table td {
+            padding: 10px; /* Sesuaikan dengan padding yang Anda inginkan */
         }
         .header {
             text-align: center;
@@ -72,38 +78,28 @@
         </div>
         <hr>
         @if(isset($order[0]))
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Order</li>
-                    <li>Tanggal Pesanan</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->kode }} </li>
-                    <li> {{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }} </li>
-                </ul>
-            </div>
-        </div>
+        <table class="custom-table">
+            <tr>
+                <td>No. Order</td>
+                <td style="text-align:right;">{{ $order[0]->kode }}</td>
+            </tr>
+            <tr>
+                <td>Tanggal Pesanan</td>
+                <td style="text-align:right;">{{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }}</td>
+            </tr>
+            <tr>
+                <td>Meja</td>
+                <td style="text-align:right;">{{ $order[0]->no_meja }}</td>
+            </tr>
+            <tr>
+                <td>Nama Pembeli</td>
+                <td style="text-align:right;">{{ $order[0]->nama }} </td>
+            </tr>
+        </table>
         <br>
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Meja</li>
-                    <li>Nama Pembeli</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->no_meja }} </li>
-                    <li> {{ $order[0]->nama }} </li>
-                </ul>
-            </div>
-        </div>
         @endif
         <hr>
-        <p><strong>=========DAPUR UTAMA=========</strong></p>
+        <p><strong>====DAPUR UTAMA====</strong></p>
 		<div style="text-align:left">
 		<ol>
 			@foreach($dapur_utama as $item)
@@ -117,38 +113,28 @@
 		</div>
         <hr>
 		@if(isset($order[0]))
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Order</li>
-                    <li>Tanggal Pesanan</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->kode }} </li>
-                    <li> {{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }} </li>
-                </ul>
-            </div>
-        </div>
+        <table class="custom-table">
+            <tr>
+                <td>No. Order</td>
+                <td style="text-align:right;">{{ $order[0]->kode }}</td>
+            </tr>
+            <tr>
+                <td>Tanggal Pesanan</td>
+                <td style="text-align:right;">{{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }}</td>
+            </tr>
+            <tr>
+                <td>Meja</td>
+                <td style="text-align:right;">{{ $order[0]->no_meja }}</td>
+            </tr>
+            <tr>
+                <td>Nama Pembeli</td>
+                <td style="text-align:right;">{{ $order[0]->nama }} </td>
+            </tr>
+        </table>
         <br>
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Meja</li>
-                    <li>Nama Pembeli</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->no_meja }} </li>
-                    <li> {{ $order[0]->nama }} </li>
-                </ul>
-            </div>
-        </div>
         @endif
         <hr>
-		<p><strong>========DAPUR CEMILAN========</strong></p>
+		<p><strong>===DAPUR CEMILAN===</strong></p>
 			<div style="text-align:left">
 		<ol>
 			@foreach($dapur_cemilan as $item)
@@ -162,38 +148,28 @@
 		</div>
         <hr>
         @if(isset($order[0]))
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Order</li>
-                    <li>Tanggal Pesanan</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->kode }} </li>
-                    <li> {{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }} </li>
-                </ul>
-            </div>
-        </div>
+        <table class="custom-table">
+            <tr>
+                <td>No. Order</td>
+                <td style="text-align:right;">{{ $order[0]->kode }}</td>
+            </tr>
+            <tr>
+                <td>Tanggal Pesanan</td>
+                <td style="text-align:right;">{{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }}</td>
+            </tr>
+            <tr>
+                <td>Meja</td>
+                <td style="text-align:right;">{{ $order[0]->no_meja }}</td>
+            </tr>
+            <tr>
+                <td>Nama Pembeli</td>
+                <td style="text-align:right;">{{ $order[0]->nama }} </td>
+            </tr>
+        </table>
         <br>
-        <div class="flex-container-1">
-            <div class="left">
-                <ul>
-                    <li>No. Meja</li>
-                    <li>Nama Pembeli</li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li> {{ $order[0]->no_meja }} </li>
-                    <li> {{ $order[0]->nama }} </li>
-                </ul>
-            </div>
-        </div>
         @endif
         <hr>
-		<p><strong>=============BAR=============</strong></p>
+		<p><strong>=========BAR=========</strong></p>
 			<div style="text-align:left">
 		<ol>
 			@foreach($bar as $item)
@@ -207,5 +183,9 @@
 		</div>
         <hr>
     </div>
+
+    <script type="text/javascript">
+window.print();
+</script>
 </body>
 </html>
