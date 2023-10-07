@@ -45,12 +45,14 @@ class CustomerController extends Controller
         $customerPhone = $request->input('customer-phone');
         $customerAddress = $request->input('customer-address');
         $customerTable = $request->input('customer-table');
+        $customerBirthday = $request->input('customer-birthday');
 
         // create cookies
         Cookie::queue(Cookie::make('customer-name', $customerName, 525600 * 5));
         Cookie::queue(Cookie::make('customer-phone', $customerPhone, 525600 * 5));
         Cookie::queue(Cookie::make('customer-address', $customerAddress, 525600 * 5));
         Cookie::queue(Cookie::make('customer-table', $customerTable, 5));
+        Cookie::queue(Cookie::make('customer-birthday', $customerBirthday, 525600 * 5));
 
         // update or add customer
         $customer = Pelanggan::updateOrCreate(
@@ -58,6 +60,7 @@ class CustomerController extends Controller
             [
                 'nama' => $customerName,
                 'alamat' => $customerAddress,
+                'tanggal_lahir' => $customerBirthday,
             ]
         );
 

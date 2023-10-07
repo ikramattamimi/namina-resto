@@ -8,7 +8,7 @@
                     <div class="site-logo">
                         <a href="{{ route('customer.index') }}">
                             {{-- <h3 class="text-white">Namina</h3> --}}
-                            <img class="img-fluid rounded" src="{{ asset('img/namina-logo.jpg') }}" alt="">
+                            <img class="img-fluid rounded" src="{{ asset('img/logo-hitam.png') }}" alt="">
                         </a>
                     </div>
                     <!-- logo -->

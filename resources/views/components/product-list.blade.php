@@ -17,7 +17,13 @@
                         <div class="row align-items-center justify-content-between">
                             {{-- image --}}
                             <div class="col-4 mb-3">
-                                <img class="rounded img-fluid" src="{{ asset('storage/gambar-produk/' . $image) }}" />
+                                <img class="rounded img-fluid"
+                                    src="{{ asset('storage/gambar-produk/' . $image) }}" />
+                                @if (($product->is_active ?? true) == false)
+                                    <div class="card-img-overlay pt-0">
+                                        <span class="badge badge-danger">HABIS</span>
+                                    </div>
+                                @endif
                             </div>
                             {{-- texts --}}
                             <div class="col-8">
@@ -42,20 +48,26 @@
                                 <div class="row align-items-start">
                                     <div class="col-sm-7 col-7">
                                         <p class="mb-2 text">
-                                            Rp {{ number_format($cart->price ?? $product->harga_jual) }}
+                                            Rp
+                                            {{ number_format($cart->price ?? $product->harga_jual) }}
                                         </p>
                                         @if (request()->is('cart'))
                                             <div class="d-flex">
                                                 <!-- Button trigger modal -->
                                                 <button class="btn p-0" data-toggle="modal"
-                                                    data-target="#addProduct-{{ $cart->id }}" type="button">
+                                                    data-target="#addProduct-{{ $cart->id }}"
+                                                    type="button">
                                                     <i class="fas fa-edit text-primary text"></i>
                                                 </button>
-                                                <form action="{{ route('cart.remove') }}" method="POST">
+                                                <form action="{{ route('cart.remove') }}"
+                                                    method="POST">
                                                     @csrf
-                                                    <input name="id" type="hidden" value="{{ $cart->id }}">
-                                                    <button class="btn btn-lg" onclick="confirm('Apakah anda yakin?')">
-                                                        <i class="fas fa-trash text-danger text"></i>
+                                                    <input name="id" type="hidden"
+                                                        value="{{ $cart->id }}">
+                                                    <button class="btn btn-lg"
+                                                        onclick="confirm('Apakah anda yakin?')">
+                                                        <i
+                                                            class="fas fa-trash text-danger text"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -64,10 +76,15 @@
                                     </div>
                                     @if (!request()->is('cart'))
                                         <div class="col-sm-5 col-5">
-                                            <div class="d-flex justify-content-end align-items-center">
+                                            <div
+                                                class="d-flex justify-content-end align-items-center">
                                                 <!-- Button trigger modal -->
-                                                <button class="btn cart-btn" data-toggle="modal"
-                                                    data-target="#addProduct-{{ $product->id }}" type="button">
+
+                                                <button class="btn cart-btn"
+                                                    @if (($product->is_active ?? true) == false) disabled @endif
+                                                    data-toggle="modal"
+                                                    data-target="#addProduct-{{ $product->id }}"
+                                                    type="button">
                                                     <i class="fas fa-shopping-cart"></i>Beli
                                                 </button>
 
@@ -80,7 +97,9 @@
                     </div>
                 </div>
 
-                <x-product-modal :product="$product" />
+                @if (($product->is_active ?? true) == true)
+                    <x-product-modal :product="$product" />
+                @endif
             @endforeach
         </div>
     </div>

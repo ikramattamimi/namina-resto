@@ -30,7 +30,7 @@ class CreateProdukRequest extends FormRequest
             'harga_jual' => 'required|numeric',
             'kategori_produk_id' => 'required|exists:kategori_produks,id',
             'gambar' => 'nullable|file|mimes:jpeg,png,jpg|max:2048',
-            'stok' => 'required|numeric',
+            'is_active' => 'required|boolean'
         ];
     }
 }

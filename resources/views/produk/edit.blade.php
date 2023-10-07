@@ -9,10 +9,12 @@
             <div class="row justify-content-around">
                 <div class="col-lg-4 mb-3">
                     <div class="text-center">
-                        <img class="img-fluid rounded mb-3" src="{{ asset('storage/gambar-produk/' . $produk->gambar) }}"
+                        <img class="img-fluid rounded mb-3"
+                            src="{{ asset('storage/gambar-produk/' . $produk->gambar) }}"
                             alt="gambar produk">
                     </div>
-                    <x-input class="" name="gambar" type="file" label="" :isRequired="false" />
+                    <x-input class="" name="gambar" type="file" label=""
+                        :isRequired="false" />
                 </div>
                 <div class="col-lg-7">
                     <div class="row">
@@ -30,9 +32,21 @@
                             @endforeach
                         </x-select>
                         <x-input class="" name="harga_jual" type="number"
-                            value="{{ old('harga_jual') ?? ($produk->harga_jual ?? '') }}" label="Harga Jual" />
-                        <x-input class="" name="stok" type="number"
-                            value="{{ old('stok') ?? ($produk->stok ?? '') }}" />
+                            value="{{ old('harga_jual') ?? ($produk->harga_jual ?? '') }}"
+                            label="Harga Jual" />
+                        <x-select class="" name="is_active" label="Status Produk">
+                            <option value="">Pilih Status Produk</option>
+                            <option value=1
+                                {{ isset($produk) ? ($produk->is_active == 1 ? 'selected' : '') : '' }}>
+                                Tersedia
+                            </option>
+                            <option value=0
+                                {{ isset($produk) ? ($produk->is_active == 0 ? 'selected' : '') : '' }}>
+                                Habis
+                            </option>
+                        </x-select>
+                        {{-- <x-input class="" name="stok" type="number"
+                            value="{{ old('stok') ?? ($produk->stok ?? '') }}" /> --}}
                     </div>
                 </div>
             </div>

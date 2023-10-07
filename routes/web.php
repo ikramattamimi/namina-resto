@@ -51,7 +51,6 @@ Route::group([
         Route::resource('laporanPengeluaranRestoran', LaporanPengeluaranRestoranController::class);
         Route::resource('pengeluaranRestoran', PengeluaranRestoranController::class);
         Route::resource('kelolaPengguna', KelolaPenggunaController::class);
-        Route::resource('meja', MejaController::class)->only(['update', 'index']);
         Route::resource('profil', ProfileController::class)->only(['index', 'edit', 'update']);
         Route::resource('kategori', KategoriProdukController::class);
     });

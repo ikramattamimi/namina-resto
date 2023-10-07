@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('no_hp', 20)->nullable();
             $table->string('alamat')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

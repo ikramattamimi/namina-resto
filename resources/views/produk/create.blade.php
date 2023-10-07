@@ -9,7 +9,8 @@
             <div class="row justify-content-around">
                 <div class="col-lg-4 mb-3">
                     <div class="text-center">
-                        <img class="img-fluid rounded mb-3" src="{{ asset('img/camera.jpg') }}" alt="">
+                        <img class="img-fluid rounded mb-3" src="{{ asset('img/camera.jpg') }}"
+                            alt="">
                     </div>
                     <x-input class="" name="gambar" type="file" label="" />
                 </div>
@@ -29,9 +30,19 @@
                             @endforeach
                         </x-select>
                         <x-input class="" name="harga_jual" type="number"
-                            value="{{ $produk->harga_jual ?? (old('harga_jual') ?? '') }}" label="Harga Jual" />
-                        <x-input class="" name="stok" type="number"
-                            value="{{ $produk->stok ?? (old('stok') ?? '') }}" />
+                            value="{{ $produk->harga_jual ?? (old('harga_jual') ?? '') }}"
+                            label="Harga Jual" />
+                        <x-select class="" name="is_active" label="Status Produk">
+                            <option value="">Pilih Status Produk</option>
+                            <option value=1
+                                {{ isset($produk) ? ($produk->is_active == 1 ? 'selected' : '') : '' }}>
+                                Tersedia
+                            </option>
+                            <option value=0
+                                {{ isset($produk) ? ($produk->is_active == 0 ? 'selected' : '') : '' }}>
+                                Habis
+                            </option>
+                        </x-select>
                     </div>
                 </div>
             </div>

@@ -28,6 +28,8 @@ class CustomerOrderRequest extends FormRequest
             'customer-phone' => 'nullable|string|max:15',
             'customer-message' => 'nullable|string|max:255',
             'customer-table' => 'nullable|string',
+            'customer-address' => 'nullable|string',
+            'customer-birthday' => 'nullable|date',
         ];
     }
 }
