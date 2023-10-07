@@ -61,7 +61,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\OrderController@bayarPesanan')->name('order.bayar-pesanan');
 
     Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData');
-    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota');
+    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota')->name('order.cetak-nota');
 
 });
 
@@ -82,7 +82,7 @@ Route::prefix('kasir')->group(function () {
     Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\KasirOrderController@bayarPesanan')->name('kasir-order.bayar-pesanan');
 
     Route::get('/order/source', 'App\Http\Controllers\KasirOrderController@getTableData');
-    Route::get('/order/cetak_nota/{kode}', 'App\Http\KasirControllers\OrderController@cetakNota');
+    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\KasirOrderController@cetakNota')->name('kasir-order.cetak-nota');
 });
 
 Route::get('test', function () {

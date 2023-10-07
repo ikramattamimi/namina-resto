@@ -64,7 +64,15 @@
                                     <div class="font-weight-bold">
                                         Status Dapur
                                     </div>
-                                    <p>-</p>  
+                                    <p>-</p>
+                                    @if(isset($pesanan[0]))
+                                    <form action="{{ route('order.cetak-nota', ['kode' => $pesanan[0]->kode]) }}" method="POST">
+                                        @csrf
+                                        @method('GET')
+                                        <input type="hidden" name="status_id" value="2">
+                                        <button type="submit" class="btn btn-sm btn-success">Cetak Nota Dapur</button>
+                                    </form>
+                                    @endif  
                                 </div>
                             </div>
                         </div>

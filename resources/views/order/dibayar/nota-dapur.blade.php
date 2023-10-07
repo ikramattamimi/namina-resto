@@ -8,14 +8,9 @@
     <style>
         .container {
             width: 150px;
-            margin: 0 auto; /* Untuk mengatur tengah secara horizontal */
-            text-align: center; /* Untuk mengatur tengah secara horizontal */
         }
         .custom-table{
             width: 100%; /* Tabel mengikuti lebar kontainer */
-        }
-        .custom-table td {
-            padding: 10px; /* Sesuaikan dengan padding yang Anda inginkan */
         }
         .header {
             text-align: center;
@@ -71,7 +66,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Namina Resto & Private Resto</h2>
+            <h2>Namina Group</h2>
             <p><small>Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat 44163</small></p>
             <p><small>Telp 0262 2543686 / WA 081220088980</small></p>
             <p><small>Email: naminaprivateresto@gmail.com</small></p>
@@ -99,7 +94,7 @@
         <br>
         @endif
         <hr>
-        <p><strong>====DAPUR UTAMA====</strong></p>
+        <p><strong>DAPUR UTAMA</strong></p>
 		<div style="text-align:left">
 		<ol>
 			@foreach($dapur_utama as $item)
@@ -134,7 +129,7 @@
         <br>
         @endif
         <hr>
-		<p><strong>===DAPUR CEMILAN===</strong></p>
+		<p><strong>DAPUR CEMILAN</strong></p>
 			<div style="text-align:left">
 		<ol>
 			@foreach($dapur_cemilan as $item)
@@ -169,7 +164,7 @@
         <br>
         @endif
         <hr>
-		<p><strong>=========BAR=========</strong></p>
+		<p><strong>BAR</strong></p>
 			<div style="text-align:left">
 		<ol>
 			@foreach($bar as $item)

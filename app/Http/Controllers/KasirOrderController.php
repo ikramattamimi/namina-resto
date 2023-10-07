@@ -9,6 +9,7 @@ use App\Models\Pesanan;
 use App\Models\StatusPesanan;
 use App\Models\Rekening;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class KasirOrderController extends Controller
 {
@@ -266,7 +267,7 @@ class KasirOrderController extends Controller
                             ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
                             ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
                             ->where('pesanans.kode', $kode)
-                            ->where('kategori_dapurs.nama', "Dapur Utama")
+                            ->where('kategori_dapurs.nama', "Dapur Main")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
 
         $dapur_cemilan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
@@ -284,7 +285,14 @@ class KasirOrderController extends Controller
                             ->where('pesanans.kode', $kode)
                             ->where('kategori_dapurs.nama', "Bar")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
+
+        // return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
         
-        return view('kasir-order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        $pdf = PDF::loadview('kasir-order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        $pdf->setPaper('a4', 'portrait');
+        // $pdf->set_paper(array(0,0,204,1000));
+        // $pdf->set_option('dpi', 72);
+        // unset($pdf);
+        return $pdf->stream();
     }
 }

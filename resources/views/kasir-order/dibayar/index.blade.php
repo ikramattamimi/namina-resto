@@ -10,7 +10,7 @@
     </div>
     <x-card title="Data Orderan Online">
     <div class="table-responsive">
-    <table id="dataTable" class="table table-responsive table-striped text-dark">
+    <table id="dataTable" class="table table-striped text-dark">
                     <thead>
                         <tr class="text-center border">
                             <th>No.</th>
