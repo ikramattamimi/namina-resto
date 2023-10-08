@@ -8,6 +8,10 @@
     <div class="row">
         <div class="col"></div>
         <div class="col d-flex">
+            <div class="ml-auto mr-10">
+                <a class="btn btn-success" href="bahanBakuExport">Export Bahan Baku</a>
+                <div class="my-2"></div>
+            </div>
             <div class="ml-auto">
                 <x-split-button href="{{ route('bahanBaku.create') }}" label="Bahan Baku" class="btn-primary" />
                 <div class="my-2"></div>

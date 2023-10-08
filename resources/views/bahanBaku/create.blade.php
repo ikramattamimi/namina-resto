@@ -7,7 +7,7 @@
             <x-input name="hargaBeli" type="number" label="Harga Beli"/>
             <x-input name="stok" type="number" />
             <x-input name="minimalStok" type="number" label="Minimal Stok"/>
-            <x-input name="satuan" type="text" />
+            <x-input name="satuan" type="text" :isRequired="null" />
         </x-form>
     </x-card>
 

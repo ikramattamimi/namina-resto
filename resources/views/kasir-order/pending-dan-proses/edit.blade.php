@@ -81,7 +81,6 @@
                             <th class="col-sm-1">Harga</th>
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
-                            <th class="col-sm-1">Diskon</th>
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -94,7 +93,7 @@
                         @foreach($pesanan as $data)
                         <tr class="mb-3">
                             <td>{{$counter}}</td>
-                            <td><img src="/template/img/{{$data->gambar}}" style="width:100px; heigth:100px"></td>
+                            <td><img src="/storage/gambar-produk/{{$data->gambar}}" style="width:100px; heigth:100px"></td>
                             <td>{{$data->nama_produk}}</td>
                             <td>{{$data->harga_jual}}</td>
                             <td>{{$data->catatan_produk}}</td>
@@ -119,10 +118,9 @@
                                     </x-modal>
                                 <!-- END MODALS -->
                             </td>
-                            <td>{{$data->diskon}}</td>
-                            <td>{{ $data->harga_jual * $data->qty - $data->diskon}}</td>
+                            <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
-                                $total += $data->harga_jual * $data->qty - $data->diskon;
+                                $total += $data->harga_jual * $data->qty;
                                 $kode = $data->kode;
                                 $catatan = $data->catatan;
                             @endphp

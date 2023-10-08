@@ -43,7 +43,7 @@ class OrderController extends Controller
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
+                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
@@ -119,7 +119,7 @@ class OrderController extends Controller
                     ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                     ->where('status_pesanans.nama', 'Dibayar')
                     ->orderBy('pesanans.id', 'DESC')
-                    ->get(['pesanans.kode', 'pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
+                    ->get(['pesanans.kode','pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
         $status = StatusPesanan::all();
 
@@ -130,7 +130,7 @@ class OrderController extends Controller
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
+                    ->get(['produks.gambar', 'pesanans.total_bayar','produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
@@ -157,7 +157,7 @@ class OrderController extends Controller
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
+                    ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
@@ -186,7 +186,7 @@ class OrderController extends Controller
         $produk_dipesan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
-                    ->get(['produks.gambar', 'produks.id', 'pesanans.status_pesanan_id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'produks.diskon', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
+                    ->get(['produks.gambar', 'produks.id', 'pesanans.status_pesanan_id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')

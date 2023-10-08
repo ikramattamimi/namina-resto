@@ -40,7 +40,7 @@
                             <td>{{$item->nama_status}}</td>
                             <td class="text-center d-flex justify-content-center border-bottom-0">
                                 <a href="/kasir/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Detail"><i class="fas fa-edit fa-xs"></i></a>
-                                <a href="#" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
+                                <a href="/kasir/order/cetak_nota/{{$item->kode}}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
                         @php

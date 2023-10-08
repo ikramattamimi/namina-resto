@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PelangganExport;
 use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
 use App\Models\Pelanggan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PelangganController extends Controller
 {
@@ -56,6 +58,11 @@ class PelangganController extends Controller
         ]);
 
         return $this->redirectRoute(pelanggan: $pelanggan);
+    }
+
+    public function export()
+    {
+        return Excel::download(new PelangganExport(), 'data_pelanggan.xlsx');
     }
 
     /**

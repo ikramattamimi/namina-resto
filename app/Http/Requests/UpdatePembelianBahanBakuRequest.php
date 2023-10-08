@@ -26,6 +26,7 @@ class UpdatePembelianBahanBakuRequest extends FormRequest
         return [
             'jumlah' => 'required',
             'tanggal' => 'required',
+            'status' => 'required'
         ];
     }
 }

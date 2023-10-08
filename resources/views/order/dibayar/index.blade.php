@@ -39,10 +39,8 @@
                             <td>Meja No. 18</td>
                             <td>{{ $item->nama_status }}</td>
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <a class="btn btn-primary mr-1" href="/order/dibayar/edit/{{ $item->kode }}"
-                                    title="Detail"><i class="fas fa-edit fa-xs"></i></a>
-                                <a class="btn btn-success mr-1" href="#" title="Cetak Nota Dapur"><i
-                                        class="fas fa-print fa-xs"></i></a>
+                                <a href="/admin/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Detail"><i class="fas fa-edit fa-xs"></i></a>
+                                <a href="/admin/order/cetak_nota/{{$item->kode}}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
                         @php

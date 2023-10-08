@@ -78,83 +78,72 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped mb-4 text-dark" id="myTable">
-                        <thead>
-                            <tr class="text-center border">
-                                <th class="col-sm-1">No.</th>
-                                <th class="col-sm-1">Gambar</th>
-                                <th class="col-sm-2">Nama Produk</th>
-                                <th class="col-sm-1">Harga</th>
-                                <th class="col-sm-2">Catatan</th>
-                                <th class="col-sm-1">Qty</th>
-                                <th class="col-sm-1">Diskon</th>
-                                <th class="col-sm-1">Subtotal</th>
-                                <th class="col-sm-1">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class="border table-bordered">
-                            @php
-                                $counter = 1;
-                                $total = 0;
-                            @endphp
-                            @foreach ($pesanan as $data)
-                                <tr class="mb-3">
-                                    <td>{{ $counter }}</td>
-                                    <td><img src="/img/{{ $data->gambar }}" style="width:100px; heigth:100px"></td>
-                                    <td>{{ $data->nama_produk }}</td>
-                                    <td>{{ $data->harga_jual }}</td>
-                                    <td>{{ $data->catatan_produk }}</td>
-                                    <td>{{ $data->qty }}
-                                        <button class="btn btn-sm border" data-toggle="modal"
-                                            data-target="#ubahQty-{{ $data->id }}"
-                                            style="border-radius:0.25rem; border:2px solid">
-                                            <i class="fa fa-edit p-0"></i>
-                                        </button>
-                                        <!-- MODALS -->
-                                        <x-modal id="ubahQty-{{ $data->id }}" title="Ubah Quantity">
-                                            <form id="ubahQtyForm"
-                                                action="{{ route('order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="modal-body">
-                                                    <label for="exampleFormControlTextarea1">Quantity</label>
-                                                    <input class="form-control" name="qty" type="number">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                                        type="button">Close</button>
-                                                    <button class="btn btn-primary" type="submit">Save changes</button>
-                                                </div>
-                                            </form>
-                                        </x-modal>
-                                        <!-- END MODALS -->
-                                    </td>
-                                    <td>{{ $data->diskon }}</td>
-                                    <td>{{ $data->harga_jual * $data->qty - $data->diskon }}</td>
-                                    @php
-                                        $total += $data->harga_jual * $data->qty - $data->diskon;
-                                        $kode = $data->kode;
-                                        $catatan = $data->catatan;
-                                    @endphp
-                                    <td class="text-center d-flex justify-content-center border-bottom-0">
-                                        <form
-                                            action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}"
-                                            method="POST">
+                <table id="myTable" class="table table-striped mb-4 text-dark">
+                    <thead>
+                        <tr class="text-center border">
+                            <th class="col-sm-1">No.</th>
+                            <th class="col-sm-1">Gambar</th>
+                            <th class="col-sm-2">Nama Produk</th>
+                            <th class="col-sm-1">Harga</th>
+                            <th class="col-sm-2">Catatan</th>
+                            <th class="col-sm-1">Qty</th>
+                            <th class="col-sm-1">Subtotal</th>
+                            <th class="col-sm-1">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border table-bordered">
+                        @php 
+                            $counter = 1;
+                            $total = 0;
+                        @endphp
+                        @foreach($pesanan as $data)
+                        <tr class="mb-3">
+                            <td>{{$counter}}</td>
+                            <td><img src="/storage/gambar-produk/{{$data->gambar}}" style="width:100px; heigth:100px"></td>
+                            <td>{{$data->nama_produk}}</td>
+                            <td>{{$data->harga_jual}}</td>
+                            <td>{{$data->catatan_produk}}</td>
+                            <td>{{$data->qty}}
+                                <button class="btn btn-sm border" style="border-radius:0.25rem; border:2px solid" data-toggle="modal" data-target="#ubahQty-{{$data->id}}">
+                                    <i class="fa fa-edit p-0"></i>
+                                </button>
+                                <!-- MODALS -->
+                                    <x-modal id="ubahQty-{{$data->id}}" title="Ubah Quantity">
+                                        <form id="ubahQtyForm" action="{{ route('order.pending-dan-proses.update-qty', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
                                             @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-light mr-1 border" type="submit"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                    class="far fa-trash-alt" style="color: #000000;"></i></button>
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <label for="exampleFormControlTextarea1">Quantity</label>
+                                                <input type="number" class="form-control" name="qty">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                                            </div>
                                         </form>
-                                    </td>
-                                </tr>
-                                @php
-                                    $counter++;
-                                @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </x-modal>
+                                <!-- END MODALS -->
+                            </td>
+                            <td>{{ $data->harga_jual * $data->qty}}</td>
+                            @php
+                                $total += $data->harga_jual * $data->qty;
+                                $kode = $data->kode;
+                                $catatan = $data->catatan;
+                            @endphp
+                            <td class="text-center d-flex justify-content-center border-bottom-0">
+                                <form action="{{ route('order.pending-dan-proses.delete-produk-dipesan', ['kode' => $data->id_pesanan, 'id' => $data->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-light mr-1 border" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @php 
+                            $counter++;
+                        @endphp
+                        @endforeach
+                    </tbody>
+                </table>
                 </div>
                 <div class="container text-dark">
                     <form action="{{ route('order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">

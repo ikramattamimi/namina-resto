@@ -6,7 +6,6 @@
             <th>Jumlah</th>
             <th>Tanggal</th>
             <th>Nama Staff Gudang</th>
-            <th style="text-align:center; width:116.578px">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -17,18 +16,6 @@
             <td>{{ $pembelianBahanBaku->jumlah }}</td>
             <td>{{ $pembelianBahanBaku->tanggal }}</td>
             <td>{{ $pembelianBahanBaku->nama_staff_gudang }}</td>
-            <td>
-            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('pembelianBahanBaku.destroy', $pembelianBahanBaku->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <a class="btn btn-circle btn-warning btn-sm" id="editPembelianBahanBaku" name="editPembelianBahanBaku" href="{{ route('pembelianBahanBaku.edit', $pembelianBahanBaku->id) }}" role="button">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <button class="btn btn-circle btn-danger btn-sm" id="hapusPembelianBahanBaku" name="hapusPembelianBahanBaku" href="{{ route('pembelianBahanBaku.destroy', $pembelianBahanBaku->id) }}" role="button">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form>
-            </td>
         </tr>
         @endforeach
     </tbody>

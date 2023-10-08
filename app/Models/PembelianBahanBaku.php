@@ -38,7 +38,8 @@ class PembelianBahanBaku extends Model
 		'bahan_baku_id',
 		'jumlah',
 		'tanggal',
-		'nama_staff_gudang'
+		'nama_staff_gudang',
+		'status'
 	];
 
 	public function bahan_baku()
