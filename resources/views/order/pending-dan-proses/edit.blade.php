@@ -24,7 +24,7 @@
                     <div class="row mb-3">
                         <div class="col-sm">
                             <p class="mb-0">Dari</p>
-                            <p class="mb-0 font-weight-bold">Namina Resto & Private Resto</p>
+                            <p class="mb-0 font-weight-bold">Namina Group</p>
                             <p class="mb-0">
                                 Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat
                                 44163
@@ -39,42 +39,45 @@
                                 Email: naminaprivateresto@gmail.com
                             </p>
                         </div>
-                        @foreach ($pelanggan as $p)
-                            <div class="col-sm w-25">
-                                <p class="mb-0">Pembeli</p>
-                                <p class="mb-0 font-weight-bold">{{ $p->nama }}</p>
-                                <p class="mb-0">Tlpn/Wa: {{ $p->no_hp }}</p>
-                                <p class="mb-0"><span class="font-weight-bold">Orderan:</span> Meja No.
-                                    {{ $p->no_meja }}</p>
-                            </div>
-                            <div class="col-sm">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class="font-weight-bold">
-                                            Status Orderan
-                                        </div>
-                                        <p>{{ $p->nama_status }}</p>
-                                        @if (isset($pesanan[0]))
-                                            <form
-                                                action="{{ route('order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input name="status_id" type="hidden" value="2">
-                                                <button class="btn btn-sm btn-primary" type="submit"
-                                                    @if ($pesanan[0]->status_pesanan_id == '2') disabled @endif>Proses
-                                                    pesanan</button>
-                                            </form>
-                                        @endif
+                        @foreach($pelanggan as $p)
+                        <div class="col-sm w-25">
+                            <p class="mb-0">Pembeli</p>
+                            <p class="mb-0 font-weight-bold">{{$p->nama}}</p>
+                            <p class="mb-0">Tlpn/Wa: {{$p->no_hp}}</p>
+                            <p class="mb-0"><span class="font-weight-bold">Orderan:</span> Meja No. {{$p->no_meja}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="font-weight-bold">
+                                        Status Orderan
                                     </div>
-                                    <div class="col-sm">
-                                        <div class="font-weight-bold">
-                                            Status Dapur
-                                        </div>
-                                        <p>-</p>
+                                    <p>{{$p->nama_status}}</p>
+                                    @if(isset($pesanan[0]))
+                                    <form action="{{ route('order.pending-dan-proses.update-status', ['id' => $pesanan[0]->kode]) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="status_id" value="2">
+                                        <button type="submit" class="btn btn-sm btn-primary" @if($pesanan[0]->status_pesanan_id == "2") disabled @endif>Proses pesanan</button>
+                                    </form>
+                                    @endif
+                                </div>
+                                <div class="col-sm">
+                                    <div class="font-weight-bold">
+                                        Status Dapur
                                     </div>
+                                    <p>-</p>
+                                    @if(isset($pesanan[0]))
+                                    <form action="{{ route('order.cetak-nota', ['kode' => $pesanan[0]->kode]) }}" method="POST">
+                                        @csrf
+                                        @method('GET')
+                                        <input type="hidden" name="status_id" value="2">
+                                        <button type="submit" class="btn btn-sm btn-success">Cetak Nota Dapur</button>
+                                    </form>
+                                    @endif  
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -88,6 +91,7 @@
                             <th class="col-sm-1">Harga</th>
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
+                            
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -125,6 +129,7 @@
                                     </x-modal>
                                 <!-- END MODALS -->
                             </td>
+                            
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total += $data->harga_jual * $data->qty;

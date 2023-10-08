@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pesanan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -25,12 +26,13 @@ class PesananSeeder extends Seeder
                 'no_meja' => rand(1, 10), // Memilih nomor meja secara acak
                 'catatan' => 'Catatan pesanan ke-' . $i,
                 'total_bayar' => rand(100000, 500000), // Total bayar acak antara 100,000 dan 500,000
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => now()->setDateTime(2023, $i, 15, 14, 30, 0),
+                'updated_at' => now()->setDateTime(2023, $i, 15, 14, 30, 0),
             ];
         }
 
         // Insert data ke tabel pesanans
         DB::table('pesanans')->insert($data);
     }
+
 }

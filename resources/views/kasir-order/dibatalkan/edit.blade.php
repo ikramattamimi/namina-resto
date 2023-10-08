@@ -23,7 +23,7 @@
                     <div class="row mb-3">
                         <div class="col-sm">
                             <p class="mb-0">Dari</p>
-                            <p class="mb-0 font-weight-bold">Namina Resto & Private Resto</p>
+                            <p class="mb-0 font-weight-bold">Namina Group</p>
                             <p class="mb-0">
                                 Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat 44163
                             </p>
@@ -64,7 +64,15 @@
                                     <div class="font-weight-bold">
                                         Status Dapur
                                     </div>
-                                    <p>-</p>  
+                                    <p>-</p>
+                                    @if(isset($pesanan[0]))
+                                    <form action="{{ route('kasir-order.cetak-nota', ['kode' => $pesanan[0]->kode]) }}" method="POST">
+                                        @csrf
+                                        @method('GET')
+                                        <input type="hidden" name="status_id" value="2">
+                                        <button type="submit" class="btn btn-sm btn-success">Cetak Nota Dapur</button>
+                                    </form>
+                                    @endif  
                                 </div>
                             </div>
                         </div>
@@ -118,6 +126,7 @@
                                     </x-modal>
                                 <!-- END MODALS -->
                             </td>
+                            
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total += $data->harga_jual * $data->qty;

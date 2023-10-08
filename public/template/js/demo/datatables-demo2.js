@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('#dataTable').DataTable();
 
     var table = $("#updatedTable2").DataTable({
         stateSave: true,

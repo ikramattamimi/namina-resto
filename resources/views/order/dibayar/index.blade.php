@@ -9,24 +9,24 @@
         <p>Status Dibayar</p>
     </div>
     <x-card title="Data Orderan Online">
-        <div class="table-responsive">
-            <table class="table table-responsive table-striped text-dark" id="dataTable">
-                <thead>
-                    <tr class="text-center border">
-                        <th>No.</th>
-                        <th>No. Order</th>
-                        <th class="col-sm-3">Nama</th>
-                        <th class="col-sm-3">Tanggal</th>
-                        <th>Orderan</th>
-                        <th>Status</th>
-                        <th class="col-sm-1">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="border table-bordered">
-                    @php
-                        $counter = 1;
-                    @endphp
-                    @foreach ($data as $item)
+    <div class="table-responsive">
+    <table id="dataTable" class="table table-striped text-dark">
+                    <thead>
+                        <tr class="text-center border">
+                            <th>No.</th>
+                            <th>No. Order</th>
+                            <th class="col-sm-3">Nama</th>
+                            <th class="col-sm-3">Tanggal</th>
+                            <th>Orderan</th>
+                            <th>Status</th>
+                            <th class="col-sm-1">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border table-bordered">
+                        @php
+                            $counter = 1;
+                        @endphp
+                        @foreach($data as $item)
                         <tr class="mb-3">
                             <td>{{ $counter }}</td>
                             <td>{{ $item->kode }}</td>

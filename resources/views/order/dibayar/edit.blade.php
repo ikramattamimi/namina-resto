@@ -24,7 +24,7 @@
                     <div class="row mb-3">
                         <div class="col-sm">
                             <p class="mb-0">Dari</p>
-                            <p class="mb-0 font-weight-bold">Namina Resto & Private Resto</p>
+                            <p class="mb-0 font-weight-bold">Namina Group</p>
                             <p class="mb-0">
                                 Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat
                                 44163
@@ -76,6 +76,7 @@
                             <th class="col-sm-1">Harga</th>
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
+                            
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -93,6 +94,7 @@
                             <td>{{$data->harga_jual}}</td>
                             <td>{{$data->catatan_produk}}</td>
                             <td>{{$data->qty}}</td>
+                            
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total_akhir = $data->total_bayar;

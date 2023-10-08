@@ -227,7 +227,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                        <canvas id="chartPendapatan"></canvas>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,13 @@
         @include('rekening.script')
         <!-- Page level plugins -->
         <script src="{{ asset('template/vendor/chart.js/Chart.min.js') }}"></script>
-        <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>
+
+        <script>
+            let pendapatanBulanan = @json($pendapatan_bulanan);
+            var bulans = Object.keys(pendapatanBulanan);
+            var pendapatans = Object.values(pendapatanBulanan);
+        </script>
+        <script src="{{ asset('js/chart-dashboard.js') }}"></script>
     @endpush
 
 
