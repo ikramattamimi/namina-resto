@@ -55,6 +55,11 @@ class KasirOrderController extends Controller
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
+
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
+
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
@@ -147,6 +152,10 @@ class KasirOrderController extends Controller
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'pesanans.total_bayar','produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
+
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
@@ -178,6 +187,10 @@ class KasirOrderController extends Controller
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
+
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
@@ -213,6 +226,11 @@ class KasirOrderController extends Controller
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
+
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
+        
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
                         ->where('pesanans.kode', $kode)
