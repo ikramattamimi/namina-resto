@@ -1,4 +1,4 @@
-<x-admin-layout headerTitle="Master Data Bahan Baku">
+<x-admin-layout headerTitle="Pembelian Bahan Baku">
 
     @push('stylesheet')
     <!-- Custom styles for this page -->
@@ -18,7 +18,23 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Bahan Baku</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Request Pembelian</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                @if (Auth::user()->role_id == 1)
+                @include('pembelianBahanBaku.tableAdmin')
+                @else
+                @include('pembelianBahanBaku.tableGudang')
+                @endif
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Pembelian</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

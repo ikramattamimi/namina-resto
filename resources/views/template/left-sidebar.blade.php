@@ -139,6 +139,7 @@
                 <a class="collapse-item {{ str_contains(url()->current(), 'laporanPembelianBahanBaku') ? 'active' : '' }}" href="/admin/laporanPembelianBahanBaku">Pembelian Bahan Baku</a>
                 <a class="collapse-item {{ str_contains(url()->current(), 'laporanPenguranganBahanBaku') ? 'active' : '' }}" href="/admin/laporanPenguranganBahanBaku">Pengurangan Bahan Baku</a>
                 <a class="collapse-item {{ str_contains(url()->current(), 'laporanPengeluaranRestoran') ? 'active' : '' }}" href="/admin/laporanPengeluaranRestoran">Pengeluaran Restoran</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPendapatan') ? 'active' : '' }}" href="/admin/laporanPendapatan">Pendapatan</a>
             </div>
         </div>
     </li>

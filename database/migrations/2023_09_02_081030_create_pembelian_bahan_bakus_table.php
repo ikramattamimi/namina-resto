@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('jumlah')->nullable();
             $table->dateTime('tanggal')->nullable();
             $table->string('nama_staff_gudang')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

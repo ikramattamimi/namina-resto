@@ -30,7 +30,12 @@ class PembelianBahanBakuController extends Controller
     public function index()
     {
         return view('pembelianBahanBaku.index', [
-            'pembelianBahanBakus' => PembelianBahanBaku::all(),
+            'pembelianBahanBakus' => PembelianBahanBaku::where('status', 'setuju')->get(),
+            'pembelianAdmin' => PembelianBahanBaku::where('status','pending')->get(),
+            'pembelianGudang' => PembelianBahanBaku::where('status', 'pending')
+            ->orWhere('status', 'tolak')
+            ->get(),
+
         ]);
     }
 
@@ -112,6 +117,7 @@ class PembelianBahanBakuController extends Controller
             'jumlah' => $request->jumlah,
             'tanggal' => $request->tanggal,
             'nama_staff_gudang' => Auth::user()->nama,
+            'status' => $request->status
         ]);
 
         $bahanBaku->update([

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BahanBakuExport;
 use App\Http\Requests\StoreBahanBakuRequest;
 use App\Models\BahanBaku;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BahanBakuController extends Controller
 {
@@ -29,6 +31,11 @@ class BahanBakuController extends Controller
         return view('bahanBaku.index', [
             'bahanBakus' => BahanBaku::all()->where('is_active',true),
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new BahanBakuExport(), 'data_bahan_baku.xlsx');
     }
 
     /**

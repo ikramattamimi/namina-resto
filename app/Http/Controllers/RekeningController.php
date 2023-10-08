@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRekeningRequest;
 use App\Http\Requests\UpdateRekeningRequest;
+use App\Models\BahanBaku;
 use App\Models\Rekening;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RekeningController extends Controller
 {
@@ -28,7 +30,8 @@ class RekeningController extends Controller
     public function index()
     {
         return view('rekening.index', [
-            'rekenings' => Rekening::all(['id', 'nama', 'nomor', 'saldo'])
+            'rekenings' => Rekening::all(['id', 'nama', 'nomor', 'saldo']),
+            'bahanBaku' => BahanBaku::sum(DB::raw('harga_beli * stok'))
         ]);
     }
 

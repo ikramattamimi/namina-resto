@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\KelolaPenggunaController;
 use App\Http\Controllers\LaporanPembelianBahanBakuController;
+use App\Http\Controllers\LaporanPendapatanController;
 use App\Http\Controllers\LaporanPengeluaranRestoranController;
 use App\Http\Controllers\LaporanPenguranganBahanBakuController;
 use App\Http\Controllers\PelangganController;
@@ -42,6 +43,10 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('pelanggan', PelangganController::class);
 
+        Route::get('/pelangganExport', [PelangganController::class, 'export'])->name('pelangganExport');
+
+        Route::get('/bahanBakuExport', [BahanBakuController::class, 'export'])->name('bahanBakuExport');
+
         Route::resource('produk', ProdukController::class);
 
         Route::resource('rekening', RekeningController::class);
@@ -57,6 +62,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('laporanPenguranganBahanBaku', LaporanPenguranganBahanBakuController::class);
 
         Route::resource('laporanPengeluaranRestoran', LaporanPengeluaranRestoranController::class);
+
+        Route::resource('laporanPendapatan', LaporanPendapatanController::class);
 
         Route::resource('pengeluaranRestoran', PengeluaranRestoranController::class);
 
