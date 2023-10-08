@@ -23,7 +23,7 @@
                     <div class="row mb-3">
                         <div class="col-sm">
                             <p class="mb-0">Dari</p>
-                            <p class="mb-0 font-weight-bold">Namina Resto & Private Resto</p>
+                            <p class="mb-0 font-weight-bold">Namina Group</p>
                             <p class="mb-0">
                                 Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat 44163
                             </p>
