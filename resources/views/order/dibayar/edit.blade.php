@@ -73,7 +73,7 @@
                             <th class="col-sm-1">Harga</th>
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
-                            <th class="col-sm-1">Diskon</th>
+                            
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -91,8 +91,8 @@
                             <td>{{$data->harga_jual}}</td>
                             <td>{{$data->catatan_produk}}</td>
                             <td>{{$data->qty}}</td>
-                            <td>{{$data->diskon}}</td>
-                            <td>{{ $data->harga_jual * $data->qty - $data->diskon}}</td>
+                            
+                            <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total_akhir = $data->total_bayar;
                                 $kode = $data->kode;
