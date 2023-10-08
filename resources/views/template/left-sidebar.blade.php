@@ -136,10 +136,10 @@
         </a>
         <div class="collapse {{ str_contains(url()->current(), 'laporan') ? 'show' : '' }}" id="laporan-menu" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPembelianBahanBaku') ? 'active' : '' }}" href="/admin/laporanPembelianBahanBaku">Pembelian Bahan Baku</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPenguranganBahanBaku') ? 'active' : '' }}" href="/admin/laporanPenguranganBahanBaku">Pengurangan Bahan Baku</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPengeluaranRestoran') ? 'active' : '' }}" href="/admin/laporanPengeluaranRestoran">Pengeluaran Restoran</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPendapatan') ? 'active' : '' }}" href="/admin/laporanPendapatan">Pendapatan</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPembelianBahanBaku') ? 'active' : '' }}" href="/laporanPembelianBahanBaku">Pembelian Bahan Baku</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPenguranganBahanBaku') ? 'active' : '' }}" href="/laporanPenguranganBahanBaku">Pengurangan Bahan Baku</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPengeluaranRestoran') ? 'active' : '' }}" href="/laporanPengeluaranRestoran">Pengeluaran Restoran</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPendapatan') ? 'active' : '' }}" href="/laporanPendapatan">Pendapatan</a>
             </div>
         </div>
     </li>

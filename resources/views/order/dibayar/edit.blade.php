@@ -114,7 +114,7 @@
                     <div class="col-md-4 col-lg-6">
                         <div class="border rounded" style="padding: 15px; max-width: 355px;">
                                 <h4><b>Catatan Pembeli</b></h4>
-                                <p>{{$catatan}}</p>
+                                <p>{{ $catatan ?? '' }}</p>
                             </div>
                     </div>
                     <div class="col-md-8 col-lg-6">
@@ -123,7 +123,7 @@
                                 <tbody>
                                     <tr>
                                         <th style="width:50%; border:none">Pembayaran Diterima:</th>
-                                        <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="total" id="total" value="{{ $total_akhir }}" readonly></td>
+                                        <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="total" id="total" value="{{ $total_akhir ?? '' }}" readonly></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -132,7 +132,7 @@
                 </div>
                     <div class="row">               
                         <div class="col-12">
-                        <a href="/admin/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
+                        <a href="/order/dibayar" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
                     </div>
                 </div>
                 <div>
