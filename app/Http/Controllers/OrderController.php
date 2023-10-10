@@ -222,8 +222,7 @@ class OrderController extends Controller
     }
 
     public function bayarPesanan(Request $request, $kode){
-        if($request->input('tipe_bayar') == "Debit" || $request->input('tipe_bayar') == "Cash"){
-
+        if($request->input('tipe_bayar') == "Debit"){
             $pesanan = Pesanan::where('kode', $kode)->firstOrFail();
             
             if (!$pesanan) {
@@ -235,12 +234,24 @@ class OrderController extends Controller
             $pesanan->save();
 
             $rekening = new Rekening;
-            $rekening->nama = $request->tipe_bayar;
-            if($request->input('tipe_bayar') == "Debit"){
-                $rekening->nomor = 123456;
+            $rekening::where('nama', 'Debit')
+                ->increment('saldo', intval($request->totalakhir));
+
+            return $this->dibayar();
+        }else if($request->input('tipe_bayar') == "Cash"){
+            $pesanan = Pesanan::where('kode', $kode)->firstOrFail();
+            
+            if (!$pesanan) {
+                return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
             }
-            $rekening->saldo = intval($request->totalakhir);
-            $rekening->save();
+
+            $pesanan->status_pesanan_id = 3;
+            $pesanan->total_bayar = intval($request->totalakhir);
+            $pesanan->save();
+
+            $rekening = new Rekening;
+            $rekening::where('nama', 'Cash')
+                ->increment('saldo', intval($request->totalakhir));
 
             return $this->dibayar();
         }else{
