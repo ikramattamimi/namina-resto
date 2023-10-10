@@ -18,7 +18,7 @@ return new class extends Migration
             $table->tinyInteger('kategori_produk_id')->nullable()->index('fk_kategori_produk');
             $table->string('kode')->nullable();
             $table->string('nama')->nullable();
-            $table->integer('stok')->nullable();
+            // $table->integer('stok')->nullable();
             $table->decimal('harga_jual', 10, 0)->nullable();
             $table->string('gambar')->nullable();
             $table->string('diskon')->nullable();

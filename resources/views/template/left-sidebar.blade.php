@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Namina <sup>Resto</sup></div>
+        <div class="sidebar-brand-text mx-3">Namina <sup>Group</sup></div>
     </a>
 
     <!-- Divider -->
@@ -13,29 +13,35 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard-admin') }}" style="padding: 10px 25px">
+        <a class="nav-link" href="{{ route('home') }}" style="padding: 5px 25px">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
 
     {{-- jika user admin atau kasir --}}
     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities2" href="#"
-            aria-expanded="true" aria-controls="collapseUtilities" style="padding: 5px 25px">
-            <i class="far fa-bell"></i></i>
-            <span>Orderan Online Kasir</span>
-        </a>
-        <div class="collapse" id="collapseUtilities2" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/kasir/order/pendingDanProses">Pending & Proses</a>
-                <a class="collapse-item" href="/kasir/order/dibayar">Dibayar</a>
-                <a class="collapse-item" href="/kasir/order/dibatalkan">Dibatalkan</a>
-                <a class="collapse-item" href="/kasir/order/invoice">Invoice</a>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item {{ str_contains(url()->current(), 'order') ? 'active' : '' }}">
+            <a class="nav-link {{ !str_contains(url()->current(), 'order') ? 'collapsed' : '' }}" data-toggle="collapse"
+                data-target="#collapseUtilities" href="#" aria-expanded="true" aria-controls="collapseUtilities"
+                style="padding: 5px 25px">
+                <i class="far fa-bell"></i>
+                <span>Orderan Online</span>
+            </a>
+            <div class="collapse {{ str_contains(url()->current(), 'order') ? 'show' : '' }}" id="collapseUtilities"
+                data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ str_contains(url()->current(), 'pendingDanProses') ? 'active' : '' }}"
+                        href="/order/pendingDanProses">Pending & Proses</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'dibayar') ? 'active' : '' }}"
+                        href="/order/dibayar">Dibayar</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'dibatalkan') ? 'active' : '' }}"
+                        href="/order/dibatalkan">Dibatalkan</a>
+                    <a class="collapse-item {{ str_contains(url()->current(), 'invoice') ? 'active' : '' }}"
+                        href="/order/invoice">Invoice</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
     <!-- Divider -->
     <!-- <hr class="sidebar-divider"> -->
@@ -76,14 +82,8 @@
             <span>Rekening</span></a>
     </li>
 
-    <!-- Nav Item - Kode QR Meja -->
-    <li class="nav-item {{ str_contains(url()->current(), 'meja') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('meja.index') }}" style="padding: 10px 25px">
-            <i class="fas fa-fw fa-qrcode" aria-hidden="true"></i>
-            <span>Kode QR Meja</span></a>
-    </li>
-    <!-- Divider -->
-    <!-- <hr class="sidebar-divider d-none d-md-block"> -->
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
     @endif
 
     {{-- jika user admin atau gudang --}}
@@ -136,10 +136,10 @@
         </a>
         <div class="collapse {{ str_contains(url()->current(), 'laporan') ? 'show' : '' }}" id="laporan-menu" data-parent="#accordionSidebar" aria-labelledby="headingUtilities">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPembelianBahanBaku') ? 'active' : '' }}" href="/admin/laporanPembelianBahanBaku">Pembelian Bahan Baku</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPenguranganBahanBaku') ? 'active' : '' }}" href="/admin/laporanPenguranganBahanBaku">Pengurangan Bahan Baku</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPengeluaranRestoran') ? 'active' : '' }}" href="/admin/laporanPengeluaranRestoran">Pengeluaran Restoran</a>
-                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPendapatan') ? 'active' : '' }}" href="/admin/laporanPendapatan">Pendapatan</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPembelianBahanBaku') ? 'active' : '' }}" href="/laporanPembelianBahanBaku">Pembelian Bahan Baku</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPenguranganBahanBaku') ? 'active' : '' }}" href="/laporanPenguranganBahanBaku">Pengurangan Bahan Baku</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPengeluaranRestoran') ? 'active' : '' }}" href="/laporanPengeluaranRestoran">Pengeluaran Restoran</a>
+                <a class="collapse-item {{ str_contains(url()->current(), 'laporanPendapatan') ? 'active' : '' }}" href="/laporanPendapatan">Pendapatan</a>
             </div>
         </div>
     </li>

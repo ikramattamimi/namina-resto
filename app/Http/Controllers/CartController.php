@@ -16,11 +16,19 @@ class CartController extends Controller
         $customerAddress = Cookie::get('customer-address');
         $customerTable = Cookie::get('customer-table');
         $cartItems = \Cart::getContent();
+        $customerBirthday = Cookie::get('customer-birthday');
 
         // dd($cartItems[1]->associatedModel->gambar);
         return view(
             'customer.cart.index',
-            compact('cartItems', 'customerName', 'customerPhone', 'customerAddress', 'customerTable')
+            compact(
+                'cartItems', 
+                'customerName', 
+                'customerPhone', 
+                'customerAddress', 
+                'customerTable', 
+                'customerBirthday'
+            )
         );
     }
 

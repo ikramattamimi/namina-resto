@@ -64,7 +64,7 @@ class OrderController extends Controller
             ->where('pesanans.kode', $kode)
             ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
-        return view('order.pending-dan-proses.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
+        return view('order.pending-dan-proses.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan,]);
     }
 
     public function editStatus(Request $request, $id) {

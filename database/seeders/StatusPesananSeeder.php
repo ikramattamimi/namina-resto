@@ -16,23 +16,21 @@ class StatusPesananSeeder extends Seeder
     public function run()
     {
         DB::table('status_pesanans')->insert([
-            'nama' => "Pending",
-        ]);
-
-        DB::table('status_pesanans')->insert([
-            'nama' => "Proses",
-        ]);
-
-        DB::table('status_pesanans')->insert([
-            'nama' => "Dibayar",
-        ]);
-
-        DB::table('status_pesanans')->insert([
-            'nama' => "Dibatalkan",
-        ]);
-
-        DB::table('status_pesanans')->insert([
-            'nama' => "Invoice",
+            [
+                'nama' => 'Pending',
+            ],
+            [
+                'nama' => 'Proses',
+            ],
+            [
+                'nama' => 'Dibayar',
+            ],
+            [
+                'nama' => 'Dibatalkan',
+            ],
+            [
+                'nama' => 'Invoice',
+            ],
         ]);
     }
 }

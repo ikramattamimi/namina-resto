@@ -28,29 +28,29 @@
                         @endphp
                         @foreach($data as $item)
                         <tr class="mb-3">
-                            <td>{{$counter}}</td>
-                            <td>{{$item->kode}}</td>
+                            <td>{{ $counter }}</td>
+                            <td>{{ $item->kode }}</td>
                             <td class="w-15" style="max-width: 100px;">
                                 <div class="text-truncate">
-                                    {{$item->nama}}
+                                    {{ $item->nama }}
                                 </div>
                             </td>
                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y H:i:s') }}</td>
                             <td>Meja No. 18</td>
-                            <td>{{$item->nama_status}}</td>
+                            <td>{{ $item->nama_status }}</td>
                             <td class="text-center d-flex justify-content-center border-bottom-0">
-                                <a href="/admin/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Detail"><i class="fas fa-edit fa-xs"></i></a>
-                                <a href="/admin/order/cetak_nota/{{$item->kode}}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
+                                <a href="/order/dibayar/edit/{{$item->kode}}" class="btn btn-primary mr-1" title="Detail"><i class="fas fa-edit fa-xs"></i></a>
+                                <a href="/order/cetak_nota/{{$item->kode}}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
                         @php
                             $counter++;
                         @endphp
-                        @endforeach
-                    </tbody>
-                </table>
-    </div>
-    
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
     </x-card>
 
     @push('scripts')

@@ -4,20 +4,21 @@
             <div class="card-body">
                 <div class="container text-dark">
                     <div class="row mb-3">
-                        @if(isset($pesanan[0]))
-                        <div class="col">
-                            <h5>
-                                <i class="fas fa-globe fa-lg" style="color: #000000;"></i>
-                                No. Orderan: {{$pesanan[0]->kode}}
-                            </h5>
-                        </div>
-                        <div class="col">
-                            <div class="text-right">
-                            
-                                <h5>Tanggal: {{ \Carbon\Carbon::parse($pesanan[0]->created_at)->format('d F Y H:i:s') }}</h5>
-                            
+                        @if (isset($pesanan[0]))
+                            <div class="col">
+                                <h5>
+                                    <i class="fas fa-globe fa-lg" style="color: #000000;"></i>
+                                    No. Orderan: {{ $pesanan[0]->kode }}
+                                </h5>
                             </div>
-                        </div>
+                            <div class="col">
+                                <div class="text-right">
+
+                                    <h5>Tanggal:
+                                        {{ \Carbon\Carbon::parse($pesanan[0]->created_at)->format('d F Y H:i:s') }}</h5>
+
+                                </div>
+                            </div>
                         @endif
                     </div>
                     <div class="row mb-3">
@@ -25,7 +26,8 @@
                             <p class="mb-0">Dari</p>
                             <p class="mb-0 font-weight-bold">Namina Group</p>
                             <p class="mb-0">
-                                Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat 44163
+                                Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat
+                                44163
                             </p>
                             <p class="mb-0">
                                 Telp 0262 2543686 / WA 081220088980
@@ -35,7 +37,7 @@
                             </p>
                             <p class="mb-0">
                                 Email: naminaprivateresto@gmail.com
-                            </p>     
+                            </p>
                         </div>
                         @foreach($pelanggan as $p)
                         <div class="col-sm w-25">
@@ -90,9 +92,13 @@
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             
 >>>>>>> wahid2
+=======
+                            
+>>>>>>> ikram
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -131,9 +137,13 @@
                                 <!-- END MODALS -->
                             </td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             
 >>>>>>> wahid2
+=======
+                            
+>>>>>>> ikram
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total += $data->harga_jual * $data->qty;
@@ -157,25 +167,26 @@
                 </div>
                 <div class="container text-dark">
                     <form action="{{ route('order.bayar-pesanan', ['kode' => $kode]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-4 col-lg-6">
                                 <div class="row">
                                     <div class="col-9">
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Metode Pembayaran</label>
-                                            <select class="form-control" id="exampleFormControlSelect1" name="tipe_bayar">
-                                            <option>Cash</option>
-                                            <option>Invoice</option>
-                                            <option>Debit</option>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                                name="tipe_bayar">
+                                                <option>Cash</option>
+                                                <option>Invoice</option>
+                                                <option>Debit</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="border rounded" style="padding: 15px; max-width: 355px;">
                                     <h4><b>Catatan Pembeli</b></h4>
-                                    <p>{{$catatan}}</p>
+                                    <p>{{ $catatan }}</p>
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-6">
@@ -184,15 +195,23 @@
                                         <tbody>
                                             <tr>
                                                 <th style="width:50%; border:none">Total:</th>
-                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="total" id="total" value="{{ $total }}" readonly></td>
+                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span
+                                                        class="text-dark">Rp </span><input id="total"
+                                                        name="total" type="number" value="{{ $total }}"
+                                                        style="border:none" style="width:150px" readonly></td>
                                             </tr>
                                             <tr>
                                                 <th style="width:50%; border:none">Diskon:</th>
-                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input type="number" style="width:150px" name="diskon" id="diskon"></td>
+                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span
+                                                        class="text-dark">Rp </span><input id="diskon"
+                                                        name="diskon" type="number" style="width:150px"></td>
                                             </tr>
                                             <tr>
                                                 <th style="width:50%; border:none">Total Akhir:</th>
-                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span class="text-dark">Rp </span><input style="border:none" type="number" style="width:150px" name="totalakhir" id="total-akhir" readonly></td>
+                                                <td style="border-top: none;border-bottom:1px solid #ddd"><span
+                                                        class="text-dark">Rp </span><input id="total-akhir"
+                                                        name="totalakhir" type="number" style="border:none"
+                                                        style="width:150px" readonly></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -201,16 +220,18 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="/admin/order/pendingDanProses" class="btn btn-default float-right mr-2 border text-dark">Kembali</a>
-                                <button type="submit" class="btn btn-primary float-right mr-2 border text-white">Bayar</a>
+                                <a class="btn btn-default float-right mr-2 border text-dark"
+                                    href="/order/pendingDanProses">Kembali</a>
+                                <button class="btn btn-primary float-right mr-2 border text-white"
+                                    type="submit">Bayar</a>
                             </div>
                         </div>
                     </form>
-            <div>
-        </div>
-    </div>
+                    <div>
+                    </div>
+                </div>
 
-    @push('scripts')
-        @include('order.pending-dan-proses.script')
-    @endpush
+                @push('scripts')
+                    @include('order.pending-dan-proses.script')
+                @endpush
 </x-admin-layout>

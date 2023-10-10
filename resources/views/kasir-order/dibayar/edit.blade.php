@@ -74,9 +74,13 @@
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             
 >>>>>>> wahid2
+=======
+                            
+>>>>>>> ikram
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -95,9 +99,13 @@
                             <td>{{$data->catatan_produk}}</td>
                             <td>{{$data->qty}}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             
 >>>>>>> wahid2
+=======
+                            
+>>>>>>> ikram
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total_akhir = $data->total_bayar;

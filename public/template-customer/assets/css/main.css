@@ -764,6 +764,7 @@ nav.main-menu li a {
 
 .sticky-wrapper.is-sticky .top-header-area {
   background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   padding: 15px 0;
 }
 

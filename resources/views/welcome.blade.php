@@ -8,7 +8,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Penjualan Hari Ini</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp {{ number_format($total)}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp {{ number_format($total) }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -152,17 +152,17 @@
                             </thead>
                             <tbody>
                                 @php
-                                $nomor = 1;
+                                    $nomor = 1;
                                 @endphp
                                 @foreach ($produks as $item)
-                                <tr>
-                                    <td>{{ $nomor }}</td>
-                                    <td>{{ $item->produk->nama }}</td>
-                                    <td>{{ $item->total_terjual }}</td>
-                                </tr>
-                                @php
-                                $nomor++;
-                                @endphp
+                                    <tr>
+                                        <td>{{ $nomor }}</td>
+                                        <td>{{ $item->produk->nama }}</td>
+                                        <td>{{ $item->total_terjual }}</td>
+                                    </tr>
+                                    @php
+                                        $nomor++;
+                                    @endphp
                                 @endforeach
                             </tbody>
                         </table>
@@ -192,17 +192,17 @@
                             </thead>
                             <tbody>
                                 @php
-                                $nomor = 1;
+                                    $nomor = 1;
                                 @endphp
                                 @foreach ($stoks as $stok)
-                                <tr>
-                                    <td>{{ $nomor }}</td>
-                                    <td>{{ $stok->nama }}</td>
-                                    <td>{{ $stok->stok }}</td>
-                                </tr>
-                                @php
-                                $nomor++;
-                                @endphp
+                                    <tr>
+                                        <td>{{ $nomor }}</td>
+                                        <td>{{ $stok->nama }}</td>
+                                        <td>{{ $stok->stok }}</td>
+                                    </tr>
+                                    @php
+                                        $nomor++;
+                                    @endphp
                                 @endforeach
                             </tbody>
                         </table>
@@ -227,7 +227,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                        <canvas id="chartPendapatan"></canvas>
                     </div>
                 </div>
             </div>
@@ -235,7 +235,16 @@
     </div>
 
     @push('scripts')
-    @include('rekening.script')
+        @include('rekening.script')
+        <!-- Page level plugins -->
+        <script src="{{ asset('template/vendor/chart.js/Chart.min.js') }}"></script>
+
+        <script>
+            let pendapatanBulanan = @json($pendapatan_bulanan);
+            var bulans = Object.keys(pendapatanBulanan);
+            var pendapatans = Object.values(pendapatanBulanan);
+        </script>
+        <script src="{{ asset('js/chart-dashboard.js') }}"></script>
     @endpush
 
 

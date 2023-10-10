@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#dataTable').DataTable();
+    $("#dataTable").DataTable();
 
     var table = $("#updatedTable").DataTable({
         stateSave: true,
@@ -16,7 +16,9 @@ $(document).ready(function () {
                 name: "created_at",
                 render: function (data, type, full, meta) {
                     return (
-                        '<div class="text-center">Meja No.' + full.no_meja +'</div><div class="text-center small">' +
+                        '<div class="text-center">Meja No.' +
+                        full.no_meja +
+                        '</div><div class="text-center small">' +
                         moment(data).format("D MMM YYYY H:mm:ss") +
                         "</div>"
                     );
@@ -41,9 +43,7 @@ $(document).ready(function () {
                     );
                 },
             }, // Status
-            { data: null,
-                defaultContent: "-",
-                name: "nama_status" }, // Status Dapur
+            { data: null, defaultContent: "-", name: "nama_status" }, // Status Dapur
             {
                 data: null,
                 orderable: false,
@@ -52,8 +52,8 @@ $(document).ready(function () {
                     var buttonsHtml = `
             <div class="text-center d-flex justify-content-center">
               <button type="button" class="btn btn-warning mr-1 btn-edit-status" title="Edit Status" data-toggle="modal" data-target="#ubahStatus" data-kode="${data.kode}"><i class="fas fa-pencil-alt fa-xs"></i></button>
-              <a href="/admin/order/pendingDanProses/edit/${data.kode}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
-              <a href="/admin/order/cetak_nota/${data.kode}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
+              <a href="/order/pendingDanProses/edit/${data.kode}" class="btn btn-primary mr-1" title="Edit Data"><i class="fas fa-edit fa-xs"></i></a>
+              <a href="/order/cetak_nota/${data.kode}" class="btn btn-success mr-1" title="Cetak Nota Dapur"><i class="fas fa-print fa-xs"></i></a>
             </div>
           `;
                     return buttonsHtml;
@@ -66,18 +66,18 @@ $(document).ready(function () {
         },
     });
 
-    $('#updatedTable').on('click', '.btn-edit-status', function() {
-      var kode = $(this).data('kode');
-      var formAction = "/order/pendingDanProses/edit-status/" + kode;
-      
-      // Perbarui action atribut formulir dengan kode yang benar
-      formAction = formAction.replace('kode', kode);
-      console.log(formAction);
-      
-      // Setel atribut action pada formulir modal
-      $('#ubahStatusForm').attr('action', formAction);
-      
-      $('#ubahStatus').modal('show');
+    $("#updatedTable").on("click", ".btn-edit-status", function () {
+        var kode = $(this).data("kode");
+        var formAction = "/order/pendingDanProses/edit-status/" + kode;
+
+        // Perbarui action atribut formulir dengan kode yang benar
+        formAction = formAction.replace("kode", kode);
+        console.log(formAction);
+
+        // Setel atribut action pada formulir modal
+        $("#ubahStatusForm").attr("action", formAction);
+
+        $("#ubahStatus").modal("show");
     });
 
     setInterval(function () {

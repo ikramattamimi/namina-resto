@@ -74,6 +74,7 @@
         <hr>
         @if(isset($order[0]))
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div class="flex-container-1">
             <div class="left">
                 <ul>
@@ -104,6 +105,43 @@
             </div>
         </div>
 =======
+=======
+        <table class="custom-table">
+            <tr>
+                <td>No. Order</td>
+                <td style="text-align:right;">{{ $order[0]->kode }}</td>
+            </tr>
+            <tr>
+                <td>Tanggal Pesanan</td>
+                <td style="text-align:right;">{{ date('Y-m-d : H:i:s', strtotime($order[0]->created_at)) }}</td>
+            </tr>
+            <tr>
+                <td>Meja</td>
+                <td style="text-align:right;">{{ $order[0]->no_meja }}</td>
+            </tr>
+            <tr>
+                <td>Nama Pembeli</td>
+                <td style="text-align:right;">{{ $order[0]->nama }} </td>
+            </tr>
+        </table>
+        <br>
+        @endif
+        <hr>
+        <p><strong>====DAPUR UTAMA====</strong></p>
+		<div style="text-align:left">
+		<ol>
+			@foreach($dapur_utama as $item)
+			<li>
+				<p><strong>{{$item->nama}}</strong></p>
+				<p>- Jumlah: {{ $item->qty }} porsi</p>
+				<p>- Catatan: {{ $item->catatan }}</p>
+			</li>
+			@endforeach
+		</ol>
+		</div>
+        <hr>
+		@if(isset($order[0]))
+>>>>>>> ikram
         <table class="custom-table">
             <tr>
                 <td>No. Order</td>
@@ -126,10 +164,17 @@
 >>>>>>> wahid2
         @endif
         <hr>
+<<<<<<< HEAD
         <p><strong>====DAPUR UTAMA====</strong></p>
 		<div style="text-align:left">
 		<ol>
 			@foreach($dapur_utama as $item)
+=======
+		<p><strong>===DAPUR CEMILAN===</strong></p>
+			<div style="text-align:left">
+		<ol>
+			@foreach($dapur_cemilan as $item)
+>>>>>>> ikram
 			<li>
 				<p><strong>{{$item->nama}}</strong></p>
 				<p>- Jumlah: {{ $item->qty }} porsi</p>
@@ -139,6 +184,7 @@
 		</ol>
 		</div>
         <hr>
+<<<<<<< HEAD
 		@if(isset($order[0]))
 <<<<<<< HEAD
         <div class="flex-container-1">
@@ -174,6 +220,9 @@
         <hr>
 		<p><strong>========DAPUR CEMILAN========</strong></p>
 =======
+=======
+        @if(isset($order[0]))
+>>>>>>> ikram
         <table class="custom-table">
             <tr>
                 <td>No. Order</td>
@@ -195,6 +244,7 @@
         <br>
         @endif
         <hr>
+<<<<<<< HEAD
 		<p><strong>===DAPUR CEMILAN===</strong></p>
 >>>>>>> wahid2
 			<div style="text-align:left">
@@ -267,6 +317,9 @@
         <hr>
 		<p><strong>=========BAR=========</strong></p>
 >>>>>>> wahid2
+=======
+		<p><strong>=========BAR=========</strong></p>
+>>>>>>> ikram
 			<div style="text-align:left">
 		<ol>
 			@foreach($bar as $item)
