@@ -126,14 +126,7 @@
                                     </x-modal>
                                 <!-- END MODALS -->
                             </td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                            
->>>>>>> wahid2
-=======
-                            
->>>>>>> ikram
+
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total += $data->harga_jual * $data->qty;
