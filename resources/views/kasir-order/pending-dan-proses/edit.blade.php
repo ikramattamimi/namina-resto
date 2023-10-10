@@ -23,7 +23,7 @@
                     <div class="row mb-3">
                         <div class="col-sm">
                             <p class="mb-0">Dari</p>
-                            <p class="mb-0 font-weight-bold">Namina Resto & Private Resto</p>
+                            <p class="mb-0 font-weight-bold">Namina Group</p>
                             <p class="mb-0">
                                 Jl. Raya Garut - Cikajang No.km 14, Sirnagalih, Cisurupan, Kabupaten Garut, Jawa Barat 44163
                             </p>
@@ -64,7 +64,15 @@
                                     <div class="font-weight-bold">
                                         Status Dapur
                                     </div>
-                                    <p>-</p>  
+                                    <p>-</p>
+                                    @if(isset($pesanan[0]))
+                                    <form action="{{ route('kasir-order.cetak-nota', ['kode' => $pesanan[0]->kode]) }}" method="POST">
+                                        @csrf
+                                        @method('GET')
+                                        <input type="hidden" name="status_id" value="2">
+                                        <button type="submit" class="btn btn-sm btn-success">Cetak Nota Dapur</button>
+                                    </form>
+                                    @endif   
                                 </div>
                             </div>
                         </div>
@@ -81,6 +89,10 @@
                             <th class="col-sm-1">Harga</th>
                             <th class="col-sm-2">Catatan</th>
                             <th class="col-sm-1">Qty</th>
+<<<<<<< HEAD
+=======
+                            
+>>>>>>> wahid2
                             <th class="col-sm-1">Subtotal</th>
                             <th class="col-sm-1">Aksi</th>
                         </tr>
@@ -118,6 +130,10 @@
                                     </x-modal>
                                 <!-- END MODALS -->
                             </td>
+<<<<<<< HEAD
+=======
+                            
+>>>>>>> wahid2
                             <td>{{ $data->harga_jual * $data->qty}}</td>
                             @php
                                 $total += $data->harga_jual * $data->qty;

@@ -7,9 +7,19 @@ use App\Models\Pesanan;
 use App\Models\StatusPesanan;
 use App\Models\Rekening;
 use Illuminate\Support\Facades\DB;
+use PDF;
+use Codedge\Fpdf\Fpdf\Fpdf;
 
 class OrderController extends Controller
 {
+
+    protected $fpdf;
+ 
+    public function __construct()
+    {
+        $this->fpdf = new Fpdf;
+    }
+
     // =========================MENU ORDER PENDING DAN PROSES=============================
     public function pendingDanProses(){
         $data = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
@@ -21,7 +31,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.pending-dan-proses.index', ['data' => $data, 'status' => $status]);
     }
@@ -44,11 +54,15 @@ class OrderController extends Controller
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
+        
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
-                        ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
-                        ->where('pesanans.kode', $kode)
-                        ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
+            ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
+            ->where('pesanans.kode', $kode)
+            ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
         return view('order.pending-dan-proses.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
     }
@@ -121,7 +135,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode','pelanggans.nama','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.dibayar.index', ['data' => $data, 'status' => $status]);
     }
@@ -132,10 +146,13 @@ class OrderController extends Controller
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'pesanans.total_bayar','produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
 
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
-                        ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
-                        ->where('pesanans.kode', $kode)
-                        ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
+            ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
+            ->where('pesanans.kode', $kode)
+            ->get(['status_pesanans.nama AS nama_status', 'pelanggans.nama', 'pelanggans.no_hp', 'pesanans.no_meja']);
 
         return view('order.dibayar.edit', ['pesanan' => $produk_dipesan, 'pelanggan'=> $pelanggan]);
     }
@@ -148,7 +165,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.dibatalkan.index', ['data' => $data, 'status' => $status]);
     }
@@ -158,6 +175,10 @@ class OrderController extends Controller
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk', 'pesanans.status_pesanan_id']);
+
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
@@ -177,7 +198,7 @@ class OrderController extends Controller
                     ->orderBy('pesanans.id', 'DESC')
                     ->get(['pesanans.kode', 'pelanggans.nama','pelanggans.no_hp','pesanans.created_at', 'status_pesanans.nama AS nama_status']);
 
-        $status = StatusPesanan::all();
+        $status = StatusPesanan::where('nama', '<>' , 'Dibayar')->get();
 
         return view('order.invoice.index', ['data' => $data, 'status' => $status]);
     }
@@ -187,6 +208,10 @@ class OrderController extends Controller
                     ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
                     ->where('pesanans.kode', $kode)
                     ->get(['produks.gambar', 'produks.id', 'pesanans.status_pesanan_id', 'produks.nama AS nama_produk', 'produks.harga_jual', 'pesanans.kode', 'pesanans.catatan', 'pesanans.id as id_pesanan', 'produk_dipesan.qty', 'produk_dipesan.catatan as catatan_produk']);
+
+        if ($produk_dipesan->isEmpty()) {
+            return view('components.no-order');
+        }
 
         $pelanggan = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
                         ->join('status_pesanans', 'pesanans.status_pesanan_id', '=', 'status_pesanans.id')
@@ -260,8 +285,15 @@ class OrderController extends Controller
                             ->where('pesanans.kode', $kode)
                             ->where('kategori_dapurs.nama', "Bar")
                             ->get(['produks.nama', 'produk_dipesan.qty', 'produk_dipesan.catatan']);
+
+        // return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
         
-        return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        $pdf = PDF::loadview('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        $pdf->setPaper('a4', 'portrait');
+        // $pdf->set_paper(array(0,0,58,1000));
+        // $pdf->set_option('dpi', 72);
+        // unset($pdf);
+        return $pdf->stream();
     }
 
 }
