@@ -25,7 +25,7 @@ class StoreRekeningRequest extends FormRequest
     {
         return [
             'nama' => 'required|string|min:3|unique:rekenings,nama',
-            'nomor' => 'required|min:6|unique:rekenings,nomor',
+            // 'nomor' => 'required|min:6|unique:rekenings,nomor',
             'saldo' => 'required',
         ];
     }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rekenings', function (Blueprint $table) {
             $table->tinyInteger('id', true);
             $table->string('nama')->nullable();
-            $table->string('nomor', 50)->nullable();
+            // $table->string('nomor', 50)->nullable();
             $table->decimal('saldo', 10, 0)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

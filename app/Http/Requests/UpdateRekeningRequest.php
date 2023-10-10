@@ -25,7 +25,7 @@ class UpdateRekeningRequest extends FormRequest
     {
         return [
             'nama' => 'required|string|min:3|unique:rekenings,nama,' . $this->rekening->id,
-            'nomor' => 'required|min:6|unique:rekenings,nomor,' . $this->rekening->id,
+            // 'nomor' => 'required|min:6|unique:rekenings,nomor,' . $this->rekening->id,
             'saldo' => 'required',
         ];
     }

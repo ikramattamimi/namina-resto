@@ -31,7 +31,7 @@ class Rekening extends Model
 
 	protected $fillable = [
 		'nama',
-		'nomor',
+		// 'nomor',
 		'saldo'
 	];
 

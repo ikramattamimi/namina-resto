@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nama</th>
-            <th>No Rekening</th>
+            <!-- <th>No Rekening</th> -->
             <th>Saldo</th>
             <th>Aksi</th>
         </tr>
@@ -11,7 +11,7 @@
         @foreach ($rekenings as $rekening)
         <tr>
             <td>{{ $rekening->nama }}</td>
-            <td>{{ $rekening->nomor }}</td>
+            <!-- <td>{{ $rekening->nomor }}</td> -->
             <td>Rp {{ number_format($rekening->saldo) }}</td>
             <td>
                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('rekening.destroy', $rekening->id) }}" method="POST">
@@ -30,7 +30,7 @@
         @endforeach
         <tr>
             <td>Bahan Baku</td>
-            <td> - </td>
+            <!-- <td> - </td> -->
             <td>Rp {{ number_format($bahanBaku) }}</td>
             <td></td>
         </tr>

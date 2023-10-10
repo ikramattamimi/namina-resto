@@ -30,7 +30,7 @@ class RekeningController extends Controller
     public function index()
     {
         return view('rekening.index', [
-            'rekenings' => Rekening::all(['id', 'nama', 'nomor', 'saldo']),
+            'rekenings' => Rekening::all(['id', 'nama', 'saldo']),
             'bahanBaku' => BahanBaku::sum(DB::raw('harga_beli * stok'))
         ]);
     }
@@ -55,7 +55,7 @@ class RekeningController extends Controller
     {
         $rekening = Rekening::create([
             'nama' => $request->nama,
-            'nomor' => $request->nomor,
+            // 'nomor' => $request->nomor,
             'saldo' => $request->saldo,
         ]);
 
@@ -98,7 +98,7 @@ class RekeningController extends Controller
     {
         $rekening->update([
             'nama' => $request->nama,
-            'nomor' => $request->nomor,
+            // 'nomor' => $request->nomor,
             'saldo' => $request->saldo,
         ]);
 
