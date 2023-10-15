@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('pembelian_bahan_bakus', function (Blueprint $table) {
             $table->bigInteger('id', true);
-            $table->bigInteger('bahan_baku_id')->index('fk_penambahan_bahan_baku');
-            $table->integer('jumlah')->nullable();
+            // $table->bigInteger('bahan_baku_id')->index('fk_penambahan_bahan_baku');
+            // $table->integer('jumlah')->nullable();
             $table->dateTime('tanggal')->nullable();
             $table->string('nama_staff_gudang')->nullable();
             $table->string('status')->default('pending');
+            $table->decimal('total_pembelian', 10, 0)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
