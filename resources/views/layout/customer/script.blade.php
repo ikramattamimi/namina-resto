@@ -18,3 +18,6 @@
 <script src="{{ asset('template-customer/assets/js/sticker.js') }}"></script>
 <!-- main js -->
 <script src="{{ asset('template-customer/assets/js/main.js') }}"></script>
+
+{{-- search bar --}}
+<script src="{{ asset('template-customer/assets/js/search-bar.js') }}"></script>

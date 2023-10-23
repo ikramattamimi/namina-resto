@@ -55,10 +55,10 @@ class CustomerController extends Controller
         Cookie::queue(Cookie::make('customer-birthday', $customerBirthday, 525600 * 5));
 
         // update or add customer
-        $customer = Pelanggan::updateOrCreate(
-            ['no_hp' => $customerPhone],
+        $customer = Pelanggan::create(
             [
                 'nama' => $customerName,
+                'no_hp' => $customerPhone,
                 'alamat' => $customerAddress,
                 'tanggal_lahir' => $customerBirthday,
             ]

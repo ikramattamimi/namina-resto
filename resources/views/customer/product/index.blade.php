@@ -14,7 +14,7 @@
     <!-- end kategori section -->
 
     <!-- product section -->
-    <div id="product-section"></div>
+    <div id="product-section">
     @foreach ($kategoris as $kategori)
         @php
             $products = $produks->where('kategori_produk_id', $kategori->id);
@@ -24,6 +24,7 @@
             <x-product-list :title="$title" :products="$products" />
         @endif
     @endforeach
+    </div>
     <!-- end product section -->
 
     <!-- cart section -->
