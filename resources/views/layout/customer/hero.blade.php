@@ -6,7 +6,7 @@
                 <div class="hero-text">
                     <div class="hero-text-tablecell">
                         {{-- <p class="subtitle">Garut</p> --}}
-                        <h1>Namina Group</h1>
+                        <h1>Namina Private Resto</h1>
                         <div class="hero-btns">
                             <a class="boxed-btn" href="https://api.whatsapp.com/send?phone=6281220088980&text="
                                 target="_blank">

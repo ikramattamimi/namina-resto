@@ -49,6 +49,7 @@
                                     type="button" title="Edit Status"><i class="fas fa-pencil-alt fa-xs"></i></button>
                                 <a class="btn btn-primary mr-1" href="/order/invoice/edit/{{ $item->kode }}"
                                     title="Edit Data"><i class="fas fa-search"></i></a>
+                                    <a href="/order/cetak_invoice/{{$item->kode}}" class="btn btn-success mr-1" title="Cetak Invoice"><i class="fas fa-print fa-xs"></i></a>
                             </td>
                         </tr>
                         @php

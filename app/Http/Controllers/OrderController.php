@@ -307,6 +307,28 @@ class OrderController extends Controller
         return $pdf->stream();
     }
 
+    public function cetakInvoice($kode){
+        $order = Pesanan::join('pelanggans', 'pesanans.id_pelanggan', '=', 'pelanggans.id')
+                            ->where('pesanans.kode', $kode)
+                            ->get(['pesanans.kode', 'pesanans.created_at', 'pesanans.no_meja', 'pelanggans.nama']);
+
+        $pesanan = Pesanan::join('produk_dipesan', 'pesanans.id', '=', 'produk_dipesan.pesanan_id')
+                            ->join('produks', 'produk_dipesan.produk_id', 'produks.id')
+                            ->join('kategori_produks', 'produks.kategori_produk_id', 'kategori_produks.id')
+                            ->join('kategori_dapurs', 'kategori_produks.dapur_id', 'kategori_dapurs.id')
+                            ->where('pesanans.kode', $kode)
+                            ->get(['produks.nama', 'produks.harga_jual', 'produk_dipesan.qty', 'produk_dipesan.catatan', 'pesanans.catatan as catatanpesanan']);
+
+        // return view('order.dibayar.nota-dapur', ['dapur_utama' => $dapur_utama, 'dapur_cemilan' => $dapur_cemilan, 'bar' => $bar,'order'=>$order]);
+        
+        $pdf = PDF::loadview('order.invoice.nota-invoice', ['pesanan' => $pesanan,'order'=>$order]);
+        $pdf->setPaper('a4', 'portrait');
+        // $pdf->set_paper(array(0,0,58,1000));
+        // $pdf->set_option('dpi', 72);
+        // unset($pdf);
+        return $pdf->stream();
+    }
+
 }
 
 

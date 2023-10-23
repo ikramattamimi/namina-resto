@@ -78,51 +78,53 @@ Route::group([
         Route::get('/order/dibatalkan', 'App\Http\Controllers\OrderController@dibatalkan');
         Route::get('/order/invoice', 'App\Http\Controllers\OrderController@invoice')->name('order.invoice');
 
-    Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\OrderController@editDibatalkan')->name('order.dibatalkan.edit');
-    Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@editDibayar')->name('order.dibayar.edit');
-    Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
-    Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\OrderController@editInvoice')->name('order.invoice.edit');
-    Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\OrderController@editDibatalkan')->name('order.dibatalkan.edit');
-    Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@editDibayar')->name('order.dibayar.edit');
-    Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
-    Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\OrderController@editInvoice')->name('order.invoice.edit');
+        Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\OrderController@editDibatalkan')->name('order.dibatalkan.edit');
+        Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@editDibayar')->name('order.dibayar.edit');
+        Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
+        Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\OrderController@editInvoice')->name('order.invoice.edit');
+        Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\OrderController@editDibatalkan')->name('order.dibatalkan.edit');
+        Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\OrderController@editDibayar')->name('order.dibayar.edit');
+        Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\OrderController@editPending')->name('order.pending-dan-proses.edit');
+        Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\OrderController@editInvoice')->name('order.invoice.edit');
 
-    Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
-    Route::put('/order/pendingDanProses/edit-qty/{kode}/{id}', 'App\Http\Controllers\OrderController@editQty')->name('order.pending-dan-proses.update-qty');
-    Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\OrderController@deleteProdukDipesan')->name('order.pending-dan-proses.delete-produk-dipesan');
-    Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\OrderController@bayarPesanan')->name('order.bayar-pesanan');
+        Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\OrderController@editStatus')->name('order.pending-dan-proses.update-status');
+        Route::put('/order/pendingDanProses/edit-qty/{kode}/{id}', 'App\Http\Controllers\OrderController@editQty')->name('order.pending-dan-proses.update-qty');
+        Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\OrderController@deleteProdukDipesan')->name('order.pending-dan-proses.delete-produk-dipesan');
+        Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\OrderController@bayarPesanan')->name('order.bayar-pesanan');
 
-    Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData');
+        Route::get('/order/source', 'App\Http\Controllers\OrderController@getTableData');
 
-    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota')->name('order.cetak-nota');
+        Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\OrderController@cetakNota')->name('order.cetak-nota');
+        Route::get('/order/cetak_invoice/{kode}', 'App\Http\Controllers\OrderController@cetakInvoice')->name('order.cetak-invoice');
+    });
+
+    Route::prefix('kasir')->group(function () {
+        Route::get('/order/pendingDanProses', 'App\Http\Controllers\KasirOrderController@pendingProses')->name('kasir-order.pendingDanProses');
+        Route::get('/order/dibayar', 'App\Http\Controllers\KasirOrderController@dibayar');
+        Route::get('/order/dibatalkan', 'App\Http\Controllers\KasirOrderController@dibatalkan');
+        Route::get('/order/invoice', 'App\Http\Controllers\KasirOrderController@invoice')->name('kasir-order.invoice');
+
+        Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editDibatalkan')->name('kasir-order.dibatalkan.edit');
+        Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editDibayar')->name('kasir-order.dibayar.edit');
+        Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editPending')->name('kasir-order.pending-dan-proses.edit');
+        Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editInvoice')->name('kasir-order.invoice.edit');
+
+        Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\KasirOrderController@editStatus')->name('kasir-order.pending-dan-proses.update-status');
+        Route::put('/order/pendingDanProses/edit-qty/{kode}/{id}', 'App\Http\Controllers\KasirOrderController@editQty')->name('kasir-order.pending-dan-proses.update-qty');
+        Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\KasirOrderController@deleteProdukDipesan')->name('kasir-order.pending-dan-proses.delete-produk-dipesan');
+        Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\KasirOrderController@bayarPesanan')->name('kasir-order.bayar-pesanan');
+
+        Route::get('/order/source', 'App\Http\Controllers\KasirOrderController@getTableData');
+        Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\KasirOrderController@cetakNota')->name('kasir-order.cetak-nota');
+    });
+
+    Route::get('test', function () {
+        event(new App\Events\StatusLiked("201511052", "Muhammad Irfan Noor Wahid"));
+        return "Event has been sent!";
+    });
 });
 
-Route::prefix('kasir')->group(function () {
-    Route::get('/order/pendingDanProses', 'App\Http\Controllers\KasirOrderController@pendingProses')->name('kasir-order.pendingDanProses');
-    Route::get('/order/dibayar', 'App\Http\Controllers\KasirOrderController@dibayar');
-    Route::get('/order/dibatalkan', 'App\Http\Controllers\KasirOrderController@dibatalkan');
-    Route::get('/order/invoice', 'App\Http\Controllers\KasirOrderController@invoice')->name('kasir-order.invoice');
-
-    Route::get('/order/dibatalkan/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editDibatalkan')->name('kasir-order.dibatalkan.edit');
-    Route::get('/order/dibayar/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editDibayar')->name('kasir-order.dibayar.edit');
-    Route::get('/order/pendingDanProses/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editPending')->name('kasir-order.pending-dan-proses.edit');
-    Route::get('/order/invoice/edit/{kode}', 'App\Http\Controllers\KasirOrderController@editInvoice')->name('kasir-order.invoice.edit');
-
-    Route::put('/order/pendingDanProses/edit-status/{id}', 'App\Http\Controllers\KasirOrderController@editStatus')->name('kasir-order.pending-dan-proses.update-status');
-    Route::put('/order/pendingDanProses/edit-qty/{kode}/{id}', 'App\Http\Controllers\KasirOrderController@editQty')->name('kasir-order.pending-dan-proses.update-qty');
-    Route::delete('/order/pendingDanProses/deleteProduk/{kode:int}/{id:int}', 'App\Http\Controllers\KasirOrderController@deleteProdukDipesan')->name('kasir-order.pending-dan-proses.delete-produk-dipesan');
-    Route::put('/order/bayarpesanan/{kode}', 'App\Http\Controllers\KasirOrderController@bayarPesanan')->name('kasir-order.bayar-pesanan');
-
-    Route::get('/order/source', 'App\Http\Controllers\KasirOrderController@getTableData');
-    Route::get('/order/cetak_nota/{kode}', 'App\Http\Controllers\KasirOrderController@cetakNota')->name('kasir-order.cetak-nota');
-});
-
-Route::get('test', function () {
-    event(new App\Events\StatusLiked("201511052", "Muhammad Irfan Noor Wahid"));
-    return "Event has been sent!";
-});
-
-    Route::get('/', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
+Route::get('/', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
     Route::post('order', [CustomerController::class, 'order'])->name('customer.order');
     Route::get('contact', [CustomerController::class, 'contact'])->name('customer.contact');
 
@@ -132,5 +134,4 @@ Route::get('test', function () {
         Route::post('update', [CartController::class, 'updateCart'])->name('cart.update');
         Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
         Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
-    });
 });
